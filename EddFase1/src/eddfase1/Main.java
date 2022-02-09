@@ -9,7 +9,7 @@ package eddfase1;
  *
  * @author Luisa María Ortiz
  */
-public class EddFase1 {
+public class Main {
 
     /**
      * @param args the command line arguments
