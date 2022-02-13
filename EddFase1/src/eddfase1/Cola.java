@@ -14,7 +14,8 @@ public Cola(){
     this.size=0;
 }
 
-public void enqueque(Cliente nuevo){
+public void enqueque(String titulo, String id, String nombre, int img_color, int img_bw){
+    Cliente nuevo = new Cliente(titulo, id, nombre, img_color, img_bw);
     if(this.primero==null && this.size==0){
         this.primero=nuevo;
         
@@ -37,6 +38,13 @@ public void dequeque(){
         this.primero=this.primero.siguiente;
     }
 }
-
+public void imprimir(){
+    Cliente actual = this.primero;
+    
+    while(actual!=null){
+        System.out.println(actual.nombre);
+        actual=actual.siguiente;
+    }
+}
     
 }

@@ -2,12 +2,20 @@
 package eddfase1;
 import java.util.Scanner;
 import eddfase1.Tienda;
-
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+
+
+
 /**
  *
  * @author Luisa María Ortiz
@@ -22,6 +30,10 @@ public class Main {
         System.out.println("       Bienvenido       ");
         Scanner sc = new Scanner(System.in);
         String option;
+        
+        Scanner scruta = new Scanner(System.in);
+        
+        Scanner scnum = new Scanner(System.in);
         
         Tienda tienda = new Tienda();
         int ventanillas;
@@ -42,12 +54,17 @@ public class Main {
             switch(option){
                 case "1":
                     System.out.println("Ingrese el número de ventanillas en la tienda: ");
-                    ventanillas=sc.nextInt();
+                    ventanillas=scnum.nextInt();
+                    tienda=inicializarVentanillas(tienda, ventanillas);
                    
                     
                     System.out.println("Ingrese la ruta del archivo para cargar clientes: ");
-                    ruta = sc.nextLine();
-                    tienda=inicializarTienda(tienda, ventanillas, ruta);
+                    ruta = scruta.nextLine();
+                    
+                    tienda=cargaMasiva(tienda, ruta);
+                    
+                    
+                    
                     
                     break;
                 case "2":
@@ -68,7 +85,46 @@ public class Main {
         }
     }
     
-public static Tienda inicializarTienda(Tienda tienda, int ventanillas, String ruta){
+public static Tienda inicializarVentanillas(Tienda tienda, int ventanillas){
+       
+        
+        //Inicializando las ventanillas
+        tienda.setVentanillas(ventanillas);
+        
+
+    return tienda;
+}
+
+public static Tienda cargaMasiva(Tienda tienda, String ruta){
+    String id, nombre, bw, color;
+    JSONParser parser = new JSONParser();
+    //Creando la cola
+    tienda.crearCola();
+    try{
+        Object obj = parser.parse(new FileReader(ruta));
+        JSONObject jsonObject = (JSONObject) obj;
+        
+        for(int i=0; i<jsonObject.size();i++){
+            JSONObject cliente = (JSONObject) jsonObject.get("Cliente"+(i+1));
+            //Tomando los atributos de los clientes
+            id = (String) cliente.get("id_cliente");
+            nombre = (String) cliente.get("nombre_cliente");
+            color = (String) cliente.get("img_color");
+            bw= (String) cliente.get("img_bw");
+            //Agregando el cliente a la cola
+            tienda.cola.enqueque("Cliente"+(i+1), id, nombre, Integer.valueOf(color), Integer.valueOf(bw));
+  
+        }
+        tienda.cola.imprimir();
+        
+    }   catch (FileNotFoundException ex) {
+            System.out.println(ex);
+        } catch (IOException ex) {
+           System.out.println(ex);
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+    
     return tienda;
 }
 }

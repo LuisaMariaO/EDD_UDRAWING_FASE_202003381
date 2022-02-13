@@ -8,6 +8,7 @@ package eddfase1;
 public class Cliente {
 String titulo, id, nombre;
 int img_color, img_bw;
+
 Cliente siguiente;
 
 public Cliente(String titulo, String id, String nombre, int img_color, int img_bw){
