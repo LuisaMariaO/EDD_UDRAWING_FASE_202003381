@@ -21,6 +21,7 @@ import org.json.simple.parser.ParseException;
  * @author Luisa María Ortiz
  */
 public class Main {
+    static Tienda tienda = new Tienda();
 
     /**
      * @param args the command line arguments
@@ -28,14 +29,22 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("*****UDrawing Paper*****");
         System.out.println("       Bienvenido       ");
+        menu();
+        
+    }
+    
+    public static void menu(){
+        //Area de Scanners
         Scanner sc = new Scanner(System.in);
         String option;
         
         Scanner scruta = new Scanner(System.in);
-        
         Scanner scnum = new Scanner(System.in);
+        Scanner sub1 = new Scanner(System.in);
         
-        Tienda tienda = new Tienda();
+       
+        
+        
         int ventanillas;
         String ruta;
     
@@ -55,21 +64,34 @@ public class Main {
                 case "1":
                     System.out.println("Ingrese el número de ventanillas en la tienda: ");
                     ventanillas=scnum.nextInt();
-                    tienda=inicializarVentanillas(tienda, ventanillas);
+                    tienda=inicializarVentanillas(ventanillas);
                    
                     
                     System.out.println("Ingrese la ruta del archivo para cargar clientes: ");
                     ruta = scruta.nextLine();
                     
-                    tienda=cargaMasiva(tienda, ruta);
+                    tienda=cargaMasiva(ruta);
                     
-                    
-                    
-                    
+                    System.out.println("\nSiguiente acción: ");
+                    System.out.println("1. Regresar al menú principal");
+                    System.out.println("2. Iniciar simulacion");
+                    String op1 = sub1.nextLine();
+                    switch(op1){
+                        case "1":
+                            menu();
+                            break;
+                        case "2":
+                            break;
+                        default:
+                            System.out.println("Opción inválida");
+                            break;
+                    }
+   
                     break;
                 case "2":
                     break;
                 case "3":
+                    tienda.graficar();
                     break;
                 case "4":
                     break;
@@ -85,9 +107,7 @@ public class Main {
         }
     }
     
-public static Tienda inicializarVentanillas(Tienda tienda, int ventanillas){
-       
-        
+public static Tienda inicializarVentanillas(int ventanillas){
         //Inicializando las ventanillas
         tienda.setVentanillas(ventanillas);
         
@@ -95,7 +115,7 @@ public static Tienda inicializarVentanillas(Tienda tienda, int ventanillas){
     return tienda;
 }
 
-public static Tienda cargaMasiva(Tienda tienda, String ruta){
+public static Tienda cargaMasiva(String ruta){
     String id, nombre, bw, color;
     JSONParser parser = new JSONParser();
     //Creando la cola
@@ -127,4 +147,8 @@ public static Tienda cargaMasiva(Tienda tienda, String ruta){
     
     return tienda;
 }
+
+    public static void graficar(){
+        
+    }
 }

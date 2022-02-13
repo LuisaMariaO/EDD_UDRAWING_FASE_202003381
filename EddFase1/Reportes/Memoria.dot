@@ -1,0 +1,49 @@
+digraph G {
+node[shape=box, style="filled", color=azure1];
+subgraph cluster_0{
+style=filled
+color=lightgrey;
+  edge [
+    arrowhead="none"
+  ];
+Cliente644117698[label="Cliente1
+Img C:3
+Img ByN:2"]
+Cliente1872034366[label="Cliente2
+Img C:3
+Img ByN:0"]
+Cliente1581781576[label="Cliente3
+Img C:2
+Img ByN:1"]
+Cliente644117698 -> Cliente1872034366
+Cliente1872034366 -> Cliente1581781576
+label="Cola de recepción";
+}
+subgraph cluster_1{
+style=filled
+color=cadetblue;
+Ventanilla1725154839[label="Ventanilla 1"]
+Ventanilla1670675563[label="Ventanilla 2"]
+Ventanilla723074861[label="Ventanilla 3"]
+Ventanilla895328852[label="Ventanilla 4"]
+Ventanilla1304836502[label="Ventanilla 5"]
+Ventanilla225534817[label="Ventanilla 6"]
+Ventanilla1725154839 -> Ventanilla1670675563
+Ventanilla1670675563 -> Ventanilla723074861
+Ventanilla723074861 -> Ventanilla895328852
+Ventanilla895328852 -> Ventanilla1304836502
+Ventanilla1304836502 -> Ventanilla225534817
+label="Lista Ventanillas";
+}
+subgraph cluster_2{
+style=filled
+color=darkolivegreen1;
+  edge [
+    arrowhead="none"
+  ];
+Impresora1878246837[label="Color"]
+Impresora929338653[label="B y N"]
+label="Cola impresoras";
+}
+rankdir=LR;
+}
