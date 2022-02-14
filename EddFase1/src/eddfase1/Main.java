@@ -89,6 +89,7 @@ public class Main {
    
                     break;
                 case "2":
+                    tienda.ejecutarPaso();
                     break;
                 case "3":
                     tienda.graficar();

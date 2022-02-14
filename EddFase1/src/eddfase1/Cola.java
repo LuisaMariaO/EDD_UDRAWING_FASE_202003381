@@ -33,10 +33,16 @@ public void enqueque(String titulo, String id, String nombre, int img_color, int
     
 }
 
-public void dequeque(){
+public Cliente dequeque(){
     if(this.size>0){
+        Cliente saliente = this.primero;
         this.primero=this.primero.siguiente;
+        this.size--;
+        return saliente;
+        
     }
+    else{return null;}
+    
 }
 public void imprimir(){
     Cliente actual = this.primero;

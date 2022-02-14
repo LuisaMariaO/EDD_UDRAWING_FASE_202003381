@@ -26,7 +26,7 @@ public class Tienda {
     public void setVentanillas(int no){
         this.listaVentanillas=new ListaVentanillas();
         for(int i=0; i<no;i++){
-            this.listaVentanillas.insertar("Ventanilla "+(i+1));
+            this.listaVentanillas.insertar("VENTANILLA "+(i+1));
         }
         
         this.listaVentanillas.imprimir();
@@ -86,8 +86,16 @@ public class Tienda {
         dot.append("color=cadetblue;\n");
         
 
-        while(auxv!=null){
+        while(auxv!=null){    
+            //Ventanillas
             nombresNodos+="Ventanilla"+auxv.hashCode()+"[label=\""+auxv.nombre+"\"]"+"\n";
+            //Clientes actuales de la ventanilla
+            if(auxv.ocupada && auxv.clienteActual!=null){
+                nombresNodos+="ClienteV"+auxv.clienteActual.hashCode()+"[shape=tab fillcolor=darkseagreen2 label=\""+auxv.clienteActual.titulo+"\nIMG C:"+auxv.clienteActual.img_color+
+                        "\nIMG ByN:"+auxv.clienteActual.img_bw+"\"]"+"\n";
+                
+                conexiones+=String.format("ClienteV%d -> Ventanilla%d", auxv.clienteActual.hashCode(),auxv.hashCode())+"\n";
+            }
             if(auxv.siguiente!=null){
             conexiones+=String.format("Ventanilla%d -> Ventanilla%d", auxv.hashCode(),auxv.siguiente.hashCode())+"\n";
             }
@@ -145,5 +153,35 @@ public class Tienda {
         
         }catch(IOException ex){System.out.println(ex.getMessage());}
     }
+    //Pasos de la simulación
     
+    public void ejecutarPaso(){
+        this.paso++;
+        System.out.println("-------------------PASO "+this.paso+"-------------------");
+        System.out.println("-------------------------------------------");
+        ingresoVentanilla();
+        
+    }
+    
+    public void ingresoVentanilla(){
+        
+        Ventanilla aux = this.listaVentanillas.primero;
+        
+        while(aux!=null){
+            if(!aux.ocupada && aux.clienteActual==null){//Encuentro la primera ventanilla disponible
+                break;
+            }
+            else{
+                aux=aux.siguiente;
+            }
+            
+        }
+        if(aux!=null){
+        aux.ocupada=true;
+        aux.clienteActual=this.cola.dequeque();
+        System.out.println("EL CLIENTE "+aux.clienteActual.id+" INGRESA A LA  "+aux.nombre);
+        
+        }
+        
+    }
 }
