@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import java.time.ZonedDateTime;
-
 public class Tienda {
     int paso;
     Cola cola;
@@ -158,8 +156,12 @@ public class Tienda {
     public void ejecutarPaso(){
         this.paso++;
         System.out.println("-------------------PASO "+this.paso+"-------------------");
-        System.out.println("-------------------------------------------");
+        System.out.println("--------------------------------------------");
+        //Si hay ventanillas atendiendo clientes ANTES DE ESTE PASO pueden apilar imagenes
+        setApilable();
+        
         ingresoVentanilla();
+        apilarImagenes();
         
     }
     
@@ -179,9 +181,77 @@ public class Tienda {
         if(aux!=null){
         aux.ocupada=true;
         aux.clienteActual=this.cola.dequeque();
+        //Quito el auntador que lo relacionaba con la cola de recepción
+        aux.clienteActual.siguiente=null;
         System.out.println("EL CLIENTE "+aux.clienteActual.id+" INGRESA A LA  "+aux.nombre);
         
         }
         
+    }
+    
+    public void apilarImagenes(){
+    Ventanilla actual = this.listaVentanillas.primero;
+    while(actual!=null){
+        if(actual.ocupada && actual.clienteActual!=null && actual.apilable){
+            //actual.apilable=false;
+            actual.pila = new Pila();
+            //Extrayendo las imagenes para apilar
+            if(actual.clienteActual.color_res>0){//Apilo primero las imágenes de color
+                String tipo="img_color";
+                String nombre="IMG C";
+                String id_cliente= actual.clienteActual.id;
+                actual.pila.push(tipo, nombre, id_cliente);
+                actual.clienteActual.color_res--;
+                System.out.println("LA "+actual.nombre+" RECIBIÓ UNA IMAGEN DE "+actual.clienteActual.titulo);
+            }
+            else if(actual.clienteActual.bw_res>0){
+                String tipo="img_bw";
+                String nombre="IMG ByN";
+                String id_cliente= actual.clienteActual.id;
+                actual.pila.push(tipo, nombre, id_cliente);
+                actual.clienteActual.bw_res--;
+                System.out.println("LA "+actual.nombre+" RECIBIÓ UNA IMAGEN DE "+actual.clienteActual.titulo);
+            }
+            else{
+                System.out.println("LA "+actual.nombre+" ENVIA LAS IMAGENES DE "+actual.clienteActual.titulo+" A SUS RESPECTIVAS COLAS DE IMPRESION");
+                liberarVentanilla(actual);
+            }
+            //break;
+        }
+        
+        actual=actual.siguiente;
+    }
+        
+    }
+    
+    public void liberarVentanilla(Ventanilla ventanilla){
+        Pila pila = ventanilla.pila;
+        //Empiezo a desapilar, clasificando las imagenes
+        while(pila!=null && pila.size>0){
+            Imagen saliente = pila.pop();//Desapilo
+        if(saliente.tipo.equals("img_color")){
+            this.color.cola.enqueque(saliente);
+        }
+        else{
+            this.bw.cola.enqueque(saliente);
+        }
+        }
+        //Reestablesco la ventanilla para que pueda ser ocupada
+        ventanilla.ocupada=false;
+        ventanilla.clienteActual=null;
+        ventanilla.pila=null;
+        this.ingresoVentanilla();//Puede ingresar otro cliente en este mismo paso
+        
+    }
+    
+    
+    public void setApilable(){
+        Ventanilla aux = this.listaVentanillas.primero;
+        while(aux!=null){
+            if(aux.ocupada && aux.clienteActual!=null && aux.pila==null){
+                aux.apilable=true;
+            }
+            aux=aux.siguiente;
+        }
     }
 }

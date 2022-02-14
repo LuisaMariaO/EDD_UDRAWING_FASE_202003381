@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package eddfase1;
 
 /**
@@ -11,46 +7,46 @@ package eddfase1;
  */
 public class Pila {
     
-Impresora primero;
+Imagen primero;
 int size;
-/*
+
 public Pila(){
     this.primero=null;
     this.size=0;
 }
 
-public void push(String titulo, String id, String nombre, int img_color, int img_bw){
-    Cliente nuevo = new Cliente(titulo, id, nombre, img_color, img_bw);
+public void push(String tipo, String nombre, String id_cliente){//Inserta al inicio
+    Imagen nuevo = new Imagen(tipo, nombre, id_cliente);
     if(this.primero==null && this.size==0){
         this.primero=nuevo;
         
     }
     else{
-      Cliente actual=this.primero;
-      while(actual.siguiente!=null){
-          actual=actual.siguiente;
-      }
-      actual.siguiente=nuevo;
-      
+        nuevo.siguiente=this.primero;
+        this.primero=nuevo;
     }
     
    this.size++; 
     
 }
 
-public void dequeque(){
+public Imagen pop(){
     if(this.size>0){
+        Imagen saliente = this.primero;
         this.primero=this.primero.siguiente;
+        this.size--;
+        return saliente;
     }
+    else{return null;}
 }
 public void imprimir(){
-    Cliente actual = this.primero;
+    Imagen actual = this.primero;
     
     while(actual!=null){
         System.out.println(actual.nombre);
         actual=actual.siguiente;
     }
 }
-*/
+
     
 }

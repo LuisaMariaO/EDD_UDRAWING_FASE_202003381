@@ -6,7 +6,7 @@ package eddfase1;
  * @author Luisa María Ortiz
  */
 public class ColaImpresion {
-    Impresora primero;
+    Imagen primero;
     int size;
     
     public ColaImpresion(){
@@ -14,15 +14,18 @@ public class ColaImpresion {
         this.size=0;
     }
     
-    public void push(String impresora){
-    Impresora nueva = new Impresora(impresora);
+    public void enqueque(Imagen nueva){
+
     if(this.primero==null && this.size==0){
         this.primero=nueva;
         
     }
     else{
-        nueva.siguiente=this.primero;
-        this.primero=nueva;
+      Imagen actual=this.primero;
+      while(actual.siguiente!=null){
+          actual=actual.siguiente;
+      }
+      actual.siguiente=nueva;
       
     }
     
@@ -30,18 +33,25 @@ public class ColaImpresion {
     
 }
 
-public void pop(){
+public Imagen dequeque(){
     if(this.size>0){
+        Imagen saliente = this.primero;
         this.primero=this.primero.siguiente;
+        this.size--;
+        return saliente;
+        
     }
+    else{return null;}
+    
 }
 public void imprimir(){
-    Impresora actual = this.primero;
+    Imagen actual = this.primero;
     
     while(actual!=null){
         System.out.println(actual.nombre);
         actual=actual.siguiente;
     }
+
 }
     
 }
