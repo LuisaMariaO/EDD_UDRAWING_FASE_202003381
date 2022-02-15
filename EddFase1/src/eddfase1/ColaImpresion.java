@@ -53,5 +53,9 @@ public void imprimir(){
     }
 
 }
+
+public Imagen verPrimero(){
+        return this.primero;
+}
     
 }

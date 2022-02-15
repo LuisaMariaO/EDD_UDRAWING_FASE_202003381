@@ -17,7 +17,6 @@ public class Impresora {
   public Impresora(String nombre){
       this.siguiente=null;
       this.nombre=nombre;
-      
       this.cola=null;
   }
     

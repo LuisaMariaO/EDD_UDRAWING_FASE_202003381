@@ -12,6 +12,7 @@ public class Tienda {
     Impresora color;
     Impresora bw;
     ListaVentanillas listaVentanillas;
+    ListaEspera listaEspera;
     public Tienda(){
         this.paso=0;
         this.listaVentanillas=null;
@@ -19,10 +20,18 @@ public class Tienda {
         //Siempre se inicializan dos impresoras
         this.color = new Impresora("Color");
         this.bw = new Impresora("B y N");
+        
+        this.listaEspera=null;
     }
     
     public void setVentanillas(int no){
         this.listaVentanillas=new ListaVentanillas();
+        //Inicializo también la lista de espera para que solo se inicialice una vez
+        this.listaEspera = new ListaEspera();
+        //Inicializo las colas de impresion 
+        this.color.cola=new ColaImpresion();
+        this.bw.cola=new ColaImpresion();
+        
         for(int i=0; i<no;i++){
             this.listaVentanillas.insertar("VENTANILLA "+(i+1));
         }
@@ -155,13 +164,16 @@ public class Tienda {
     
     public void ejecutarPaso(){
         this.paso++;
-        System.out.println("-------------------PASO "+this.paso+"-------------------");
-        System.out.println("--------------------------------------------");
+        System.out.println("-----------------------------------------PASO "+this.paso+"-----------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------------");
         //Si hay ventanillas atendiendo clientes ANTES DE ESTE PASO pueden apilar imagenes
-        setApilable();
+        this.setApilable();
+        //Permito que imagenes ingresadas a la cola en el paso anterior se impriman a partir de el paso actual
+        this.setImprimible();
+        this.ingresoVentanilla();
+        this.apilarImagenes();
+        this.imprimir();
         
-        ingresoVentanilla();
-        apilarImagenes();
         
     }
     
@@ -181,10 +193,12 @@ public class Tienda {
         if(aux!=null){
         aux.ocupada=true;
         aux.clienteActual=this.cola.dequeque();
+        if(aux.clienteActual!=null){
+        aux.clienteActual.ventanilla=aux;//Ventanilla que lo está atendiendo
         //Quito el auntador que lo relacionaba con la cola de recepción
         aux.clienteActual.siguiente=null;
         System.out.println("EL CLIENTE "+aux.clienteActual.id+" INGRESA A LA  "+aux.nombre);
-        
+        }
         }
         
     }
@@ -194,13 +208,15 @@ public class Tienda {
     while(actual!=null){
         if(actual.ocupada && actual.clienteActual!=null && actual.apilable){
             //actual.apilable=false;
-            actual.pila = new Pila();
+            //actual.pila = new Pila();
             //Extrayendo las imagenes para apilar
             if(actual.clienteActual.color_res>0){//Apilo primero las imágenes de color
                 String tipo="img_color";
                 String nombre="IMG C";
                 String id_cliente= actual.clienteActual.id;
-                actual.pila.push(tipo, nombre, id_cliente);
+                String cliente=actual.clienteActual.titulo;
+                actual.pila.push(tipo, nombre, id_cliente, cliente);
+
                 actual.clienteActual.color_res--;
                 System.out.println("LA "+actual.nombre+" RECIBIÓ UNA IMAGEN DE "+actual.clienteActual.titulo);
             }
@@ -208,12 +224,15 @@ public class Tienda {
                 String tipo="img_bw";
                 String nombre="IMG ByN";
                 String id_cliente= actual.clienteActual.id;
-                actual.pila.push(tipo, nombre, id_cliente);
+                String cliente=actual.clienteActual.titulo;
+                actual.pila.push(tipo, nombre, id_cliente, cliente);
+
                 actual.clienteActual.bw_res--;
                 System.out.println("LA "+actual.nombre+" RECIBIÓ UNA IMAGEN DE "+actual.clienteActual.titulo);
             }
             else{
                 System.out.println("LA "+actual.nombre+" ENVIA LAS IMAGENES DE "+actual.clienteActual.titulo+" A SUS RESPECTIVAS COLAS DE IMPRESION");
+
                 liberarVentanilla(actual);
             }
             //break;
@@ -227,17 +246,22 @@ public class Tienda {
     public void liberarVentanilla(Ventanilla ventanilla){
         Pila pila = ventanilla.pila;
         //Empiezo a desapilar, clasificando las imagenes
-        while(pila!=null && pila.size>0){
+        
+        while(pila.primero!=null && pila.size>0){
             Imagen saliente = pila.pop();//Desapilo
+            saliente.siguiente=null;//Elimino el puntero de la estructura anterior
         if(saliente.tipo.equals("img_color")){
             this.color.cola.enqueque(saliente);
         }
-        else{
+        else{//Esto no lo está haciendo :D
             this.bw.cola.enqueque(saliente);
         }
         }
+        
         //Reestablesco la ventanilla para que pueda ser ocupada
         ventanilla.ocupada=false;
+        this.listaEspera.insertar(ventanilla.clienteActual);//Envío el cliente actual a la lista de espera
+        System.out.println("EL "+ventanilla.clienteActual.titulo+" ES ATENDIDO E INGRESA A LA LISTA DE ESPERA");
         ventanilla.clienteActual=null;
         ventanilla.pila=null;
         this.ingresoVentanilla();//Puede ingresar otro cliente en este mismo paso
@@ -249,9 +273,50 @@ public class Tienda {
         Ventanilla aux = this.listaVentanillas.primero;
         while(aux!=null){
             if(aux.ocupada && aux.clienteActual!=null && aux.pila==null){
+                aux.pila=new Pila();
                 aux.apilable=true;
             }
             aux=aux.siguiente;
+        }
+    }
+    
+    public void setImprimible(){
+        Imagen actual=this.color.cola.primero;
+        while(actual!=null){
+        actual.imprimible=true;
+        actual=actual.siguiente;
+    }
+        actual=this.bw.cola.primero;
+        while(actual!=null){
+            actual.imprimible=true;
+            actual=actual.siguiente;
+        }
+        
+    }
+    
+    public void imprimir(){
+        if(this.color.cola!=null && this.color.cola.primero!=null){
+           Imagen impresa=this.color.cola.verPrimero();//Verifico los pasos que lleva en impresión
+           if(impresa.pasos<2 && impresa.imprimible){
+               impresa.pasos++;
+           }
+           if(impresa.pasos==2 && impresa.imprimible){
+               impresa=this.color.cola.dequeque();
+               //Busco el cliente al que le pertenece la imagen
+               this.listaEspera.entregarImagen(impresa);//->Pendiente de revisar
+               System.out.println("SE IMPRIME UNA IMAGEN A COLOR Y SE ENTREGA A "+impresa.cliente);
+           }
+        }
+        if(this.bw.cola!=null && this.bw.cola.primero!=null){
+            Imagen impresa=this.bw.cola.verPrimero();
+            if(impresa.imprimible){
+            impresa=this.bw.cola.dequeque();
+             //Busco el cliente al que le pertenece la imagen
+            this.listaEspera.entregarImagen(impresa);
+            System.out.println("SE IMPRIME UNA IMAGEN A BLANCO Y NEGRO Y SE ENTREGA A "+impresa.cliente);
+            }
+           
+            
         }
     }
 }

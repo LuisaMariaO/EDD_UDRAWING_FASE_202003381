@@ -15,13 +15,14 @@ public Pila(){
     this.size=0;
 }
 
-public void push(String tipo, String nombre, String id_cliente){//Inserta al inicio
-    Imagen nuevo = new Imagen(tipo, nombre, id_cliente);
+public void push(String tipo, String nombre, String id_cliente, String cliente){//Inserta al inicio
+    Imagen nuevo = new Imagen(tipo, nombre, id_cliente, cliente);
     if(this.primero==null && this.size==0){
         this.primero=nuevo;
         
     }
     else{
+        
         nuevo.siguiente=this.primero;
         this.primero=nuevo;
     }
