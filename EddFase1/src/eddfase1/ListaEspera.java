@@ -26,18 +26,20 @@ public class ListaEspera {
             lc.siguiente=nuevo;
         }
         lc=nuevo;
+        this.size++;
     }
 
     public void imprimir(){
-        //TODO: Validar lista vacia
-        Cliente actual=this.lc.siguiente;
+        Cliente actual=this.lc;
+        if(actual!=null){
         do{
-            System.out.println(actual.toString());
+            System.out.println(actual.titulo);
             actual=actual.siguiente;
-        }while(actual!=this.lc.siguiente);
+        }while(actual!=this.lc);
+        }
     }
     public void entregarImagen(Imagen imagen){
-        Cliente actual=this.lc.siguiente;
+        Cliente actual=this.lc;
         imagen.siguiente=null;//Elimino el puntero que tenía en la cola de impresión
         do{
             if(actual.id.equals(imagen.id_cliente)){
@@ -46,15 +48,37 @@ public class ListaEspera {
                 }
                 else{
                     Imagen aux = actual.img_impresa;
-                    while(aux!=null){
+                    while(aux.siguiente!=null){
                         aux=aux.siguiente;
                     }
                     aux.siguiente=imagen;//Imagenes apuntadas entre sí que a pertenecen a un cliente 
                             
                 }
+                actual.atendido=true;
+                
+                actual.img_contador++;
+                break;
             }
             actual=actual.siguiente;
-        }while(actual!=this.lc.siguiente);
+        }while(actual!=this.lc);
         
+    }
+    public void sacar(Cliente cliente){
+        if(cliente==this.lc){
+                if(this.size==1){//En caso de que solo haya un cliente en espera
+                    this.lc=null;
+                }
+                else{
+            lc.siguiente.anterior=lc.anterior;
+            lc.anterior.siguiente=lc.siguiente;
+            this.lc=lc.siguiente;
+                }
+
+        }
+        else{
+            cliente.anterior.siguiente=cliente.siguiente;
+            cliente.siguiente.anterior=cliente.anterior;
+        }
+        this.size--;
     }
 }

@@ -13,6 +13,7 @@ public class Tienda {
     Impresora bw;
     ListaVentanillas listaVentanillas;
     ListaEspera listaEspera;
+    ListaAtendidos listaAtendidos;
     public Tienda(){
         this.paso=0;
         this.listaVentanillas=null;
@@ -22,6 +23,7 @@ public class Tienda {
         this.bw = new Impresora("B y N");
         
         this.listaEspera=null;
+        this.listaAtendidos=new ListaAtendidos();
     }
     
     public void setVentanillas(int no){
@@ -170,11 +172,14 @@ public class Tienda {
         this.setApilable();
         //Permito que imagenes ingresadas a la cola en el paso anterior se impriman a partir de el paso actual
         this.setImprimible();
+        //Busco clientes que ya hayan recibido todas sus imágenes y los saco de la lista de espera
+        this.setAtendido();
+        
         this.ingresoVentanilla();
         this.apilarImagenes();
         this.imprimir();
         
-        
+
     }
     
     public void ingresoVentanilla(){
@@ -319,4 +324,25 @@ public class Tienda {
             
         }
     }
+    public void setAtendido(){
+      
+      if(this.listaEspera.lc!=null){
+          Cliente actual=this.listaEspera.lc;
+        do{
+            if(actual.img_contador==actual.img_total && actual.atendido){
+
+                System.out.println("EL "+actual.titulo+" YA POSEE TODAS SUS IMÁGENES IMPRESAS Y SALE DE LA EMPRESA");
+                this.listaEspera.sacar(actual);
+                //Elimino los punteros que lo relacionan con la lista de espera
+                actual.siguiente=null;
+                actual.anterior=null;
+                this.listaAtendidos.insertarFinal(actual);
+                break;
+            }
+            actual=actual.siguiente;
+        }while(actual!=this.listaEspera.lc);
+    }
+    }
+        
+    
 }

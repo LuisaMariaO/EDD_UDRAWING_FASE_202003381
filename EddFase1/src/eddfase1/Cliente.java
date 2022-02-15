@@ -7,7 +7,7 @@ package eddfase1;
  */
 public class Cliente {
 String titulo, id, nombre;
-int img_color, img_bw, pasos, color_res, bw_res;
+int img_color, img_bw, pasos, color_res, bw_res,img_total,img_contador;
 Imagen img_impresa;
 Cliente siguiente, anterior;
 boolean atendido;//bandera
@@ -21,6 +21,10 @@ public Cliente(String titulo, String id, String nombre, int img_color, int img_b
     //Contadores de imagenes mientras se van entregando
     this.color_res=img_color;
     this.bw_res=img_bw;
+    //Total de imágenes que debe procesar el cliente
+    this.img_total=img_color+img_bw;
+    //Total de imágenes que el cliente ha recibido
+    this.img_contador=0;
     //Contador de pasos
     this.pasos=0;
     //Apuntador
