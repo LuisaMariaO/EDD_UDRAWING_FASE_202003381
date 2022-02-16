@@ -6,25 +6,45 @@ color=lightgrey;
   edge [
     arrowhead="none"
   ];
-Cliente1872034366[label="Cliente3
-Img C:2
+Cliente1725154839[label="Cliente4
+Img C:1
 Img ByN:1"]
+Cliente1878246837[label="Cliente5
+Img C:0
+Img ByN:4"]
+Cliente929338653[label="Cliente6
+Img C:0
+Img ByN:4"]
+Cliente1259475182[label="Cliente7
+Img C:0
+Img ByN:4"]
+Cliente1300109446[label="Cliente8
+Img C:1
+Img ByN:0"]
+Cliente1020371697[label="Cliente9
+Img C:0
+Img ByN:3"]
+Cliente1725154839 -> Cliente1878246837
+Cliente1878246837 -> Cliente929338653
+Cliente929338653 -> Cliente1259475182
+Cliente1259475182 -> Cliente1300109446
+Cliente1300109446 -> Cliente1020371697
 label="Cola de recepción";
 }
 subgraph cluster_1{
 style=filled
 color=cadetblue;
-Ventanilla1581781576[label="VENTANILLA 1"]
-ClienteV1725154839[shape=tab fillcolor=darkseagreen2 label="Cliente1
-IMG C:3
+Ventanilla1670675563[label="VENTANILLA 1"]
+ClienteV1581781576[shape=tab fillcolor=darkseagreen2 label="Cliente3
+IMG C:0
 IMG ByN:2"]
-Ventanilla1670675563[label="VENTANILLA 2"]
-ClienteV644117698[shape=tab fillcolor=darkseagreen2 label="Cliente2
+Ventanilla895328852[label="VENTANILLA 2"]
+ClienteV1872034366[shape=tab fillcolor=darkseagreen2 label="Cliente2
 IMG C:3
 IMG ByN:0"]
-ClienteV1725154839 -> Ventanilla1581781576
-Ventanilla1581781576 -> Ventanilla1670675563
-ClienteV644117698 -> Ventanilla1670675563
+ClienteV1581781576 -> Ventanilla1670675563
+Ventanilla1670675563 -> Ventanilla895328852
+ClienteV1872034366 -> Ventanilla895328852
 label="Lista Ventanillas";
 }
 subgraph cluster_2{
@@ -33,8 +53,8 @@ color=darkolivegreen1;
   edge [
     arrowhead="none"
   ];
-Impresora723074861[label="Color"]
-Impresora895328852[label="B y N"]
+Impresora1304836502[label="Color"]
+Impresora225534817[label="B y N"]
 label="Cola impresoras";
 }
 rankdir=LR;

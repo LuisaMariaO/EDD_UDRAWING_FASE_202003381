@@ -1,6 +1,6 @@
 
 package eddfase1;
-
+import java.util.Vector;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,6 +14,17 @@ public class Tienda {
     ListaVentanillas listaVentanillas;
     ListaEspera listaEspera;
     ListaAtendidos listaAtendidos;
+    //Vectores para generar nombres y apellidos aleatorios
+    String nombres[]={"Luisa","María","Olga","Lidia","Belén","Ana","Manuela","Teresa","Alejandra","Rosa","Amanda","Amalia","Brenda","Josefina",
+    "Linda","Rosaura","Zulma","Dania","Clara","Julia","Julieta","Carmen","Lourdes","Fátima","Soledad","Hermenegildo","Roberto","Pedro","Esteban",
+    "Cornelio","Ezequiel","Daniel","Isaías","Mateo","Marcos","Juan","Lucas","Santiago","Judas","José","Álvaro","Joel","Dante","Salomón","David",
+    "Iván","Jesús","Francisco","Valentín","Albin"};
+    
+    String apellidos[]={"Ortíz","Romero","Ramírez","Rafael","Franco","Valenzuela","Castillo","Botrán","del Cid","Campollo","Gutiérrez","Paiz","Osorio",
+    "Giammatei","Cabrera","Árbenz","Estrada","Túchez","Salazar","Batres","Álvarez","Herrera","Herrarte","Muñoz","Véliz","Gárcía","Santos","Vargas",
+    "Velásquez","Rodas","Samayoa","Solares","Alvarado","Mayén","Camas","Puac","Quel","Escalante","Bolaños","Lima","Delgado","Quevedo","Monterroso",
+    "Guzman","Bran","Melgar","Morales","Rosales","Zetino","de Leon","Collado"};
+    
     public Tienda(){
         this.paso=0;
         this.listaVentanillas=null;
@@ -34,11 +45,16 @@ public class Tienda {
         this.color.cola=new ColaImpresion();
         this.bw.cola=new ColaImpresion();
         
+      
+        
         for(int i=0; i<no;i++){
             this.listaVentanillas.insertar("VENTANILLA "+(i+1));
         }
         
         this.listaVentanillas.imprimir();
+        
+        //Vectores para nombres y apellidos
+      
         
     }
     
@@ -174,7 +190,8 @@ public class Tienda {
         this.setImprimible();
         //Busco clientes que ya hayan recibido todas sus imágenes y los saco de la lista de espera
         this.setAtendido();
-        
+        //Genero los clientes aleatorios
+        this.generarClientes();
         this.ingresoVentanilla();
         
         this.apilarImagenes();
@@ -356,6 +373,26 @@ public class Tienda {
             actual=actual.siguiente;
         }while(actual!=this.listaEspera.lc);
     }
+    }
+    
+    public void generarClientes(){
+        int cantidad = (int)(Math.random()*4);
+        int bw, color;
+            for(int i=0;i<cantidad;i++){
+               bw= (int)(Math.random()*5);
+               if(bw==0){
+                   color = (int) (Math.random()*4+1);
+               }
+               else{
+                   color = (int) (Math.random()*(4-bw));
+               }
+               
+               String nombre = this.nombres[(int)(Math.random()*49)]+this.apellidos[(int)(Math.random()*49)];
+               int id = Integer.valueOf(this.cola.ultimo.id)+1;
+               this.cola.enqueque("Cliente"+String.valueOf(id), String.valueOf(id), nombre, color, bw);
+            }
+        
+        
     }
         
     
