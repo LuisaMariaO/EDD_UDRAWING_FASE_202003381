@@ -63,6 +63,16 @@ public class ListaEspera {
         }while(actual!=this.lc);
         
     }
+    public void contarPasos(){
+    Cliente actual = this.lc;
+    if(actual!=null){
+    do{
+       actual.pasos++;
+       actual=actual.siguiente;
+    }while (actual!=this.lc);
+    }
+    }//Cuenta pasos de los clientes que están en la lista de espera
+    
     public void sacar(Cliente cliente){
         if(cliente==this.lc){
                 if(this.size==1){//En caso de que solo haya un cliente en espera

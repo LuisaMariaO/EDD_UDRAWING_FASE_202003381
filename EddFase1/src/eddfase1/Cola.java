@@ -52,5 +52,13 @@ public void imprimir(){
         actual=actual.siguiente;
     }
 }
+
+public void cuentaPaso(){//Cuenta pasos de los clientes que están en la cola de recepción
+    Cliente actual = this.primero;
+    while(actual!=null){
+        actual.pasos++;
+        actual=actual.siguiente;
+    }
+}
     
 }

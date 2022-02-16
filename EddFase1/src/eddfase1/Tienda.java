@@ -176,7 +176,12 @@ public class Tienda {
         this.setAtendido();
         
         this.ingresoVentanilla();
+        
         this.apilarImagenes();
+        
+        //Después de ingresar a ventanilla, sumo este paso a los clientes en la cola de recepción
+        this.cola.cuentaPaso();
+        
         this.imprimir();
         
 
@@ -202,6 +207,7 @@ public class Tienda {
         aux.clienteActual.ventanilla=aux;//Ventanilla que lo está atendiendo
         //Quito el auntador que lo relacionaba con la cola de recepción
         aux.clienteActual.siguiente=null;
+        aux.clienteActual.pasos++;//Contador de pasos
         System.out.println("EL CLIENTE "+aux.clienteActual.id+" INGRESA A LA  "+aux.nombre);
         }
         }
@@ -223,6 +229,7 @@ public class Tienda {
                 actual.pila.push(tipo, nombre, id_cliente, cliente);
 
                 actual.clienteActual.color_res--;
+                actual.clienteActual.pasos++;//Un paso más al cliente
                 System.out.println("LA "+actual.nombre+" RECIBIÓ UNA IMAGEN DE "+actual.clienteActual.titulo);
             }
             else if(actual.clienteActual.bw_res>0){
@@ -233,6 +240,7 @@ public class Tienda {
                 actual.pila.push(tipo, nombre, id_cliente, cliente);
 
                 actual.clienteActual.bw_res--;
+                actual.clienteActual.pasos++;
                 System.out.println("LA "+actual.nombre+" RECIBIÓ UNA IMAGEN DE "+actual.clienteActual.titulo);
             }
             else{
@@ -266,13 +274,17 @@ public class Tienda {
         //Reestablesco la ventanilla para que pueda ser ocupada
         ventanilla.ocupada=false;
         this.listaEspera.insertar(ventanilla.clienteActual);//Envío el cliente actual a la lista de espera
+        ventanilla.clienteActual.pasos++;//Un paso más en el sistema
         System.out.println("EL "+ventanilla.clienteActual.titulo+" ES ATENDIDO E INGRESA A LA LISTA DE ESPERA");
+        
         ventanilla.clienteActual=null;
         ventanilla.pila=null;
         this.ingresoVentanilla();//Puede ingresar otro cliente en este mismo paso
         
     }
-    
+    public void pasoCola(){
+        
+    }
     
     public void setApilable(){
         Ventanilla aux = this.listaVentanillas.primero;
@@ -308,7 +320,7 @@ public class Tienda {
            if(impresa.pasos==2 && impresa.imprimible){
                impresa=this.color.cola.dequeque();
                //Busco el cliente al que le pertenece la imagen
-               this.listaEspera.entregarImagen(impresa);//->Pendiente de revisar
+               this.listaEspera.entregarImagen(impresa);
                System.out.println("SE IMPRIME UNA IMAGEN A COLOR Y SE ENTREGA A "+impresa.cliente);
            }
         }
@@ -323,6 +335,7 @@ public class Tienda {
            
             
         }
+        this.listaEspera.contarPasos();
     }
     public void setAtendido(){
       
@@ -330,8 +343,9 @@ public class Tienda {
           Cliente actual=this.listaEspera.lc;
         do{
             if(actual.img_contador==actual.img_total && actual.atendido){
-
-                System.out.println("EL "+actual.titulo+" YA POSEE TODAS SUS IMÁGENES IMPRESAS Y SALE DE LA EMPRESA");
+                //actual.pasos++;
+                System.out.println("EL "+actual.titulo+" YA POSEE TODAS SUS IMÁGENES IMPRESAS Y SALE DE LA EMPRESA REGISTRANDO UN"
+                        + " TIEMPO TOTAL DE "+actual.pasos+" PASOS");
                 this.listaEspera.sacar(actual);
                 //Elimino los punteros que lo relacionan con la lista de espera
                 actual.siguiente=null;
