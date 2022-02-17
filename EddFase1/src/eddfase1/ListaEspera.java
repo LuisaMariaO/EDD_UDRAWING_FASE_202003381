@@ -21,7 +21,7 @@ public class ListaEspera {
 
         if (this.lc!=null){//Esta lista es circular y doblemente enlazada
             nuevo.siguiente=lc.siguiente;
-            lc.anterior=nuevo;
+            lc.siguiente.anterior=nuevo;
             nuevo.anterior=lc;
             lc.siguiente=nuevo;
         }

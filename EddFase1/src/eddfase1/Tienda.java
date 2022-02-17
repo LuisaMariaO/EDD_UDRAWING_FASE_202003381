@@ -75,11 +75,234 @@ public class Tienda {
         dot.append("node[shape=box, style=\"filled\", color=azure1];\n");
  
         
+        
+        
+        
         String nombresNodos="";
         String conexiones="";
         int cluster=0;
         
+        //Clientes atendidos
+        nombresNodos="";
+        conexiones="";
+        Cliente auxi = this.listaAtendidos.primero;
+        dot.append("subgraph cluster_").append(cluster).append("{\n");
+        dot.append("style=filled\n");
+        dot.append("color=	cornflowerblue;\n");
+
+
+        while(auxi!=null){
+            nombresNodos+="Cliente"+auxi.hashCode()+"[label=\""+auxi.titulo+"\nNombre: "+auxi.nombre+"\nAtendió: "+auxi.ventanilla.nombre+"\nImg impresas: "+auxi.img_total+"\nPasos totales"+auxi.pasos+"\"]"+"\n";
+            if(auxi.siguiente!=null){
+            conexiones+=String.format("Cliente%d -> Cliente%d", auxi.hashCode(),auxi.siguiente.hashCode())+"\n";
+            }
+            
+            auxi=auxi.siguiente;
+        }
+        
+        
+        dot.append(nombresNodos);
+        dot.append(conexiones);
+        dot.append("label=\"Cola de recepción\""+";\n");
+        dot.append("}\n");
+        cluster++;
+        
+        //Clientes en espera
+        nombresNodos="";
+        conexiones="";
+        Cliente cl = this.listaEspera.lc.siguiente;
+        dot.append("subgraph cluster_").append(cluster).append("{\n");
+        dot.append("style=filled\n");
+        dot.append("color=coral;\n");
+        
+        if(this.listaEspera.lc!=null){
+        do{
+            nombresNodos+="Cliente"+(cl.hashCode()+1)+"[label=\""+cl.titulo+"\nNombre: "+cl.nombre+"\nImg C: "+cl.img_color+"\nImg ByN: "+cl.img_bw+"\"]"+"\n";
+            if(cl.siguiente!=null && cl.anterior!=null){
+            //Imagenes de cada cliente
+            Imagen actual=cl.img_impresa;
+            if(cl.img_impresa!=null){
+                if(actual.tipo.equals("img_color")){
+                nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=darksalmon label=\"IMG COLOR\"]"+"\n";}
+                else{
+                    nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=gray52 label=\"IMG ByN\"]"+"\n";
+                }
+                conexiones+=String.format("Cliente%d -> Imagen%d", cl.hashCode()+1,actual.hashCode()+1)+"\n";  
+                
+                while(actual!=null){
+                    if(actual.tipo.equals("img_color")){
+                        nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=darksalmon label=\"IMG COLOR\"]"+"\n";}
+                    else{
+                    nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=gray52 label=\"IMG ByN\"]"+"\n";
+                }
+                    if(actual.siguiente!=null){
+                    conexiones+=String.format("Imagen%d -> Imagen%d", actual.hashCode()+1,actual.siguiente.hashCode()+1)+"\n";  
+                }
+              actual=actual.siguiente;
+            }
+            }
+            
+            conexiones+=String.format("Cliente%d -> Cliente%d", cl.hashCode()+1,cl.siguiente.hashCode()+1)+"\n";
+            conexiones+=String.format("Cliente%d -> Cliente%d", cl.hashCode()+1,cl.anterior.hashCode()+1)+"\n";
+            }
+            System.out.println(cl.titulo);
+            cl=cl.siguiente;
+        }while(cl!=this.listaEspera.lc.siguiente);
+        
+        }
+        dot.append(nombresNodos);
+        dot.append(conexiones);
+        dot.append("label=\"Lista de Espera\""+";\n");
+        dot.append("}\n");
+        cluster++;
+        
+        
+        
+        //Impresoras
+        nombresNodos="";
+        conexiones="";
+
+        dot.append("subgraph cluster_").append(cluster).append("{\n");
+        dot.append("style=filled\n");
+        dot.append("color=darkolivegreen1;\n");
+        dot.append("  edge [\n" +"    arrowhead=\"none\"\n" +"  ];\n");
+        //Impresora a color
+        nombresNodos+="Impresora"+this.color.hashCode()+"[label=\""+this.color.nombre+"\"]"+"\n";
+        
+        if(this.color.cola.primero!=null){
+            Imagen actual = this.color.cola.primero;
+            nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=darksalmon label=\"IMG COLOR\"]"+"\n";
+            conexiones+=String.format("Impresora%d -> Imagen%d", this.color.hashCode(),actual.hashCode()+1)+"\n";
+            
+            while(actual!=null){
+              nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=darksalmon label=\"IMG COLOR\"]"+"\n"; 
+              if(actual.siguiente!=null){
+                conexiones+=String.format("Imagen%d -> Imagen%d", actual.hashCode()+1,actual.siguiente.hashCode()+1)+"\n";  
+              }
+              actual=actual.siguiente;
+            }
+            
+        }
+        //Impresora blanco y negro
+        nombresNodos+="Impresora"+this.bw.hashCode()+"[label=\""+this.bw.nombre+"\"]"+"\n";
+        
+         if(this.bw.cola.primero!=null){
+            Imagen actual = this.bw.cola.primero;
+            nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=gray52 label=\"IMG ByN\"]"+"\n";
+            conexiones+=String.format("Impresora%d -> Imagen%d", this.bw.hashCode(),actual.hashCode()+1)+"\n";
+            
+            while(actual!=null){
+              nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=gray52 label=\"IMG ByN\"]"+"\n"; 
+              if(actual.siguiente!=null){
+                conexiones+=String.format("Imagen%d -> Imagen%d", actual.hashCode()+1,actual.siguiente.hashCode()+1)+"\n";  
+              }
+              actual=actual.siguiente;
+            }
+            
+        }
+   
+    
+        dot.append(nombresNodos);
+        dot.append(conexiones);
+        dot.append("label=\"Cola impresoras\""+";\n");
+        dot.append("}\n");
+        cluster++;
+        
+        
+        //Pilas de imágenes en ventanilla
+        nombresNodos="";
+        conexiones="";
+        Ventanilla auxv = this.listaVentanillas.primero;
+        dot.append("subgraph cluster_").append(cluster).append("{\n");
+        dot.append("style=filled\n");
+        dot.append("color=gold2;\n");
+        dot.append("  edge [\n" +"    arrowhead=\"none\"\n" +"  ];\n");
+
+        while(auxv!=null){    
+            //Ventanillas
+            nombresNodos+="Ventanilla"+(auxv.hashCode()+1)+"[label=\""+auxv.nombre+"\"]"+"\n";
+            //Pila de imágenes en ventanilla
+            if(auxv.pila!=null){
+                Imagen imagen=auxv.pila.primero;
+                if(imagen.tipo.equals("img_color")){
+                nombresNodos+="Imagen"+imagen.hashCode()+"[shape=signature fillcolor=floralwhite label=\"IMG COLOR\"]"+"\n";}
+                else{
+                    nombresNodos+="Imagen"+imagen.hashCode()+"[shape=signature fillcolor=floralwhite label=\"IMG ByN\"]"+"\n";} 
+                
+                conexiones+=String.format("Ventanilla%d -> Imagen%d", auxv.hashCode()+1,imagen.hashCode())+"\n";
+                //Agrego las pilas de imágenes de cada ventanilla
+            //imagen = imagen.siguiente;
+            while(imagen!=null){
+                if(imagen.tipo.equals("img_color")){
+                nombresNodos+="Imagen"+imagen.hashCode()+"[shape=signature fillcolor=floralwhite label=\"IMG COLOR\"]"+"\n";}
+                else{
+                    nombresNodos+="Imagen"+imagen.hashCode()+"[shape=signature fillcolor=floralwhite label=\"IMG ByN\"]"+"\n";} 
+                if(imagen.siguiente!=null){
+                    conexiones+=String.format("Imagen%d -> Imagen%d", imagen.hashCode(),imagen.siguiente.hashCode())+"\n";
+                }
+                imagen=imagen.siguiente;
+            }
+            
+            }
+            
+            
+            
+            if(auxv.siguiente!=null){
+            //conexiones+=String.format("Ventanilla%d -> Ventanilla%d", auxv.hashCode()+1,auxv.siguiente.hashCode()+1)+"\n";
+            }
+            
+            auxv=auxv.siguiente;
+        }
+        
+        
+        dot.append(nombresNodos);
+        dot.append(conexiones);
+        dot.append("label=\"Pila de imágenes en cada ventanilla\""+";\n");
+        dot.append("}\n");
+        cluster++;
+        
+        //Ventanillas
+        nombresNodos="";
+        conexiones="";
+        auxv = this.listaVentanillas.primero;
+        dot.append("subgraph cluster_").append(cluster).append("{\n");
+        dot.append("style=filled\n");
+        dot.append("color=cadetblue;\n");
+        
+
+        while(auxv!=null){    
+            //Ventanillas
+            nombresNodos+="Ventanilla"+auxv.hashCode()+"[label=\""+auxv.nombre+"\"]"+"\n";
+            //Clientes actuales de la ventanilla
+            if(auxv.ocupada && auxv.clienteActual!=null){
+                nombresNodos+="ClienteV"+auxv.clienteActual.hashCode()+"[shape=tab fillcolor=darkseagreen2 label=\""+auxv.clienteActual.titulo+"\nNombre: "+
+                        auxv.clienteActual.nombre+"\nIMG C:"+auxv.clienteActual.img_color+
+                        "\nIMG ByN:"+auxv.clienteActual.img_bw+"\"]"+"\n";
+                
+                conexiones+=String.format("ClienteV%d -> Ventanilla%d", auxv.clienteActual.hashCode(),auxv.hashCode())+"\n";
+                //Agrego las pilas de imágenes de cada ventanilla
+       
+            }
+            if(auxv.siguiente!=null){
+            conexiones+=String.format("Ventanilla%d -> Ventanilla%d", auxv.hashCode(),auxv.siguiente.hashCode())+"\n";
+            }
+            
+            auxv=auxv.siguiente;
+        }
+        
+        
+        dot.append(nombresNodos);
+        dot.append(conexiones);
+        dot.append("label=\"Lista Ventanillas (Se muestra el cliente que está atendiendo)\""+";\n");
+        dot.append("}\n");
+        cluster++;
+        
+        
+        
+        
         //Cola recepción
+        nombresNodos="";
+        conexiones="";
         Cliente aux = this.cola.primero;
         dot.append("subgraph cluster_").append(cluster).append("{\n");
         dot.append("style=filled\n");
@@ -87,7 +310,7 @@ public class Tienda {
         dot.append("  edge [\n" +"    arrowhead=\"none\"\n" +"  ];\n");
 
         while(aux!=null){
-            nombresNodos+="Cliente"+aux.hashCode()+"[label=\""+aux.titulo+"\nImg C:"+aux.img_color+"\nImg ByN:"+aux.img_bw+"\"]"+"\n";
+            nombresNodos+="Cliente"+aux.hashCode()+"[label=\""+aux.titulo+"\nNombre: "+aux.nombre+"\nImg C: "+aux.img_color+"\nImg ByN: "+aux.img_bw+"\"]"+"\n";
             if(aux.siguiente!=null){
             conexiones+=String.format("Cliente%d -> Cliente%d", aux.hashCode(),aux.siguiente.hashCode())+"\n";
             }
@@ -102,56 +325,6 @@ public class Tienda {
         dot.append("}\n");
         cluster++;
         
-        //Ventanillas
-        nombresNodos="";
-        conexiones="";
-        Ventanilla auxv = this.listaVentanillas.primero;
-        dot.append("subgraph cluster_").append(cluster).append("{\n");
-        dot.append("style=filled\n");
-        dot.append("color=cadetblue;\n");
-        
-
-        while(auxv!=null){    
-            //Ventanillas
-            nombresNodos+="Ventanilla"+auxv.hashCode()+"[label=\""+auxv.nombre+"\"]"+"\n";
-            //Clientes actuales de la ventanilla
-            if(auxv.ocupada && auxv.clienteActual!=null){
-                nombresNodos+="ClienteV"+auxv.clienteActual.hashCode()+"[shape=tab fillcolor=darkseagreen2 label=\""+auxv.clienteActual.titulo+"\nIMG C:"+auxv.clienteActual.img_color+
-                        "\nIMG ByN:"+auxv.clienteActual.img_bw+"\"]"+"\n";
-                
-                conexiones+=String.format("ClienteV%d -> Ventanilla%d", auxv.clienteActual.hashCode(),auxv.hashCode())+"\n";
-            }
-            if(auxv.siguiente!=null){
-            conexiones+=String.format("Ventanilla%d -> Ventanilla%d", auxv.hashCode(),auxv.siguiente.hashCode())+"\n";
-            }
-            
-            auxv=auxv.siguiente;
-        }
-        
-        
-        dot.append(nombresNodos);
-        dot.append(conexiones);
-        dot.append("label=\"Lista Ventanillas\""+";\n");
-        dot.append("}\n");
-        cluster++;
-        
-        //Impresoras
-        nombresNodos="";
-        conexiones="";
-
-        dot.append("subgraph cluster_").append(cluster).append("{\n");
-        dot.append("style=filled\n");
-        dot.append("color=darkolivegreen1;\n");
-        dot.append("  edge [\n" +"    arrowhead=\"none\"\n" +"  ];\n");
-        
-        nombresNodos+="Impresora"+this.color.hashCode()+"[label=\""+this.color.nombre+"\"]"+"\n";
-        nombresNodos+="Impresora"+this.bw.hashCode()+"[label=\""+this.bw.nombre+"\"]"+"\n";
-   
-    
-        dot.append(nombresNodos);
-        dot.append(conexiones);
-        dot.append("label=\"Cola impresoras\""+";\n");
-        dot.append("}\n");
         
         
         //Finalizando el archivo
@@ -376,18 +549,18 @@ public class Tienda {
     }
     
     public void generarClientes(){
-        int cantidad = (int)(Math.random()*4);
+        int cantidad = (int)(Math.random()*4);//0 a 3 cilentes aleatorios
         int bw, color;
             for(int i=0;i<cantidad;i++){
-               bw= (int)(Math.random()*5);
-               if(bw==0){
-                   color = (int) (Math.random()*4+1);
+               bw= (int)(Math.random()*5);//0 a 4 imágenes en blanco y negro
+               if(bw==0){//Para evitar que hayan clients con 0 imágenes, se verifica primero
+                   color = (int) (Math.random()*4+1);//1 a 4 imágenes a color
                }
                else{
-                   color = (int) (Math.random()*(4-bw));
+                   color = (int) (Math.random()*(5-bw));//0 a las imágenes restantes para completar 4 imágenes 
                }
                
-               String nombre = this.nombres[(int)(Math.random()*49)]+this.apellidos[(int)(Math.random()*49)];
+               String nombre = this.nombres[(int)(Math.random()*49)]+" "+this.apellidos[(int)(Math.random()*49)];
                int id = Integer.valueOf(this.cola.ultimo.id)+1;
                this.cola.enqueque("Cliente"+String.valueOf(id), String.valueOf(id), nombre, color, bw);
             }
