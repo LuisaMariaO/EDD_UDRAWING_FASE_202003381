@@ -42,6 +42,8 @@ public class Main {
         Scanner scnum = new Scanner(System.in);
         Scanner sub1 = new Scanner(System.in);
         
+        Scanner screporte = new Scanner(System.in);
+        Scanner sccliente = new Scanner(System.in);
        
         
         
@@ -95,6 +97,7 @@ public class Main {
                     tienda.graficar();
                     break;
                 case "4":
+                    menuReportes();
                     break;
                 case "5":
                     break;
@@ -149,7 +152,35 @@ public static Tienda cargaMasiva(String ruta){
     return tienda;
 }
 
-    public static void graficar(){
-        
-    }
+  public static void menuReportes(){
+      Scanner screporte = new Scanner(System.in);
+      Scanner sccliente = new Scanner(System.in);
+      System.out.println("******MENÚ DE REPORTES******");
+      System.out.println("1. Top 5 de clientes con mayor cantidad de imágenes a color");
+      System.out.println("2. Top 5 de clientes con mayor cantidad de imágenes en blanco y negro");
+      System.out.println("3. Cliente con más pasos en el sistema");
+      System.out.println("4. Reporte por cliente");
+      System.out.println("Ingrese una opción: ");
+      String op = screporte.nextLine();
+      
+      switch(op){
+          case "1":
+              tienda.topColor();
+              break;
+          case "2":
+              tienda.topBN();
+              break;
+          case "3":
+              tienda.topPasos();
+              break;
+          case "4":
+              System.out.println("Ingrese el id del cliente que desea buscar");
+              String cliente = sccliente.nextLine();
+              tienda.busqueda(cliente);
+              break;
+          default:
+              System.out.println("Opción inválida");
+              break;
+      }
+  }
 }

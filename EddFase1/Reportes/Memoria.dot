@@ -3,42 +3,50 @@ node[shape=box, style="filled", color=azure1];
 subgraph cluster_0{
 style=filled
 color=	cornflowerblue;
-Cliente1872034366[label="Cliente1
-Nombre: Andres Lopez
-Ventanilla: VENTANILLA 1
-Img impresas: 2Pasos totales7"]
-Cliente1725154839[label="Cliente3
-Nombre: Luiz Higueros
-Ventanilla: VENTANILLA 1
-Img impresas: 2Pasos totales10"]
-Cliente1581781576[label="Cliente2
+Cliente1872034366[label="Cliente2
 Nombre: Juan Perez
-Ventanilla: VENTANILLA 2
-Img impresas: 3Pasos totales13"]
-Cliente1872034366 -> Cliente1725154839
-Cliente1725154839 -> Cliente1581781576
-label="Cola de recepción";
+Atendió: VENTANILLA 2
+Img impresas: 3
+Pasos totales: 13"]
+Cliente1581781576[label="Cliente3
+Nombre: Luiz Higueros
+Atendió: VENTANILLA 1
+Img impresas: 2
+Pasos totales: 10"]
+Cliente1725154839[label="Cliente1
+Nombre: Andres Lopez
+Atendió: VENTANILLA 1
+Img impresas: 2
+Pasos totales: 7"]
+Cliente1872034366 -> Cliente1581781576
+Cliente1581781576 -> Cliente1725154839
+label="Clientes atendidos";
 }
 subgraph cluster_1{
 style=filled
 color=coral;
-Cliente1950409829[label="Cliente4
-Nombre: Ana Osorio
-Img C: 0
-Img ByN: 4"]
-Imagen2055281022[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen2055281022[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen1554547126[shape=signature fillcolor=gray52 label="IMG ByN"]
-Cliente789451788[label="Cliente5
-Nombre: Iván Muñoz
-Img C: 0
-Img ByN: 4"]
-Cliente1950409829 -> Imagen2055281022
-Imagen2055281022 -> Imagen1554547126
-Cliente1950409829 -> Cliente789451788
-Cliente1950409829 -> Cliente789451788
-Cliente789451788 -> Cliente1950409829
-Cliente789451788 -> Cliente1950409829
+Cliente1670675564[label="Cliente4
+Nombre: Alejandra Salazar
+Img C: 2
+Img ByN: 2"]
+Imagen723074862[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen723074862[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen895328853[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1304836503[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Cliente225534818[label="Cliente5
+Nombre: Olga Véliz
+Img C: 2
+Img ByN: 2"]
+Imagen1878246838[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1878246838[shape=signature fillcolor=gray52 label="IMG ByN"]
+Cliente1670675564 -> Imagen723074862
+Imagen723074862 -> Imagen895328853
+Imagen895328853 -> Imagen1304836503
+Cliente1670675564 -> Cliente225534818
+Cliente1670675564 -> Cliente225534818
+Cliente225534818 -> Imagen1878246838
+Cliente225534818 -> Cliente1670675564
+Cliente225534818 -> Cliente1670675564
 label="Lista de Espera";
 }
 subgraph cluster_2{
@@ -47,21 +55,18 @@ color=darkolivegreen1;
   edge [
     arrowhead="none"
   ];
-Impresora1670675563[label="Color"]
-Impresora225534817[label="B y N"]
-Imagen617901223[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen617901223[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen1020371698[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen1555009630[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen1523554305[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen1175962213[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen918221581[shape=signature fillcolor=gray52 label="IMG ByN"]
-Impresora225534817 -> Imagen617901223
-Imagen617901223 -> Imagen1020371698
-Imagen1020371698 -> Imagen1555009630
-Imagen1555009630 -> Imagen1523554305
-Imagen1523554305 -> Imagen1175962213
-Imagen1175962213 -> Imagen918221581
+Impresora929338653[label="Color"]
+Imagen1259475183[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen1259475183[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen1300109447[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen1020371698[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Impresora789451787[label="B y N"]
+Imagen1950409829[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1950409829[shape=signature fillcolor=gray52 label="IMG ByN"]
+Impresora929338653 -> Imagen1259475183
+Imagen1259475183 -> Imagen1300109447
+Imagen1300109447 -> Imagen1020371698
+Impresora789451787 -> Imagen1950409829
 label="Cola impresoras";
 }
 subgraph cluster_3{
@@ -70,34 +75,38 @@ color=gold2;
   edge [
     arrowhead="none"
   ];
-Ventanilla1259475183[label="VENTANILLA 1"]
-Imagen41359092[shape=signature fillcolor=floralwhite label="IMG ByN"]
-Imagen41359092[shape=signature fillcolor=floralwhite label="IMG ByN"]
-Ventanilla1300109447[label="VENTANILLA 2"]
-Imagen149928006[shape=signature fillcolor=floralwhite label="IMG ByN"]
-Imagen149928006[shape=signature fillcolor=floralwhite label="IMG ByN"]
-Imagen713338599[shape=signature fillcolor=floralwhite label="IMG ByN"]
-Ventanilla1259475183 -> Imagen41359092
-Ventanilla1300109447 -> Imagen149928006
-Imagen149928006 -> Imagen713338599
+Ventanilla1229416515[label="VENTANILLA 1"]
+Imagen2016447921[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen2016447921[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen666988784[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Ventanilla1414644649[label="VENTANILLA 2"]
+Imagen640070680[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Imagen640070680[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Imagen1510467688[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Imagen1995265320[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Ventanilla1229416515 -> Imagen2016447921
+Imagen2016447921 -> Imagen666988784
+Ventanilla1414644649 -> Imagen640070680
+Imagen640070680 -> Imagen1510467688
+Imagen1510467688 -> Imagen1995265320
 label="Pila de imágenes en cada ventanilla";
 }
 subgraph cluster_4{
 style=filled
 color=cadetblue;
-Ventanilla1259475182[label="VENTANILLA 1"]
-ClienteV2016447921[shape=tab fillcolor=darkseagreen2 label="Cliente7
-Nombre: Lucas Solares
+Ventanilla1229416514[label="VENTANILLA 1"]
+ClienteV746292446[shape=tab fillcolor=darkseagreen2 label="Cliente7
+Nombre: Manuela Bran
 IMG C:0
 IMG ByN:4"]
-Ventanilla1300109446[label="VENTANILLA 2"]
-ClienteV1229416514[shape=tab fillcolor=darkseagreen2 label="Cliente6
-Nombre: Luisa Salazar
-IMG C:0
-IMG ByN:4"]
-ClienteV2016447921 -> Ventanilla1259475182
-Ventanilla1259475182 -> Ventanilla1300109446
-ClienteV1229416514 -> Ventanilla1300109446
+Ventanilla1414644648[label="VENTANILLA 2"]
+ClienteV1072591677[shape=tab fillcolor=darkseagreen2 label="Cliente6
+Nombre: José Rafael
+IMG C:3
+IMG ByN:0"]
+ClienteV746292446 -> Ventanilla1229416514
+Ventanilla1229416514 -> Ventanilla1414644648
+ClienteV1072591677 -> Ventanilla1414644648
 label="Lista Ventanillas (Se muestra el cliente que está atendiendo)";
 }
 subgraph cluster_5{
@@ -106,109 +115,76 @@ color=lightgrey;
   edge [
     arrowhead="none"
   ];
-Cliente666988784[label="Cliente8
-Nombre: Dante Paiz
+Cliente1523554304[label="Cliente8
+Nombre: Lidia Árbenz
 Img C: 0
-Img ByN: 4"]
-Cliente1414644648[label="Cliente9
-Nombre: Santiago Valenzuela
-Img C: 1
-Img ByN: 0"]
-Cliente640070680[label="Cliente10
-Nombre: Daniel Monterroso
+Img ByN: 3"]
+Cliente1175962212[label="Cliente9
+Nombre: Jesús Ortíz
 Img C: 0
-Img ByN: 4"]
-Cliente1510467688[label="Cliente11
-Nombre: Jesús Rosales
+Img ByN: 3"]
+Cliente918221580[label="Cliente10
+Nombre: Zulma Véliz
 Img C: 3
 Img ByN: 1"]
-Cliente1995265320[label="Cliente12
-Nombre: David Quel
-Img C: 2
-Img ByN: 2"]
-Cliente746292446[label="Cliente13
-Nombre: Josefina Zetino
-Img C: 2
-Img ByN: 0"]
-Cliente1072591677[label="Cliente14
-Nombre: Cornelio Franco
-Img C: 1
-Img ByN: 2"]
-Cliente1159190947[label="Cliente15
-Nombre: Álvaro Véliz
-Img C: 1
-Img ByN: 2"]
-Cliente925858445[label="Cliente16
-Nombre: Ana Escalante
+Cliente2055281021[label="Cliente11
+Nombre: Julia Túchez
 Img C: 0
 Img ByN: 4"]
-Cliente798154996[label="Cliente17
-Nombre: Josefina Ramírez
+Cliente1554547125[label="Cliente12
+Nombre: Luisa Zetino
 Img C: 0
-Img ByN: 2"]
-Cliente681842940[label="Cliente18
-Nombre: Jesús Ramírez
-Img C: 0
-Img ByN: 1"]
-Cliente1392838282[label="Cliente19
-Nombre: Hermenegildo Castillo
-Img C: 2
-Img ByN: 0"]
-Cliente523429237[label="Cliente20
-Nombre: Ezequiel Alvarado
-Img C: 3
-Img ByN: 0"]
-Cliente664740647[label="Cliente21
-Nombre: Hermenegildo Salazar
-Img C: 1
-Img ByN: 0"]
-Cliente804564176[label="Cliente22
-Nombre: Carmen Quel
-Img C: 2
-Img ByN: 2"]
-Cliente1421795058[label="Cliente23
-Nombre: Manuela Castillo
-Img C: 0
-Img ByN: 4"]
-Cliente168423058[label="Cliente24
-Nombre: Linda Botrán
+Img ByN: 3"]
+Cliente617901222[label="Cliente13
+Nombre: Rosaura Salazar
 Img C: 3
 Img ByN: 1"]
-Cliente821270929[label="Cliente25
-Nombre: Lourdes Zetino
+Cliente1159190947[label="Cliente14
+Nombre: Soledad del Cid
 Img C: 1
 Img ByN: 3"]
-Cliente1160460865[label="Cliente26
-Nombre: Marcos Gutiérrez
-Img C: 0
-Img ByN: 2"]
-Cliente1247233941[label="Cliente27
-Nombre: José Puac
-Img C: 0
-Img ByN: 4"]
-Cliente258952499[label="Cliente28
-Nombre: Belén Melgar
-Img C: 0
-Img ByN: 4"]
-Cliente603742814[label="Cliente29
-Nombre: Olga Herrera
+Cliente925858445[label="Cliente15
+Nombre: Julia Morales
+Img C: 3
+Img ByN: 0"]
+Cliente798154996[label="Cliente16
+Nombre: Lidia Salazar
 Img C: 1
-Img ByN: 2"]
-Cliente1067040082[label="Cliente30
-Nombre: Roberto Monterroso
+Img ByN: 0"]
+Cliente681842940[label="Cliente17
+Nombre: Dania Santos
+Img C: 2
+Img ByN: 1"]
+Cliente1392838282[label="Cliente18
+Nombre: Iván Gutiérrez
 Img C: 0
 Img ByN: 4"]
-Cliente1325547227[label="Cliente31
-Nombre: David Paiz
+Cliente523429237[label="Cliente19
+Nombre: Manuela Puac
+Img C: 1
+Img ByN: 0"]
+Cliente664740647[label="Cliente20
+Nombre: Rosaura Túchez
+Img C: 3
+Img ByN: 0"]
+Cliente804564176[label="Cliente21
+Nombre: Alejandra Monterroso
+Img C: 2
+Img ByN: 0"]
+Cliente1421795058[label="Cliente22
+Nombre: Luisa Zetino
 Img C: 0
-Img ByN: 4"]
-Cliente666988784 -> Cliente1414644648
-Cliente1414644648 -> Cliente640070680
-Cliente640070680 -> Cliente1510467688
-Cliente1510467688 -> Cliente1995265320
-Cliente1995265320 -> Cliente746292446
-Cliente746292446 -> Cliente1072591677
-Cliente1072591677 -> Cliente1159190947
+Img ByN: 3"]
+Cliente1555009629[label="Cliente23
+Nombre: Carmen Puac
+Img C: 2
+Img ByN: 0"]
+Cliente1523554304 -> Cliente1175962212
+Cliente1175962212 -> Cliente918221580
+Cliente918221580 -> Cliente2055281021
+Cliente2055281021 -> Cliente1554547125
+Cliente1554547125 -> Cliente617901222
+Cliente617901222 -> Cliente1159190947
 Cliente1159190947 -> Cliente925858445
 Cliente925858445 -> Cliente798154996
 Cliente798154996 -> Cliente681842940
@@ -217,14 +193,7 @@ Cliente1392838282 -> Cliente523429237
 Cliente523429237 -> Cliente664740647
 Cliente664740647 -> Cliente804564176
 Cliente804564176 -> Cliente1421795058
-Cliente1421795058 -> Cliente168423058
-Cliente168423058 -> Cliente821270929
-Cliente821270929 -> Cliente1160460865
-Cliente1160460865 -> Cliente1247233941
-Cliente1247233941 -> Cliente258952499
-Cliente258952499 -> Cliente603742814
-Cliente603742814 -> Cliente1067040082
-Cliente1067040082 -> Cliente1325547227
+Cliente1421795058 -> Cliente1555009629
 label="Cola de recepción";
 }
 rankdir=LR;

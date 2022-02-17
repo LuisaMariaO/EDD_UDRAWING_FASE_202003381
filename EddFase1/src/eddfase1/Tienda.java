@@ -92,7 +92,7 @@ public class Tienda {
 
 
         while(auxi!=null){
-            nombresNodos+="Cliente"+auxi.hashCode()+"[label=\""+auxi.titulo+"\nNombre: "+auxi.nombre+"\nAtendió: "+auxi.ventanilla.nombre+"\nImg impresas: "+auxi.img_total+"\nPasos totales"+auxi.pasos+"\"]"+"\n";
+            nombresNodos+="Cliente"+auxi.hashCode()+"[label=\""+auxi.titulo+"\nNombre: "+auxi.nombre+"\nAtendió: "+auxi.ventanilla.nombre+"\nImg impresas: "+auxi.img_total+"\nPasos totales: "+auxi.pasos+"\"]"+"\n";
             if(auxi.siguiente!=null){
             conexiones+=String.format("Cliente%d -> Cliente%d", auxi.hashCode(),auxi.siguiente.hashCode())+"\n";
             }
@@ -103,7 +103,7 @@ public class Tienda {
         
         dot.append(nombresNodos);
         dot.append(conexiones);
-        dot.append("label=\"Cola de recepción\""+";\n");
+        dot.append("label=\"Clientes atendidos\""+";\n");
         dot.append("}\n");
         cluster++;
         
@@ -145,7 +145,7 @@ public class Tienda {
             conexiones+=String.format("Cliente%d -> Cliente%d", cl.hashCode()+1,cl.siguiente.hashCode()+1)+"\n";
             conexiones+=String.format("Cliente%d -> Cliente%d", cl.hashCode()+1,cl.anterior.hashCode()+1)+"\n";
             }
-            System.out.println(cl.titulo);
+
             cl=cl.siguiente;
         }while(cl!=this.listaEspera.lc.siguiente);
         
@@ -553,7 +553,7 @@ public class Tienda {
         int bw, color;
             for(int i=0;i<cantidad;i++){
                bw= (int)(Math.random()*5);//0 a 4 imágenes en blanco y negro
-               if(bw==0){//Para evitar que hayan clients con 0 imágenes, se verifica primero
+               if(bw==0){//Para evitar que hayan clientse con 0 imágenes, se verifica primero
                    color = (int) (Math.random()*4+1);//1 a 4 imágenes a color
                }
                else{
@@ -563,10 +563,21 @@ public class Tienda {
                String nombre = this.nombres[(int)(Math.random()*49)]+" "+this.apellidos[(int)(Math.random()*49)];
                int id = Integer.valueOf(this.cola.ultimo.id)+1;
                this.cola.enqueque("Cliente"+String.valueOf(id), String.valueOf(id), nombre, color, bw);
+                System.out.println("EL cliente"+id+" ("+nombre+ ") HA INGRESADO A LA COLA DE RECEPCIÓN");
             }
         
         
     }
-        
+    
+    //Reportes
+    
+    public void topColor(){
+        this.listaAtendidos.sortColor();
+    
+    }
+    
+    public void topBN(){this.listaAtendidos.sortBN();}
+    public void topPasos(){this.listaAtendidos.sortPasos();}
+    public void busqueda(String id){this.listaAtendidos.busqueda(id);}
     
 }
