@@ -51,10 +51,8 @@ public class Tienda {
             this.listaVentanillas.insertar("VENTANILLA "+(i+1));
         }
         
-        this.listaVentanillas.imprimir();
+        //this.listaVentanillas.imprimir();
         
-        //Vectores para nombres y apellidos
-      
         
     }
     
@@ -550,19 +548,19 @@ public class Tienda {
     
     public void generarClientes(){
         int cantidad = (int)(Math.random()*4);//0 a 3 cilentes aleatorios
-        int bw, color;
+        int bwn, colorn;
             for(int i=0;i<cantidad;i++){
-               bw= (int)(Math.random()*5);//0 a 4 imágenes en blanco y negro
-               if(bw==0){//Para evitar que hayan clientse con 0 imágenes, se verifica primero
-                   color = (int) (Math.random()*4+1);//1 a 4 imágenes a color
+               bwn= (int)(Math.random()*5);//0 a 4 imágenes en blanco y negro
+               if(bwn==0){//Para evitar que hayan clientse con 0 imágenes, se verifica primero
+                   colorn = (int) (Math.random()*4+1);//1 a 4 imágenes a color
                }
                else{
-                   color = (int) (Math.random()*(5-bw));//0 a las imágenes restantes para completar 4 imágenes 
+                   colorn = (int) (Math.random()*(5-bwn));//0 a las imágenes restantes para completar 4 imágenes 
                }
                
                String nombre = this.nombres[(int)(Math.random()*49)]+" "+this.apellidos[(int)(Math.random()*49)];
-               int id = Integer.valueOf(this.cola.ultimo.id)+1;
-               this.cola.enqueque("Cliente"+String.valueOf(id), String.valueOf(id), nombre, color, bw);
+               int id = Integer.valueOf(this.cola.ultimo)+1;
+               this.cola.enqueque("Cliente"+String.valueOf(id), String.valueOf(id), nombre, colorn, bwn);
                 System.out.println("EL cliente"+id+" ("+nombre+ ") HA INGRESADO A LA COLA DE RECEPCIÓN");
             }
         

@@ -6,8 +6,9 @@ package eddfase1;
  * @author Luisa María Ortiz
  */
 public class Cola {
-Cliente primero,ultimo;
+Cliente primero;
 int size;
+String ultimo;
 
 public Cola(){
     this.primero=null;
@@ -20,7 +21,7 @@ public void enqueque(String titulo, String id, String nombre, int img_color, int
     Cliente nuevo = new Cliente(titulo, id, nombre, img_color, img_bw);
     if(this.primero==null && this.size==0){
         this.primero=nuevo;
-        this.ultimo=nuevo;
+        this.ultimo=nuevo.id;
         
     }
     else{
@@ -29,7 +30,7 @@ public void enqueque(String titulo, String id, String nombre, int img_color, int
           actual=actual.siguiente;
       }
       actual.siguiente=nuevo;
-      this.ultimo=nuevo;
+      this.ultimo=nuevo.id;
       
     }
     

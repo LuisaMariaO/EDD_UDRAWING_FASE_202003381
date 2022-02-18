@@ -64,6 +64,8 @@ public class Main {
             
             switch(option){
                 case "1":
+                    if(tienda.listaVentanillas==null){
+                    
                     System.out.println("Ingrese el número de ventanillas en la tienda: ");
                     ventanillas=scnum.nextInt();
                     tienda=inicializarVentanillas(ventanillas);
@@ -83,15 +85,24 @@ public class Main {
                             menu();
                             break;
                         case "2":
+                            tienda.ejecutarPaso();
                             break;
                         default:
                             System.out.println("Opción inválida");
                             break;
                     }
+                    }else{
+                        System.out.println("La tienda ya está configurada, inicie de nuevo la aplicación para utilizar otra configuración.");
+                    }
    
                     break;
                 case "2":
+                    if(tienda.listaVentanillas!=null){
                     tienda.ejecutarPaso();
+                    }
+                    else{
+                        System.out.println("No se ha establecido la configuración de la tienda.");
+                    }
                     break;
                 case "3":
                     tienda.graficar();
@@ -100,6 +111,13 @@ public class Main {
                     menuReportes();
                     break;
                 case "5":
+                    System.out.println(" --------------------------------------------------------------- ");
+                    System.out.println("|Luisa María Ortíz Romero                                       |");
+                    System.out.println("|Registro académico: 202003381                                  |");
+                    System.out.println("|Estudiante de 5to Semestre de Ingeniería en Ciencias y Sistemas|");
+                    System.out.println("|Github: LuisaMariaO                                            |");
+                    System.out.println("|Contacto: luisamaria.ortiz17@gmail.com                         |");
+                    System.out.println(" --------------------------------------------------------------- ");
                     break;
                 case "6":
                     System.exit(0);
@@ -120,7 +138,8 @@ public static Tienda inicializarVentanillas(int ventanillas){
 }
 
 public static Tienda cargaMasiva(String ruta){
-    String id, nombre, bw, color;
+    String nombre;
+    int bw, color,id;
     JSONParser parser = new JSONParser();
     //Creando la cola
     tienda.crearCola();
@@ -131,15 +150,18 @@ public static Tienda cargaMasiva(String ruta){
         for(int i=0; i<jsonObject.size();i++){
             JSONObject cliente = (JSONObject) jsonObject.get("Cliente"+(i+1));
             //Tomando los atributos de los clientes
-            id = (String) cliente.get("id_cliente");
+            
+            
             nombre = (String) cliente.get("nombre_cliente");
-            color = (String) cliente.get("img_color");
-            bw= (String) cliente.get("img_bw");
+            
+            id = Math.toIntExact((long)cliente.get("id_cliente"));
+            color = Math.toIntExact((long)cliente.get("img_color")) ;
+            bw= Math.toIntExact((long)cliente.get("img_bw")) ;
             //Agregando el cliente a la cola
-            tienda.cola.enqueque("Cliente"+(i+1), id, nombre, Integer.valueOf(color), Integer.valueOf(bw));
+            tienda.cola.enqueque("Cliente"+(i+1), String.valueOf(id), nombre, color, bw);
   
         }
-        tienda.cola.imprimir();
+  
         
     }   catch (FileNotFoundException ex) {
             System.out.println(ex);
