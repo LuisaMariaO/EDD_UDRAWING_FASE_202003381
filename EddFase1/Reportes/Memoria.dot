@@ -3,50 +3,69 @@ node[shape=box, style="filled", color=azure1];
 subgraph cluster_0{
 style=filled
 color=	cornflowerblue;
-Cliente1872034366[label="Cliente2
-Nombre: Juan Perez
-Atendió: VENTANILLA 2
+Cliente929338653[label="Cliente3
+Nombre: Douglas Dominguez
+Atendió: VENTANILLA 3
 Img impresas: 3
 Pasos totales: 13"]
-Cliente1581781576[label="Cliente3
-Nombre: Luiz Higueros
+Cliente225534817[label="Cliente1
+Nombre: Polly Rodriguez
 Atendió: VENTANILLA 1
-Img impresas: 2
-Pasos totales: 10"]
-Cliente1725154839[label="Cliente1
-Nombre: Andres Lopez
-Atendió: VENTANILLA 1
-Img impresas: 2
-Pasos totales: 7"]
-Cliente1872034366 -> Cliente1581781576
-Cliente1581781576 -> Cliente1725154839
+Img impresas: 5
+Pasos totales: 14"]
+Cliente929338653 -> Cliente225534817
 label="Clientes atendidos";
 }
 subgraph cluster_1{
 style=filled
 color=coral;
-Cliente1670675564[label="Cliente4
-Nombre: Alejandra Salazar
-Img C: 2
+Cliente1878246838[label="Cliente2
+Nombre: Yang Wiggins
+Img C: 1
+Img ByN: 4"]
+Imagen250421013[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen250421013[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1044036745[shape=signature fillcolor=gray52 label="IMG ByN"]
+Cliente1020371698[label="Cliente6
+Nombre: Stefanie Wise
+Img C: 1
+Img ByN: 0"]
+Cliente1259475183[label="Cliente4
+Nombre: Faith Hopkins
+Img C: 1
+Img ByN: 3"]
+Cliente2016447922[label="Cliente10
+Nombre: Shannon Johnston
+Img C: 0
+Img ByN: 0"]
+Cliente1300109447[label="Cliente5
+Nombre: Sandy Mason
+Img C: 1
+Img ByN: 4"]
+Cliente1229416515[label="Cliente9
+Nombre: Tommie Mcpherson
+Img C: 1
+Img ByN: 1"]
+Cliente1950409829[label="Cliente8
+Nombre: Tabatha Pickett
+Img C: 3
 Img ByN: 2"]
-Imagen723074862[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen723074862[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen895328853[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen1304836503[shape=signature fillcolor=darksalmon label="IMG COLOR"]
-Cliente225534818[label="Cliente5
-Nombre: Olga Véliz
-Img C: 2
-Img ByN: 2"]
-Imagen1878246838[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen1878246838[shape=signature fillcolor=gray52 label="IMG ByN"]
-Cliente1670675564 -> Imagen723074862
-Imagen723074862 -> Imagen895328853
-Imagen895328853 -> Imagen1304836503
-Cliente1670675564 -> Cliente225534818
-Cliente1670675564 -> Cliente225534818
-Cliente225534818 -> Imagen1878246838
-Cliente225534818 -> Cliente1670675564
-Cliente225534818 -> Cliente1670675564
+Cliente1878246838 -> Imagen250421013
+Imagen250421013 -> Imagen1044036745
+Cliente1878246838 -> Cliente1020371698
+Cliente1878246838 -> Cliente1950409829
+Cliente1020371698 -> Cliente1259475183
+Cliente1020371698 -> Cliente1878246838
+Cliente1259475183 -> Cliente2016447922
+Cliente1259475183 -> Cliente1020371698
+Cliente2016447922 -> Cliente1300109447
+Cliente2016447922 -> Cliente1259475183
+Cliente1300109447 -> Cliente1229416515
+Cliente1300109447 -> Cliente2016447922
+Cliente1229416515 -> Cliente1950409829
+Cliente1229416515 -> Cliente1300109447
+Cliente1950409829 -> Cliente1878246838
+Cliente1950409829 -> Cliente1229416515
 label="Lista de Espera";
 }
 subgraph cluster_2{
@@ -55,18 +74,50 @@ color=darkolivegreen1;
   edge [
     arrowhead="none"
   ];
-Impresora929338653[label="Color"]
-Imagen1259475183[shape=signature fillcolor=darksalmon label="IMG COLOR"]
-Imagen1259475183[shape=signature fillcolor=darksalmon label="IMG COLOR"]
-Imagen1300109447[shape=signature fillcolor=darksalmon label="IMG COLOR"]
-Imagen1020371698[shape=signature fillcolor=darksalmon label="IMG COLOR"]
-Impresora789451787[label="B y N"]
-Imagen1950409829[shape=signature fillcolor=gray52 label="IMG ByN"]
-Imagen1950409829[shape=signature fillcolor=gray52 label="IMG ByN"]
-Impresora929338653 -> Imagen1259475183
-Imagen1259475183 -> Imagen1300109447
-Imagen1300109447 -> Imagen1020371698
-Impresora789451787 -> Imagen1950409829
+Impresora1872034366[label="Color"]
+Imagen1746572566[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen1746572566[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen295530568[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen321001046[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen245257411[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen1747585825[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen999966132[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen1023892929[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Imagen1096979271[shape=signature fillcolor=darksalmon label="IMG COLOR"]
+Impresora1581781576[label="B y N"]
+Imagen1927950200[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1927950200[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen868693307[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1324119928[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1915318864[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1406718219[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1149319665[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1831932725[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen990368554[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen1283928881[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen2074407504[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen2129789494[shape=signature fillcolor=gray52 label="IMG ByN"]
+Imagen81628612[shape=signature fillcolor=gray52 label="IMG ByN"]
+Impresora1872034366 -> Imagen1746572566
+Imagen1746572566 -> Imagen295530568
+Imagen295530568 -> Imagen321001046
+Imagen321001046 -> Imagen245257411
+Imagen245257411 -> Imagen1747585825
+Imagen1747585825 -> Imagen999966132
+Imagen999966132 -> Imagen1023892929
+Imagen1023892929 -> Imagen1096979271
+Impresora1581781576 -> Imagen1927950200
+Imagen1927950200 -> Imagen868693307
+Imagen868693307 -> Imagen1324119928
+Imagen1324119928 -> Imagen1915318864
+Imagen1915318864 -> Imagen1406718219
+Imagen1406718219 -> Imagen1149319665
+Imagen1149319665 -> Imagen1831932725
+Imagen1831932725 -> Imagen990368554
+Imagen990368554 -> Imagen1283928881
+Imagen1283928881 -> Imagen2074407504
+Imagen2074407504 -> Imagen2129789494
+Imagen2129789494 -> Imagen81628612
 label="Cola impresoras";
 }
 subgraph cluster_3{
@@ -75,38 +126,86 @@ color=gold2;
   edge [
     arrowhead="none"
   ];
-Ventanilla1229416515[label="VENTANILLA 1"]
-Imagen2016447921[shape=signature fillcolor=floralwhite label="IMG ByN"]
-Imagen2016447921[shape=signature fillcolor=floralwhite label="IMG ByN"]
-Imagen666988784[shape=signature fillcolor=floralwhite label="IMG ByN"]
-Ventanilla1414644649[label="VENTANILLA 2"]
-Imagen640070680[shape=signature fillcolor=floralwhite label="IMG COLOR"]
-Imagen640070680[shape=signature fillcolor=floralwhite label="IMG COLOR"]
-Imagen1510467688[shape=signature fillcolor=floralwhite label="IMG COLOR"]
-Imagen1995265320[shape=signature fillcolor=floralwhite label="IMG COLOR"]
-Ventanilla1229416515 -> Imagen2016447921
-Imagen2016447921 -> Imagen666988784
-Ventanilla1414644649 -> Imagen640070680
-Imagen640070680 -> Imagen1510467688
-Imagen1510467688 -> Imagen1995265320
+Ventanilla1725154840[label="VENTANILLA 1"]
+Imagen2065951873[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen2065951873[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen381259350[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Ventanilla1670675564[label="VENTANILLA 2"]
+Ventanilla723074862[label="VENTANILLA 3"]
+Imagen1791741888[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen1791741888[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen668386784[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen1828972342[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen1989780873[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen558638686[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Imagen1078694789[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Imagen2003749087[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Ventanilla895328853[label="VENTANILLA 4"]
+Imagen1595428806[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen1595428806[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen1329552164[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen1452126962[shape=signature fillcolor=floralwhite label="IMG ByN"]
+Imagen1480010240[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Ventanilla1304836503[label="VENTANILLA 5"]
+Imagen1072408673[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Imagen1072408673[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Imagen363771819[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Imagen931919113[shape=signature fillcolor=floralwhite label="IMG COLOR"]
+Ventanilla1725154840 -> Imagen2065951873
+Imagen2065951873 -> Imagen381259350
+Ventanilla723074862 -> Imagen1791741888
+Imagen1791741888 -> Imagen668386784
+Imagen668386784 -> Imagen1828972342
+Imagen1828972342 -> Imagen1989780873
+Imagen1989780873 -> Imagen558638686
+Imagen558638686 -> Imagen1078694789
+Imagen1078694789 -> Imagen2003749087
+Ventanilla895328853 -> Imagen1595428806
+Imagen1595428806 -> Imagen1329552164
+Imagen1329552164 -> Imagen1452126962
+Imagen1452126962 -> Imagen1480010240
+Ventanilla1304836503 -> Imagen1072408673
+Imagen1072408673 -> Imagen363771819
+Imagen363771819 -> Imagen931919113
 label="Pila de imágenes en cada ventanilla";
 }
 subgraph cluster_4{
 style=filled
 color=cadetblue;
-Ventanilla1229416514[label="VENTANILLA 1"]
-ClienteV746292446[shape=tab fillcolor=darkseagreen2 label="Cliente7
-Nombre: Manuela Bran
+Ventanilla1725154839[label="VENTANILLA 1"]
+ClienteV640070680[shape=tab fillcolor=darkseagreen2 label="Cliente13
+Nombre: Haley Rosario
 IMG C:0
 IMG ByN:4"]
-Ventanilla1414644648[label="VENTANILLA 2"]
-ClienteV1072591677[shape=tab fillcolor=darkseagreen2 label="Cliente6
-Nombre: José Rafael
+Ventanilla1670675563[label="VENTANILLA 2"]
+ClienteV1510467688[shape=tab fillcolor=darkseagreen2 label="Cliente14
+Nombre: Durham Logan
+IMG C:3
+IMG ByN:2"]
+Ventanilla723074861[label="VENTANILLA 3"]
+ClienteV789451787[shape=tab fillcolor=darkseagreen2 label="Cliente7
+Nombre: Leach Ross
+IMG C:3
+IMG ByN:4"]
+Ventanilla895328852[label="VENTANILLA 4"]
+ClienteV666988784[shape=tab fillcolor=darkseagreen2 label="Cliente11
+Nombre: Leigh Bright
+IMG C:1
+IMG ByN:4"]
+Ventanilla1304836502[label="VENTANILLA 5"]
+ClienteV1414644648[shape=tab fillcolor=darkseagreen2 label="Cliente12
+Nombre: Alyce Alford
 IMG C:3
 IMG ByN:0"]
-ClienteV746292446 -> Ventanilla1229416514
-Ventanilla1229416514 -> Ventanilla1414644648
-ClienteV1072591677 -> Ventanilla1414644648
+ClienteV640070680 -> Ventanilla1725154839
+Ventanilla1725154839 -> Ventanilla1670675563
+ClienteV1510467688 -> Ventanilla1670675563
+Ventanilla1670675563 -> Ventanilla723074861
+ClienteV789451787 -> Ventanilla723074861
+Ventanilla723074861 -> Ventanilla895328852
+ClienteV666988784 -> Ventanilla895328852
+Ventanilla895328852 -> Ventanilla1304836502
+ClienteV1414644648 -> Ventanilla1304836502
 label="Lista Ventanillas (Se muestra el cliente que está atendiendo)";
 }
 subgraph cluster_5{
@@ -115,70 +214,217 @@ color=lightgrey;
   edge [
     arrowhead="none"
   ];
-Cliente1523554304[label="Cliente8
-Nombre: Lidia Árbenz
+Cliente1995265320[label="Cliente15
+Nombre: Elinor Ford
 Img C: 0
-Img ByN: 3"]
-Cliente1175962212[label="Cliente9
-Nombre: Jesús Ortíz
+Img ByN: 0"]
+Cliente746292446[label="Cliente16
+Nombre: Noelle Morse
 Img C: 0
-Img ByN: 3"]
-Cliente918221580[label="Cliente10
-Nombre: Zulma Véliz
+Img ByN: 1"]
+Cliente1072591677[label="Cliente17
+Nombre: Gutierrez Casey
+Img C: 3
+Img ByN: 4"]
+Cliente1523554304[label="Cliente18
+Nombre: Long Meyer
+Img C: 3
+Img ByN: 0"]
+Cliente1175962212[label="Cliente19
+Nombre: Geraldine Pierce
 Img C: 3
 Img ByN: 1"]
-Cliente2055281021[label="Cliente11
-Nombre: Julia Túchez
+Cliente918221580[label="Cliente20
+Nombre: Roman Branch
+Img C: 3
+Img ByN: 2"]
+Cliente2055281021[label="Cliente21
+Nombre: Pruitt Perez
+Img C: 4
+Img ByN: 2"]
+Cliente1554547125[label="Cliente22
+Nombre: Nola Winters
+Img C: 3
+Img ByN: 1"]
+Cliente617901222[label="Cliente23
+Nombre: Gay Mcmillan
+Img C: 0
+Img ByN: 1"]
+Cliente1159190947[label="Cliente24
+Nombre: Carolyn Harmon
+Img C: 3
+Img ByN: 2"]
+Cliente925858445[label="Cliente25
+Nombre: Jolene Mccall
+Img C: 0
+Img ByN: 0"]
+Cliente798154996[label="Cliente26
+Nombre: Evelyn Fitzgerald
+Img C: 0
+Img ByN: 1"]
+Cliente681842940[label="Cliente27
+Nombre: Hudson Lancaster
+Img C: 1
+Img ByN: 1"]
+Cliente1392838282[label="Cliente28
+Nombre: Ellison Hood
+Img C: 3
+Img ByN: 0"]
+Cliente523429237[label="Cliente29
+Nombre: Whitney Clayton
 Img C: 0
 Img ByN: 4"]
-Cliente1554547125[label="Cliente12
-Nombre: Luisa Zetino
-Img C: 0
-Img ByN: 3"]
-Cliente617901222[label="Cliente13
-Nombre: Rosaura Salazar
-Img C: 3
-Img ByN: 1"]
-Cliente1159190947[label="Cliente14
-Nombre: Soledad del Cid
-Img C: 1
-Img ByN: 3"]
-Cliente925858445[label="Cliente15
-Nombre: Julia Morales
-Img C: 3
-Img ByN: 0"]
-Cliente798154996[label="Cliente16
-Nombre: Lidia Salazar
-Img C: 1
-Img ByN: 0"]
-Cliente681842940[label="Cliente17
-Nombre: Dania Santos
-Img C: 2
-Img ByN: 1"]
-Cliente1392838282[label="Cliente18
-Nombre: Iván Gutiérrez
+Cliente664740647[label="Cliente30
+Nombre: Moore Horton
 Img C: 0
 Img ByN: 4"]
-Cliente523429237[label="Cliente19
-Nombre: Manuela Puac
+Cliente804564176[label="Cliente31
+Nombre: Maggie Levine
+Img C: 4
+Img ByN: 2"]
+Cliente1421795058[label="Cliente32
+Nombre: Andrews Vance
+Img C: 2
+Img ByN: 1"]
+Cliente1555009629[label="Cliente33
+Nombre: Dixie Howard
+Img C: 0
+Img ByN: 4"]
+Cliente41359092[label="Cliente34
+Nombre: Heidi Lowery
+Img C: 4
+Img ByN: 2"]
+Cliente149928006[label="Cliente35
+Nombre: Bennett Malone
+Img C: 4
+Img ByN: 2"]
+Cliente713338599[label="Cliente36
+Nombre: Witt Forbes
 Img C: 1
 Img ByN: 0"]
-Cliente664740647[label="Cliente20
-Nombre: Rosaura Túchez
+Cliente168423058[label="Cliente37
+Nombre: Erma Barron
+Img C: 1
+Img ByN: 4"]
+Cliente821270929[label="Cliente38
+Nombre: Mabel Nicholson
+Img C: 2
+Img ByN: 0"]
+Cliente1160460865[label="Cliente39
+Nombre: Maddox Frazier
+Img C: 1
+Img ByN: 1"]
+Cliente1247233941[label="Cliente40
+Nombre: Brigitte Wheeler
+Img C: 4
+Img ByN: 3"]
+Cliente258952499[label="Cliente41
+Nombre: Christa Mendoza
+Img C: 2
+Img ByN: 3"]
+Cliente603742814[label="Cliente42
+Nombre: Etta Blake
 Img C: 3
 Img ByN: 0"]
-Cliente804564176[label="Cliente21
-Nombre: Alejandra Monterroso
+Cliente1067040082[label="Cliente43
+Nombre: Macdonald Murray
+Img C: 1
+Img ByN: 1"]
+Cliente1325547227[label="Cliente44
+Nombre: Garza York
 Img C: 2
 Img ByN: 0"]
-Cliente1421795058[label="Cliente22
-Nombre: Luisa Zetino
+Cliente980546781[label="Cliente45
+Nombre: Hatfield Sykes
+Img C: 1
+Img ByN: 0"]
+Cliente2061475679[label="Cliente46
+Nombre: Washington Dickerson
+Img C: 3
+Img ByN: 0"]
+Cliente140435067[label="Cliente47
+Nombre: Ethel Cortez
+Img C: 3
+Img ByN: 2"]
+Cliente1450495309[label="Cliente48
+Nombre: Vicky Jimenez
+Img C: 4
+Img ByN: 4"]
+Cliente1670782018[label="Cliente49
+Nombre: Romero Sanders
+Img C: 2
+Img ByN: 0"]
+Cliente1706377736[label="Cliente50
+Nombre: Shana Burke
 Img C: 0
-Img ByN: 3"]
-Cliente1555009629[label="Cliente23
-Nombre: Carmen Puac
+Img ByN: 4"]
+Cliente468121027[label="Cliente51
+Nombre: Valentín Mayén
+Img C: 1
+Img ByN: 2"]
+Cliente791452441[label="Cliente52
+Nombre: Isaías Alvarado
+Img C: 0
+Img ByN: 4"]
+Cliente834600351[label="Cliente53
+Nombre: Marcos Gutiérrez
 Img C: 2
+Img ByN: 2"]
+Cliente471910020[label="Cliente54
+Nombre: Salomón Camas
+Img C: 3
+Img ByN: 1"]
+Cliente531885035[label="Cliente55
+Nombre: Julieta Paiz
+Img C: 1
 Img ByN: 0"]
+Cliente1418481495[label="Cliente56
+Nombre: Dania Morales
+Img C: 1
+Img ByN: 3"]
+Cliente303563356[label="Cliente57
+Nombre: Rosa Túchez
+Img C: 1
+Img ByN: 2"]
+Cliente135721597[label="Cliente58
+Nombre: José Vargas
+Img C: 1
+Img ByN: 2"]
+Cliente1705736037[label="Cliente59
+Nombre: Iván Monterroso
+Img C: 1
+Img ByN: 3"]
+Cliente455659002[label="Cliente60
+Nombre: Marcos Giammatei
+Img C: 1
+Img ByN: 0"]
+Cliente2093631819[label="Cliente61
+Nombre: Álvaro Gárcía
+Img C: 2
+Img ByN: 2"]
+Cliente1607521710[label="Cliente62
+Nombre: Alejandra Rodas
+Img C: 1
+Img ByN: 3"]
+Cliente764977973[label="Cliente63
+Nombre: Álvaro Rosales
+Img C: 0
+Img ByN: 2"]
+Cliente1531448569[label="Cliente64
+Nombre: Hermenegildo Osorio
+Img C: 3
+Img ByN: 1"]
+Cliente1867083167[label="Cliente65
+Nombre: Alejandra Batres
+Img C: 3
+Img ByN: 1"]
+Cliente1915910607[label="Cliente66
+Nombre: Dania Cabrera
+Img C: 0
+Img ByN: 4"]
+Cliente1995265320 -> Cliente746292446
+Cliente746292446 -> Cliente1072591677
+Cliente1072591677 -> Cliente1523554304
 Cliente1523554304 -> Cliente1175962212
 Cliente1175962212 -> Cliente918221580
 Cliente918221580 -> Cliente2055281021
@@ -194,6 +440,39 @@ Cliente523429237 -> Cliente664740647
 Cliente664740647 -> Cliente804564176
 Cliente804564176 -> Cliente1421795058
 Cliente1421795058 -> Cliente1555009629
+Cliente1555009629 -> Cliente41359092
+Cliente41359092 -> Cliente149928006
+Cliente149928006 -> Cliente713338599
+Cliente713338599 -> Cliente168423058
+Cliente168423058 -> Cliente821270929
+Cliente821270929 -> Cliente1160460865
+Cliente1160460865 -> Cliente1247233941
+Cliente1247233941 -> Cliente258952499
+Cliente258952499 -> Cliente603742814
+Cliente603742814 -> Cliente1067040082
+Cliente1067040082 -> Cliente1325547227
+Cliente1325547227 -> Cliente980546781
+Cliente980546781 -> Cliente2061475679
+Cliente2061475679 -> Cliente140435067
+Cliente140435067 -> Cliente1450495309
+Cliente1450495309 -> Cliente1670782018
+Cliente1670782018 -> Cliente1706377736
+Cliente1706377736 -> Cliente468121027
+Cliente468121027 -> Cliente791452441
+Cliente791452441 -> Cliente834600351
+Cliente834600351 -> Cliente471910020
+Cliente471910020 -> Cliente531885035
+Cliente531885035 -> Cliente1418481495
+Cliente1418481495 -> Cliente303563356
+Cliente303563356 -> Cliente135721597
+Cliente135721597 -> Cliente1705736037
+Cliente1705736037 -> Cliente455659002
+Cliente455659002 -> Cliente2093631819
+Cliente2093631819 -> Cliente1607521710
+Cliente1607521710 -> Cliente764977973
+Cliente764977973 -> Cliente1531448569
+Cliente1531448569 -> Cliente1867083167
+Cliente1867083167 -> Cliente1915910607
 label="Cola de recepción";
 }
 rankdir=LR;

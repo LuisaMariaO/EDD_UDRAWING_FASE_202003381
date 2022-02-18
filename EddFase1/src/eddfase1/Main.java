@@ -65,7 +65,7 @@ public class Main {
             switch(option){
                 case "1":
                     if(tienda.listaVentanillas==null){
-                    
+                    try{
                     System.out.println("Ingrese el número de ventanillas en la tienda: ");
                     ventanillas=scnum.nextInt();
                     tienda=inicializarVentanillas(ventanillas);
@@ -91,6 +91,8 @@ public class Main {
                             System.out.println("Opción inválida");
                             break;
                     }
+                    
+                    }catch(Exception e){System.out.println("Ha ocurrido un error, inténtelo de nuevo o reinicie la aplicación\n");}
                     }else{
                         System.out.println("La tienda ya está configurada, inicie de nuevo la aplicación para utilizar otra configuración.");
                     }

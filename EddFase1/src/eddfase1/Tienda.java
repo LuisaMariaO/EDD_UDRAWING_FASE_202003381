@@ -108,6 +108,7 @@ public class Tienda {
         //Clientes en espera
         nombresNodos="";
         conexiones="";
+        if(this.listaEspera.lc!=null){
         Cliente cl = this.listaEspera.lc.siguiente;
         dot.append("subgraph cluster_").append(cluster).append("{\n");
         dot.append("style=filled\n");
@@ -155,7 +156,7 @@ public class Tienda {
         cluster++;
         
         
-        
+        }
         //Impresoras
         nombresNodos="";
         conexiones="";
