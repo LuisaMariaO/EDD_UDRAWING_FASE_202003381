@@ -108,6 +108,7 @@ public class Main {
                     break;
                 case "3":
                     tienda.graficar();
+                    System.out.println("Gráfico generado en EddFase1/Reportes");
                     break;
                 case "4":
                     menuReportes();
@@ -152,8 +153,6 @@ public static Tienda cargaMasiva(String ruta){
         for(int i=0; i<jsonObject.size();i++){
             JSONObject cliente = (JSONObject) jsonObject.get("Cliente"+(i+1));
             //Tomando los atributos de los clientes
-            
-            
             nombre = (String) cliente.get("nombre_cliente");
             
             id = Math.toIntExact((long)cliente.get("id_cliente"));

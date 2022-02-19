@@ -540,6 +540,8 @@ public class Tienda {
                 actual.siguiente=null;
                 actual.anterior=null;
                 this.listaAtendidos.insertarFinal(actual);
+                //Elimino el acceso a la lista de imágenes para lograr una lista simple
+                actual.img_impresa=null;
                 break;
             }
             actual=actual.siguiente;
