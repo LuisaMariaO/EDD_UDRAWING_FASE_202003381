@@ -108,7 +108,7 @@ public class Tienda {
         //Clientes en espera
         nombresNodos="";
         conexiones="";
-        if(this.listaEspera.lc!=null){
+        if(this.listaEspera!=null && this.listaEspera.lc!=null){
         Cliente cl = this.listaEspera.lc.siguiente;
         dot.append("subgraph cluster_").append(cluster).append("{\n");
         dot.append("style=filled\n");
@@ -168,7 +168,7 @@ public class Tienda {
         //Impresora a color
         nombresNodos+="Impresora"+this.color.hashCode()+"[label=\""+this.color.nombre+"\"]"+"\n";
         
-        if(this.color.cola.primero!=null){
+        if(this.color!=null && this.color.cola.primero!=null){
             Imagen actual = this.color.cola.primero;
             nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=darksalmon label=\"IMG COLOR\"]"+"\n";
             conexiones+=String.format("Impresora%d -> Imagen%d", this.color.hashCode(),actual.hashCode()+1)+"\n";
@@ -185,7 +185,7 @@ public class Tienda {
         //Impresora blanco y negro
         nombresNodos+="Impresora"+this.bw.hashCode()+"[label=\""+this.bw.nombre+"\"]"+"\n";
         
-         if(this.bw.cola.primero!=null){
+         if(this.bw!=null && this.bw.cola.primero!=null){
             Imagen actual = this.bw.cola.primero;
             nombresNodos+="Imagen"+(actual.hashCode()+1)+"[shape=signature fillcolor=gray52 label=\"IMG ByN\"]"+"\n";
             conexiones+=String.format("Impresora%d -> Imagen%d", this.bw.hashCode(),actual.hashCode()+1)+"\n";

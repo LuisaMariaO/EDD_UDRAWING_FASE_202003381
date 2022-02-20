@@ -107,7 +107,9 @@ public class Main {
                     }
                     break;
                 case "3":
+                    try{
                     tienda.graficar();
+                    }catch(Exception e){System.out.println("Ha ocurrido un error.");}
                     System.out.println("Gráfico generado en EddFase1/Reportes");
                     break;
                 case "4":
