@@ -83,6 +83,11 @@ public class Login extends javax.swing.JFrame {
         Button_iniciar.setBackground(new java.awt.Color(0, 153, 153));
         Button_iniciar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         Button_iniciar.setText("Iniciar Sesión");
+        Button_iniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_iniciarActionPerformed(evt);
+            }
+        });
         bg.add(Button_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 170, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -100,6 +105,22 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Button_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_iniciarActionPerformed
+        
+        if(this.TextField_usuario.getText().equals("admin") && this.TextField_contrasena.getText().equals("EDD2022")){
+            Admin admin = new Admin();
+            this.dispose();
+            admin.setVisible(true);
+        }
+        else{
+            System.out.println("No eres el admin");
+        }
+        this.TextField_usuario.setText("");
+        this.TextField_contrasena.setText("");
+        
+        
+    }//GEN-LAST:event_Button_iniciarActionPerformed
 
     /**
      * @param args the command line arguments
