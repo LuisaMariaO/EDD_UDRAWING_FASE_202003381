@@ -7,6 +7,9 @@ package interfaz;
 
 import javax.swing.ImageIcon;
 import app.Manage;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -36,6 +39,7 @@ Manage manager;
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton_cerrar = new javax.swing.JButton();
+        Button_CargaClientes = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -59,8 +63,8 @@ Manage manager;
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 100));
 
         jButton_cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Img/exit_opt.png"))); // NOI18N
+        jButton_cerrar.setToolTipText("Cerrar sesión");
         jButton_cerrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jButton_cerrar.setOpaque(false);
         jButton_cerrar.setPreferredSize(new java.awt.Dimension(96, 40));
         jButton_cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +72,18 @@ Manage manager;
             }
         });
         jPanel1.add(jButton_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 110, 50, 40));
+
+        Button_CargaClientes.setBackground(new java.awt.Color(51, 0, 51));
+        Button_CargaClientes.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        Button_CargaClientes.setForeground(new java.awt.Color(255, 255, 255));
+        Button_CargaClientes.setText("Cargar Clientes");
+        Button_CargaClientes.setBorder(null);
+        Button_CargaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_CargaClientesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Button_CargaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,12 +105,25 @@ Manage manager;
         this.dispose();
     }//GEN-LAST:event_jButton_cerrarActionPerformed
 
+    private void Button_CargaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CargaClientesActionPerformed
+        JFileChooser chooser = new JFileChooser();
+         
+         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON", "json");
+         chooser.setFileFilter(filter);
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+         File fichero = chooser.getSelectedFile();
+        this.manager.cargaMasiva(fichero);
+        }
+       
+    }//GEN-LAST:event_Button_CargaClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Button_CargaClientes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_cerrar;
     private javax.swing.JLabel jLabel1;
