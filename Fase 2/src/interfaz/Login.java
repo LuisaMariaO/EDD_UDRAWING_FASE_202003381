@@ -42,6 +42,8 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         TextField_contrasena = new javax.swing.JPasswordField();
         Button_iniciar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel_Registrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(145, 100));
@@ -89,6 +91,22 @@ public class Login extends javax.swing.JFrame {
         });
         bg.add(Button_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 170, 60));
 
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("¿No tienes una cuenta?");
+        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 150, 20));
+
+        jLabel_Registrar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel_Registrar.setForeground(new java.awt.Color(0, 102, 255));
+        jLabel_Registrar.setText("Regístrate aquí");
+        jLabel_Registrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Registrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_RegistrarMouseClicked(evt);
+            }
+        });
+        bg.add(jLabel_Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, -1, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,6 +139,12 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_Button_iniciarActionPerformed
 
+    private void jLabel_RegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RegistrarMouseClicked
+        Registro registro = new Registro(this.manager);
+        registro.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_RegistrarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -136,5 +160,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel_Registrar;
     // End of variables declaration//GEN-END:variables
 }

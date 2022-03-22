@@ -34,4 +34,11 @@ public void cargaMasiva(File ruta){
     
 }
 
+public boolean registrar(String nombre, String password, long dpi){
+    try{
+    arbolB.insertar(nombre, password, dpi);
+    return true;
+    }catch(Exception e){return false;}
+}
+
 }
