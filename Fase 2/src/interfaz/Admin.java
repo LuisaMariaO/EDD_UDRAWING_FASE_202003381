@@ -7,9 +7,14 @@ package interfaz;
 
 import javax.swing.ImageIcon;
 import app.Manage;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -17,6 +22,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Admin extends javax.swing.JFrame {
 Manage manager;
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm:ss");
+boolean arbol=false;
     
     public Admin(Manage manage) {
         ImageIcon img = new ImageIcon("src\\interfaz\\Img\\iconv.png");
@@ -40,6 +47,9 @@ Manage manager;
         jLabel1 = new javax.swing.JLabel();
         jButton_cerrar = new javax.swing.JButton();
         Button_CargaClientes = new javax.swing.JButton();
+        jLabel_arbol = new javax.swing.JLabel();
+        jLabel_time = new javax.swing.JLabel();
+        jButton_verClientes = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -85,6 +95,33 @@ Manage manager;
         });
         jPanel1.add(Button_CargaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 40));
 
+        jLabel_arbol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Img/blank.png"))); // NOI18N
+        jLabel_arbol.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel_arbol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_arbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_arbolMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel_arbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, 550, 380));
+
+        jLabel_time.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel_time.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_time.setText("Última actualización de árbol: null ");
+        jPanel1.add(jLabel_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 620, -1, -1));
+
+        jButton_verClientes.setBackground(new java.awt.Color(0, 51, 102));
+        jButton_verClientes.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jButton_verClientes.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_verClientes.setText("Ver árbol de clientes");
+        jButton_verClientes.setBorder(null);
+        jButton_verClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_verClientesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_verClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 190, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,6 +154,36 @@ Manage manager;
        
     }//GEN-LAST:event_Button_CargaClientesActionPerformed
 
+    private void jButton_verClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verClientesActionPerformed
+        
+             try {
+                manager.graficarClientes();
+                Thread.sleep(1000);
+                this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                this.arbol=true;
+
+       } catch (InterruptedException e) {
+
+         
+       }
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        ImageIcon img = new ImageIcon("Reportes de Administrador\\Clientes.png");
+        this.jLabel_arbol.setIcon(img);
+        this.jLabel_time.setText("Última actualización de árbol: "+this.dtf.format(LocalDateTime.now()));
+    }//GEN-LAST:event_jButton_verClientesActionPerformed
+
+    private void jLabel_arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_arbolMouseClicked
+        if(this.arbol){
+             try {
+
+            File file = new File ("Reportes de Administrador\\Clientes.png");
+            Desktop.getDesktop().open(file);
+
+     }catch (IOException ex) {System.out.println(ex);}
+
+        }
+    }//GEN-LAST:event_jLabel_arbolMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -126,8 +193,11 @@ Manage manager;
     private javax.swing.JButton Button_CargaClientes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_cerrar;
+    private javax.swing.JButton jButton_verClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel_arbol;
+    private javax.swing.JLabel jLabel_time;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

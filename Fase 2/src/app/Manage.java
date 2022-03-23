@@ -27,6 +27,8 @@ public void cargaMasiva(File ruta){
              long dpi = Long.valueOf((String) cliente.get("dpi"));
              arbolB.insertar((String)cliente.get("nombre_cliente"),(String)cliente.get("password"),dpi);
          }
+         
+         JOptionPane.showMessageDialog(null, "¡Carga finalizada!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
     }catch(Exception e){
         JOptionPane.showMessageDialog(null, "Ocurrió un error en la carga masiva", "Error", JOptionPane.ERROR_MESSAGE);
         System.out.println(e);
@@ -39,6 +41,10 @@ public boolean registrar(String nombre, String password, long dpi){
     arbolB.insertar(nombre, password, dpi);
     return true;
     }catch(Exception e){return false;}
+}
+
+public void graficarClientes(){
+    this.arbolB.graficar();
 }
 
 }

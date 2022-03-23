@@ -1,6 +1,10 @@
 
 package app;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
 /**
  *
  * @author Luisa María Ortiz
@@ -8,6 +12,9 @@ package app;
 public class ArbolB {
     final int orden_arbol=5;//El orden requerido para el arbol
     Pagina raiz;
+    String nombresNodos="";
+    String conexiones ="";
+    int cuentaClaves=0;
     
     public ArbolB(){
         this.raiz = new Pagina(); //Página vacía desde la creación del árbol
@@ -83,5 +90,69 @@ public class ArbolB {
             }
         }
         return null;
+    }
+    
+    public void graficar(){
+        StringBuilder dot = new StringBuilder();
+        
+        dot.append("digraph G {\n");
+        dot.append("node[shape=record];\n");
+        cuentaClaves=0;
+        
+        this.recorrido(this.raiz);
+        Pagina auxp = this.raiz;
+     
+        
+         dot.append(nombresNodos);
+        dot.append(conexiones);
+        dot.append("}");
+        
+         try{
+            File file = new File("Reportes de Administrador\\clientes.dot");
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(dot.toString());
+            bw.close();
+        ProcessBuilder pbuilder = new ProcessBuilder( "dot", "-Tpng", "-o", "Reportes de Administrador\\Clientes.png", "Reportes de Administrador\\clientes.dot" );
+        pbuilder.redirectErrorStream( true );
+        pbuilder.start();
+        }catch(Exception ex){System.out.println(ex.getMessage());}
+
+        
+    }
+    
+    public void recorrido(Pagina raiz){
+        if(raiz != null){
+            Cliente auxn = raiz.primero;
+            nombresNodos+="Nodo"+raiz.hashCode()+"[label=\"";
+             while(auxn!=null){
+            nombresNodos+="<S"+cuentaClaves+">|DPI: "+auxn.dpi+"\\n Nombre: "+auxn.nombre+"\\n Password: "+auxn.password+"|";
+            
+            if(auxn.izquierda!=null){
+                conexiones+="Nodo"+raiz.hashCode()+":S"+cuentaClaves+"->Nodo"+auxn.izquierda.hashCode()+";\n";
+            }
+            if(auxn.derecha!=null){
+               
+                conexiones+="Nodo"+raiz.hashCode()+":S"+(cuentaClaves+1)+"->Nodo"+auxn.derecha.hashCode()+";\n";
+            
+            }
+            auxn=auxn.siguiente;
+            cuentaClaves++;
+            
+            
+            
+        }
+            nombresNodos+="\"];\n";
+            
+            auxn=raiz.primero;
+            while(auxn!=null){
+                
+                recorrido(auxn.izquierda);
+                recorrido(auxn.derecha);
+                auxn=auxn.siguiente;
+            }
+        }
+        
+        
     }
 }
