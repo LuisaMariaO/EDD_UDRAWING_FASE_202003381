@@ -96,6 +96,7 @@ boolean arbol=false;
         jPanel1.add(Button_CargaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 40));
 
         jLabel_arbol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Img/blank.png"))); // NOI18N
+        jLabel_arbol.setToolTipText("Click si el gráfico no se ve completo.");
         jLabel_arbol.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel_arbol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_arbol.addMouseListener(new java.awt.event.MouseAdapter() {

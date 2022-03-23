@@ -155,4 +155,35 @@ public class ArbolB {
         
         
     }
+    
+    public Cliente buscar(long dpi, String password){
+     return this.buscar(this.raiz, dpi, password);
+    }
+    
+    private Cliente buscar (Pagina raiz, long dpi, String password){
+        if(raiz==null){return null;} //No encontró coincidencia
+        else{
+            Cliente aux = raiz.primero;
+            while(aux!=null){
+                if(aux.dpi == dpi && aux.password.equals(password)){
+                    return aux;
+                }
+                else if(dpi < aux.dpi){
+                   return  buscar(aux.izquierda,dpi, password);
+                }
+                else if(dpi > aux.dpi){
+                    if(aux.siguiente!=null){
+                        if(dpi<aux.siguiente.dpi){return buscar(aux.derecha,dpi, password);}
+                    }
+                    else{
+                       return buscar(aux.derecha,dpi, password); 
+                    }
+                   
+                }
+                aux = aux.siguiente;
+            }
+        }
+        return null;
+    }
+    
 }

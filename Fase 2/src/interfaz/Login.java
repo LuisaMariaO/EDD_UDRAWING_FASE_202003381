@@ -5,10 +5,12 @@
  */
 package interfaz;
 
+import app.Cliente;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import app.Manage;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Luisa María Ortiz
@@ -130,8 +132,17 @@ public class Login extends javax.swing.JFrame {
             admin.setVisible(true);
             this.dispose();
         }
-        else{
-            System.out.println("No eres el admin");
+        else {
+            Cliente encontrado = this.manager.iniciarSesion(this.TextField_usuario.getText(), this.TextField_contrasena.getText());
+            if(encontrado!=null){
+              Clientei ventanaCliente = new Clientei(encontrado,this.manager);
+              ventanaCliente.setVisible(true);
+              this.dispose();
+            }
+            
+            else{
+                JOptionPane.showMessageDialog(null, "Usuario o password inválidos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
         }
         this.TextField_usuario.setText("");
         this.TextField_contrasena.setText("");

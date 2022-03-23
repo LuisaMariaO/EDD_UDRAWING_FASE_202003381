@@ -46,5 +46,13 @@ public boolean registrar(String nombre, String password, long dpi){
 public void graficarClientes(){
     this.arbolB.graficar();
 }
-
+public Cliente iniciarSesion(String usuario, String password){
+    long dpi=0;
+    try{
+        dpi = Long.valueOf(usuario);
+    }catch(NumberFormatException e){JOptionPane.showMessageDialog(null, "Ingrese un usuario válido", "Error", JOptionPane.ERROR_MESSAGE);}
+    
+    return this.arbolB.buscar(dpi, password);
+    
+}
 }

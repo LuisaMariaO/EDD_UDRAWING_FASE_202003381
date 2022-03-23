@@ -7,8 +7,8 @@ package app;
 
  */
 public class Cliente{
-    String nombre, password; //Atributos
-    long dpi; //Clave para ordenar
+    public String nombre, password; //Atributos
+    public long dpi; //Clave para ordenar
     //Apuntadores
     Cliente anterior,siguiente; 
     Pagina izquierda, derecha;
