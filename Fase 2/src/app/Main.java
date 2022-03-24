@@ -15,6 +15,8 @@ public class Main {
        Manage manage = new Manage();//Las estructuras principales se inicializan desde ahora
         Login login = new Login(manage);
         login.setVisible(true);
+        
+        
     }
     
 }
