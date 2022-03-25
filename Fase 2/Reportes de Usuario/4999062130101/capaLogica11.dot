@@ -1,0 +1,119 @@
+digraph G {
+node[shape=box style=filled];
+subgraph cluster_0{
+NodoRaiz[label="Raiz" fillcolor=lightseagreen]
+Nodo548565827[fillcolor=white label="-1,113" group=1];
+Nodo1735880369[fillcolor=white label="-1,114" group=1];
+Nodo233096816[fillcolor=white label="-1,115" group=1];
+Nodo279873067[fillcolor=white label="54,-1" group=56];
+Nodo590731030[fillcolor=white label="55,-1" group=57];
+Nodo2137732903[fillcolor=white label="56,-1" group=58];
+Nodo1419225596[fillcolor=white label="57,-1" group=59];
+Nodo820830875[fillcolor=white label="80,-1" group=82];
+Nodo1038884599[fillcolor=white label="81,-1" group=83];
+Nodo548565827->Nodo1735880369;
+Nodo1735880369->Nodo233096816;
+Nodo279873067->Nodo590731030
+Nodo590731030->Nodo2137732903
+Nodo2137732903->Nodo1419225596
+Nodo1419225596->Nodo820830875
+Nodo820830875->Nodo1038884599
+NodoRaiz->Nodo548565827;
+NodoRaiz->Nodo279873067;
+{rank=same;NodoRaiz;Nodo279873067;Nodo590731030;Nodo2137732903;Nodo1419225596;Nodo820830875;Nodo1038884599}
+Nodo454607970[label="" fillcolor="#FF8B00"group=56];
+Nodo1915311796[label="" fillcolor="#FF8B00"group=57];
+Nodo621185616[label="" fillcolor="#FF8B00"group=58];
+Nodo2017473441[label="" fillcolor="#FF8B00"group=59];
+Nodo631690015[label="" fillcolor="#FF8B00"group=82];
+Nodo495103465[label="" fillcolor="#FF8B00"group=83];
+Nodo214429699[label="" fillcolor="#FF8B00"group=56];
+Nodo1969428225[label="" fillcolor="#FF8B00"group=57];
+Nodo1724779673[label="" fillcolor="#FF8B00"group=58];
+Nodo1848318028[label="" fillcolor="#FF8B00"group=59];
+Nodo1566550626[label="" fillcolor="#FF8B00"group=82];
+Nodo820606423[label="" fillcolor="#FF8B00"group=83];
+Nodo651496855[label="" fillcolor="#FF8B00"group=56];
+Nodo277518457[label="" fillcolor="#FF8B00"group=57];
+Nodo816200880[label="" fillcolor="#FF8B00"group=58];
+Nodo1260036286[label="" fillcolor="#FF8B00"group=59];
+Nodo1160619519[label="" fillcolor="#FF8B00"group=82];
+Nodo27305075[label="" fillcolor="#FF8B00"group=83];
+{rank=same}
+Nodo548565827->Nodo454607970;
+Nodo548565827->Nodo454607970[dir=back];
+Nodo454607970->Nodo1915311796;
+Nodo454607970->Nodo1915311796[dir=back];
+Nodo1915311796->Nodo621185616;
+Nodo1915311796->Nodo621185616[dir=back];
+Nodo621185616->Nodo2017473441;
+Nodo621185616->Nodo2017473441[dir=back];
+Nodo2017473441->Nodo631690015;
+Nodo2017473441->Nodo631690015[dir=back];
+Nodo631690015->Nodo495103465;
+Nodo631690015->Nodo495103465[dir=back];
+{rank=same;Nodo548565827;Nodo454607970;Nodo1915311796;Nodo621185616;Nodo2017473441;Nodo631690015;Nodo495103465}
+Nodo1735880369->Nodo214429699;
+Nodo1735880369->Nodo214429699[dir=back];
+Nodo214429699->Nodo1969428225;
+Nodo214429699->Nodo1969428225[dir=back];
+Nodo1969428225->Nodo1724779673;
+Nodo1969428225->Nodo1724779673[dir=back];
+Nodo1724779673->Nodo1848318028;
+Nodo1724779673->Nodo1848318028[dir=back];
+Nodo1848318028->Nodo1566550626;
+Nodo1848318028->Nodo1566550626[dir=back];
+Nodo1566550626->Nodo820606423;
+Nodo1566550626->Nodo820606423[dir=back];
+{rank=same;Nodo1735880369;Nodo214429699;Nodo1969428225;Nodo1724779673;Nodo1848318028;Nodo1566550626;Nodo820606423}
+Nodo233096816->Nodo651496855;
+Nodo233096816->Nodo651496855[dir=back];
+Nodo651496855->Nodo277518457;
+Nodo651496855->Nodo277518457[dir=back];
+Nodo277518457->Nodo816200880;
+Nodo277518457->Nodo816200880[dir=back];
+Nodo816200880->Nodo1260036286;
+Nodo816200880->Nodo1260036286[dir=back];
+Nodo1260036286->Nodo1160619519;
+Nodo1260036286->Nodo1160619519[dir=back];
+Nodo1160619519->Nodo27305075;
+Nodo1160619519->Nodo27305075[dir=back];
+{rank=same;Nodo233096816;Nodo651496855;Nodo277518457;Nodo816200880;Nodo1260036286;Nodo1160619519;Nodo27305075}
+Nodo279873067->Nodo454607970;
+Nodo279873067->Nodo454607970[dir=back];
+Nodo590731030->Nodo1915311796;
+Nodo590731030->Nodo1915311796[dir=back];
+Nodo2137732903->Nodo621185616;
+Nodo2137732903->Nodo621185616[dir=back];
+Nodo1419225596->Nodo2017473441;
+Nodo1419225596->Nodo2017473441[dir=back];
+Nodo820830875->Nodo631690015;
+Nodo820830875->Nodo631690015[dir=back];
+Nodo1038884599->Nodo495103465;
+Nodo1038884599->Nodo495103465[dir=back];
+Nodo454607970->Nodo214429699;
+Nodo454607970->Nodo214429699[dir=back];
+Nodo1915311796->Nodo1969428225;
+Nodo1915311796->Nodo1969428225[dir=back];
+Nodo621185616->Nodo1724779673;
+Nodo621185616->Nodo1724779673[dir=back];
+Nodo2017473441->Nodo1848318028;
+Nodo2017473441->Nodo1848318028[dir=back];
+Nodo631690015->Nodo1566550626;
+Nodo631690015->Nodo1566550626[dir=back];
+Nodo495103465->Nodo820606423;
+Nodo495103465->Nodo820606423[dir=back];
+Nodo214429699->Nodo651496855;
+Nodo214429699->Nodo651496855[dir=back];
+Nodo1969428225->Nodo277518457;
+Nodo1969428225->Nodo277518457[dir=back];
+Nodo1724779673->Nodo816200880;
+Nodo1724779673->Nodo816200880[dir=back];
+Nodo1848318028->Nodo1260036286;
+Nodo1848318028->Nodo1260036286[dir=back];
+Nodo1566550626->Nodo1160619519;
+Nodo1566550626->Nodo1160619519[dir=back];
+Nodo820606423->Nodo27305075;
+Nodo820606423->Nodo27305075[dir=back];
+}
+}

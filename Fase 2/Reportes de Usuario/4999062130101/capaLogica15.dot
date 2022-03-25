@@ -1,0 +1,144 @@
+digraph G {
+node[shape=box style=filled];
+subgraph cluster_0{
+NodoRaiz[label="Raiz" fillcolor=lightseagreen]
+Nodo753389823[fillcolor=white label="-1,23" group=1];
+Nodo77109802[fillcolor=white label="-1,24" group=1];
+Nodo645992352[fillcolor=white label="-1,25" group=1];
+Nodo1203801470[fillcolor=white label="1,-1" group=3];
+Nodo1429392721[fillcolor=white label="2,-1" group=4];
+Nodo364598295[fillcolor=white label="3,-1" group=5];
+Nodo996779279[fillcolor=white label="4,-1" group=6];
+Nodo2021749857[fillcolor=white label="5,-1" group=7];
+Nodo999974501[fillcolor=white label="6,-1" group=8];
+Nodo1951307501[fillcolor=white label="7,-1" group=9];
+Nodo41489590[fillcolor=white label="8,-1" group=10];
+Nodo1898470116[fillcolor=white label="9,-1" group=11];
+Nodo426353642[fillcolor=white label="10,-1" group=12];
+Nodo420521940[fillcolor=white label="11,-1" group=13];
+Nodo753389823->Nodo77109802;
+Nodo77109802->Nodo645992352;
+Nodo1203801470->Nodo1429392721
+Nodo1429392721->Nodo364598295
+Nodo364598295->Nodo996779279
+Nodo996779279->Nodo2021749857
+Nodo2021749857->Nodo999974501
+Nodo999974501->Nodo1951307501
+Nodo1951307501->Nodo41489590
+Nodo41489590->Nodo1898470116
+Nodo1898470116->Nodo426353642
+Nodo426353642->Nodo420521940
+NodoRaiz->Nodo753389823;
+NodoRaiz->Nodo1203801470;
+{rank=same;NodoRaiz;Nodo1203801470;Nodo1429392721;Nodo364598295;Nodo996779279;Nodo2021749857;Nodo999974501;Nodo1951307501;Nodo41489590;Nodo1898470116;Nodo426353642;Nodo420521940}
+Nodo685438276[label="" fillcolor="#FF0000"group=6];
+Nodo1306459479[label="" fillcolor="#FF0000"group=7];
+Nodo2143204837[label="" fillcolor="#FF0000"group=8];
+Nodo1623872266[label="" fillcolor="#FF0000"group=4];
+Nodo887675402[label="" fillcolor="#FF0000"group=5];
+Nodo1086501334[label="" fillcolor="#FF0000"group=6];
+Nodo651071741[label="" fillcolor="#FF0000"group=7];
+Nodo1920707773[label="" fillcolor="#FF0000"group=10];
+Nodo1215681504[label="" fillcolor="#FF0000"group=11];
+Nodo1114527382[label="" fillcolor="#FF0000"group=12];
+Nodo1869866689[label="" fillcolor="#FF0000"group=13];
+Nodo1401343204[label="" fillcolor="#FF0000"group=3];
+Nodo1720779199[label="" fillcolor="#FF0000"group=4];
+Nodo856182970[label="" fillcolor="#FF0000"group=5];
+Nodo1628661598[label="" fillcolor="#FF0000"group=6];
+Nodo1380320544[label="" fillcolor="#FF0000"group=7];
+Nodo371501140[label="" fillcolor="#FF0000"group=8];
+Nodo234100882[label="" fillcolor="#FF0000"group=9];
+Nodo1018456622[label="" fillcolor="#FF0000"group=11];
+Nodo1296588930[label="" fillcolor="#FF0000"group=12];
+Nodo932960226[label="" fillcolor="#FF0000"group=13];
+{rank=same}
+Nodo753389823->Nodo685438276;
+Nodo753389823->Nodo685438276[dir=back];
+Nodo685438276->Nodo1306459479;
+Nodo685438276->Nodo1306459479[dir=back];
+Nodo1306459479->Nodo2143204837;
+Nodo1306459479->Nodo2143204837[dir=back];
+{rank=same;Nodo753389823;Nodo685438276;Nodo1306459479;Nodo2143204837}
+Nodo77109802->Nodo1623872266;
+Nodo77109802->Nodo1623872266[dir=back];
+Nodo1623872266->Nodo887675402;
+Nodo1623872266->Nodo887675402[dir=back];
+Nodo887675402->Nodo1086501334;
+Nodo887675402->Nodo1086501334[dir=back];
+Nodo1086501334->Nodo651071741;
+Nodo1086501334->Nodo651071741[dir=back];
+Nodo651071741->Nodo1920707773;
+Nodo651071741->Nodo1920707773[dir=back];
+Nodo1920707773->Nodo1215681504;
+Nodo1920707773->Nodo1215681504[dir=back];
+Nodo1215681504->Nodo1114527382;
+Nodo1215681504->Nodo1114527382[dir=back];
+Nodo1114527382->Nodo1869866689;
+Nodo1114527382->Nodo1869866689[dir=back];
+{rank=same;Nodo77109802;Nodo1623872266;Nodo887675402;Nodo1086501334;Nodo651071741;Nodo1920707773;Nodo1215681504;Nodo1114527382;Nodo1869866689}
+Nodo645992352->Nodo1401343204;
+Nodo645992352->Nodo1401343204[dir=back];
+Nodo1401343204->Nodo1720779199;
+Nodo1401343204->Nodo1720779199[dir=back];
+Nodo1720779199->Nodo856182970;
+Nodo1720779199->Nodo856182970[dir=back];
+Nodo856182970->Nodo1628661598;
+Nodo856182970->Nodo1628661598[dir=back];
+Nodo1628661598->Nodo1380320544;
+Nodo1628661598->Nodo1380320544[dir=back];
+Nodo1380320544->Nodo371501140;
+Nodo1380320544->Nodo371501140[dir=back];
+Nodo371501140->Nodo234100882;
+Nodo371501140->Nodo234100882[dir=back];
+Nodo234100882->Nodo1018456622;
+Nodo234100882->Nodo1018456622[dir=back];
+Nodo1018456622->Nodo1296588930;
+Nodo1018456622->Nodo1296588930[dir=back];
+Nodo1296588930->Nodo932960226;
+Nodo1296588930->Nodo932960226[dir=back];
+{rank=same;Nodo645992352;Nodo1401343204;Nodo1720779199;Nodo856182970;Nodo1628661598;Nodo1380320544;Nodo371501140;Nodo234100882;Nodo1018456622;Nodo1296588930;Nodo932960226}
+Nodo1203801470->Nodo1401343204;
+Nodo1203801470->Nodo1401343204[dir=back];
+Nodo1429392721->Nodo1623872266;
+Nodo1429392721->Nodo1623872266[dir=back];
+Nodo364598295->Nodo887675402;
+Nodo364598295->Nodo887675402[dir=back];
+Nodo996779279->Nodo685438276;
+Nodo996779279->Nodo685438276[dir=back];
+Nodo2021749857->Nodo1306459479;
+Nodo2021749857->Nodo1306459479[dir=back];
+Nodo999974501->Nodo2143204837;
+Nodo999974501->Nodo2143204837[dir=back];
+Nodo1951307501->Nodo234100882;
+Nodo1951307501->Nodo234100882[dir=back];
+Nodo41489590->Nodo1920707773;
+Nodo41489590->Nodo1920707773[dir=back];
+Nodo1898470116->Nodo1215681504;
+Nodo1898470116->Nodo1215681504[dir=back];
+Nodo426353642->Nodo1114527382;
+Nodo426353642->Nodo1114527382[dir=back];
+Nodo420521940->Nodo1869866689;
+Nodo420521940->Nodo1869866689[dir=back];
+Nodo685438276->Nodo1086501334;
+Nodo685438276->Nodo1086501334[dir=back];
+Nodo1306459479->Nodo651071741;
+Nodo1306459479->Nodo651071741[dir=back];
+Nodo2143204837->Nodo371501140;
+Nodo2143204837->Nodo371501140[dir=back];
+Nodo1623872266->Nodo1720779199;
+Nodo1623872266->Nodo1720779199[dir=back];
+Nodo887675402->Nodo856182970;
+Nodo887675402->Nodo856182970[dir=back];
+Nodo1086501334->Nodo1628661598;
+Nodo1086501334->Nodo1628661598[dir=back];
+Nodo651071741->Nodo1380320544;
+Nodo651071741->Nodo1380320544[dir=back];
+Nodo1215681504->Nodo1018456622;
+Nodo1215681504->Nodo1018456622[dir=back];
+Nodo1114527382->Nodo1296588930;
+Nodo1114527382->Nodo1296588930[dir=back];
+Nodo1869866689->Nodo932960226;
+Nodo1869866689->Nodo932960226[dir=back];
+}
+}

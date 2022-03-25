@@ -55,4 +55,31 @@ public Cliente iniciarSesion(String usuario, String password){
     return this.arbolB.buscar(dpi, password);
     
 }
+
+public void cargarCapas(Cliente cliente,File ruta){
+    
+    JSONParser parser = new JSONParser();
+    try{
+        Object obj = parser.parse(new FileReader(ruta));  
+        JSONArray jsonArray = (JSONArray) obj;
+
+         for(int i=0; i<jsonArray.size();i++){
+            
+             JSONObject capa = (JSONObject) jsonArray.get(i);
+             Matriz matriz = new Matriz(String.valueOf(capa.get("id_capa")));
+             JSONArray pixeles = (JSONArray) capa.get("pixeles");
+             //System.out.println(matriz.id);
+            for(int j=0; j<pixeles.size();j++){
+                JSONObject pixel = (JSONObject) pixeles.get(j);
+                matriz.insertarNodo(Math.toIntExact((long)pixel.get("columna")), Math.toIntExact((long)pixel.get("fila")), String.valueOf(pixel.get("color")));
+            }
+           cliente.arbolCapas.insertar(matriz.id, matriz);//Guardo la capa en el Arbol BB
+         }
+         
+         JOptionPane.showMessageDialog(null, "¡Carga finalizada!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+    }catch(Exception e){
+        JOptionPane.showMessageDialog(null, "Ocurrió un error en la carga masiva", "Error", JOptionPane.ERROR_MESSAGE);
+        System.out.println(e);
+    }
+}
 }
