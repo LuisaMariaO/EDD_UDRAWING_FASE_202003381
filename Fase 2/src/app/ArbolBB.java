@@ -4,6 +4,7 @@ package app;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import javax.swing.JLabel;
 
 /**
  *
@@ -11,7 +12,9 @@ import java.io.FileWriter;
  */
 public class ArbolBB<E extends Comparable<E>>{
     Capa<E> raiz;
-    String nombresNodos, conexiones;
+    String nombresNodos, conexiones,textoRecorrido;
+    Matriz img;
+    int limite,recorrido;
     public ArbolBB(){
         this.raiz=null;
     }
@@ -132,9 +135,133 @@ public class ArbolBB<E extends Comparable<E>>{
     }
  
         
+    public Matriz generarPreorden(Matriz imgMatriz, int limite,JLabel labelRecorrido){
+        this.img=imgMatriz;
+        this.limite=limite;
+        this.recorrido=0;
+        this.textoRecorrido="Recorrido Preorder= ";
+        generarPreOrden(this.raiz,imgMatriz);
+        labelRecorrido.setText(this.textoRecorrido);
+        return imgMatriz;
+        
+    }
+    private void generarPreOrden(Capa<E> raiz, Matriz imgMatriz){
+        if(this.recorrido==this.limite){
+            return;
+        }
+        if(raiz!=null){
+        this.recorrido++;
+        this.textoRecorrido+=raiz.id+" ";
+        Nodo aux = raiz.matriz.raiz;
+        Nodo referencia = raiz.matriz.raiz;
+        while(aux!=null){
+            if(!aux.color.equals("Raiz") && !aux.color.equals("Col") && !aux.color.equals("Row")){
+                imgMatriz.insertarNodo(aux.i, aux.j, aux.color);
+            }
+            aux=aux.siguiente;
+            if(aux==null){
+                if(referencia.abajo!=null){
+                    referencia=referencia.abajo;
+                    aux=referencia;
+                }
+            }
+        }
+        
+        generarPreOrden(raiz.izquierdo,imgMatriz);
+        generarPreOrden(raiz.derecho,imgMatriz);
+        }
+        
+        
+        
     
+    }
    
-
+    public Matriz generarInOrden(Matriz imgMatriz, int limite,JLabel labelRecorrido){
+        this.img=imgMatriz;
+        this.limite=limite;
+        this.recorrido=0;
+        this.textoRecorrido="Recorrido Inorder= ";
+        generarInOrden(this.raiz,imgMatriz);
+        labelRecorrido.setText(this.textoRecorrido);
+        return imgMatriz;
+        
+    }
+    private void generarInOrden(Capa<E> raiz, Matriz imgMatriz){
+        
+        if(raiz!=null){
+        generarInOrden(raiz.izquierdo,imgMatriz);
+        if(this.recorrido==this.limite){
+            return;
+        }
+        this.recorrido++;
+        this.textoRecorrido+=raiz.id+" ";
+        Nodo aux = raiz.matriz.raiz;
+        Nodo referencia = raiz.matriz.raiz;
+        while(aux!=null){
+            if(!aux.color.equals("Raiz") && !aux.color.equals("Col") && !aux.color.equals("Row")){
+                imgMatriz.insertarNodo(aux.i, aux.j, aux.color);
+            }
+            aux=aux.siguiente;
+            if(aux==null){
+                if(referencia.abajo!=null){
+                    referencia=referencia.abajo;
+                    aux=referencia;
+                }
+            }
+        }
+        
+        
+        generarInOrden(raiz.derecho,imgMatriz);
+        }
+        
+        
+        
+    
+    }
+    
+    public Matriz generarPostOrden(Matriz imgMatriz, int limite,JLabel labelRecorrido){
+        this.img=imgMatriz;
+        this.limite=limite;
+        this.recorrido=0;
+        this.textoRecorrido="Recorrido Postorder= ";
+        generarPostOrden(this.raiz,imgMatriz);
+        labelRecorrido.setText(this.textoRecorrido);
+        return imgMatriz;
+        
+    }
+    private void generarPostOrden(Capa<E> raiz, Matriz imgMatriz){
+        
+        if(raiz!=null){
+        generarPostOrden(raiz.izquierdo,imgMatriz);
+        generarPostOrden(raiz.derecho,imgMatriz);
+        if(this.recorrido==this.limite){
+            return;
+        }
+        this.recorrido++;
+        this.textoRecorrido+=raiz.id+" ";
+        Nodo aux = raiz.matriz.raiz;
+        Nodo referencia = raiz.matriz.raiz;
+        while(aux!=null){
+            if(!aux.color.equals("Raiz") && !aux.color.equals("Col") && !aux.color.equals("Row")){
+                imgMatriz.insertarNodo(aux.i, aux.j, aux.color);
+            }
+            aux=aux.siguiente;
+            if(aux==null){
+                if(referencia.abajo!=null){
+                    referencia=referencia.abajo;
+                    aux=referencia;
+                }
+            }
+        }
+        
+        
+   
+        }
+        
+        
+        
+    
+    }
     
 
 

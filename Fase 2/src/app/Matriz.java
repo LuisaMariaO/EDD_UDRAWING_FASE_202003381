@@ -13,7 +13,7 @@ public class Matriz {
     Nodo raiz;
     boolean iR,jR;
     String id;
-    String nombresNodos, conexiones,rangos,conexiones2;
+    String nombresNodos, conexiones,rangos,conexiones2,tabla;
     
     public Matriz(String id){
       this.raiz = new Nodo(-1,-1,"Raiz");
@@ -112,45 +112,25 @@ public class Matriz {
     public Nodo crearFila(int j){
         return this.insertarEnColumna(new Nodo (-1,j,"Row"),this.raiz);
     }
-    /*
-    public Nodo nodoExistente(int i, int j){
-        this.iR=false;
-        this.jR=false;
-        Nodo actual = this.raiz;
-        while(true){ //Busco esa posicion en j
-          if(actual.j == j){
-              this.jR=true;
-              break;
-          }
-         
-          else if(actual.abajo != null){
-              actual = actual.abajo;
-          }
-          else{
-              break;
-          }
+
+    public Nodo nodoExistente(Nodo nuevo){
+        Nodo aux = this.raiz;
+        Nodo referencia = this.raiz;
+        while(aux!=null){
+            if(aux.i==nuevo.i && aux.j==nuevo.j){
+                return nuevo;
+            }
+            aux=aux.siguiente;
+            if(aux==null){
+                if(referencia.abajo!=null){
+                    referencia=referencia.abajo;
+                    aux=referencia;
+                }
+            }
         }
-        
-        //Busco la posicion en i
-          while(true){ //Busco esa posicion en j
-          if(actual.i == j){
-              this.iR=true;
-              break;
-          }
-         
-          else if(actual.siguiente != null){
-              actual = actual.siguiente;
-          }
-          else{
-              break;
-          }
-        }
-         if(this.iR && this.jR){ 
-         return actual;
-         }
-         return null;
+        return null;
     }
-    */
+
     public void insertarNodo(int i, int j, String color){
         Nodo nuevo = new Nodo(i,j,color);
 
@@ -184,8 +164,32 @@ public class Matriz {
         }
         else{
             //Caso 4: La columna y la fila existen
+            
+            //Verifico si ya existe el nodo en la matriz
+            Nodo buscado = this.nodoExistente(nuevo);
+            if(buscado==null){//Si el nodo no existe, lo inserto
             nuevo = this.insertarEnFila(nuevo, fila);
             nuevo = this.insertarEnColumna(nuevo, columna);
+            }
+            else{
+                //Reemplazo los apuntadores hacia el nodo existente y los reemplazo por el nodo nuevo
+                if(buscado.arriba!=null){
+                buscado.arriba.abajo=nuevo;
+                nuevo.arriba=buscado.arriba;
+                }
+                if(buscado.abajo!=null){
+                buscado.abajo.arriba=nuevo;
+                nuevo.abajo=buscado.abajo;
+                }
+                if(buscado.siguiente!=null){
+                buscado.siguiente.anterior=nuevo;
+                nuevo.siguiente=buscado.siguiente;
+                }
+                if(buscado.anterior!=null){
+                buscado.anterior.siguiente=nuevo;
+                nuevo.anterior=buscado.anterior;
+                }
+            }
            
         }
         
@@ -197,7 +201,7 @@ public class Matriz {
          StringBuilder dot = new StringBuilder();
         
         dot.append("digraph G {\n");
-        dot.append("node[shape=box style=filled];\nsubgraph cluster_0{\n");
+        dot.append("node[shape=box style=filled];\nsubgraph cluster_0{\ncolor=none;\n");
         nombresNodos="";
         conexiones ="";
         conexiones2="";
@@ -205,8 +209,7 @@ public class Matriz {
         
        
         
-        Nodo auxf = this.raiz;
-        Nodo auxc=this.raiz;
+        
         Nodo referencia = this.raiz;
        
         Nodo aux = this.raiz; //Para graficar el resto de nodos
@@ -317,5 +320,62 @@ public class Matriz {
         pbuilder.start();
         }catch(Exception ex){System.out.println(ex.getMessage());}
 
+    }
+    
+    public void graficaApicacion(String cliente){
+        StringBuilder dot = new StringBuilder();
+        tabla="";
+        boolean primera=true;
+        dot.append("digraph G {\n");
+        dot.append("Nodo[shape=none, margin=0,label=<\n");
+        dot.append("<TABLE BORDER=\"0\" CELLBORDER=\"0\" CELLSPACING=\"0\">\n");
+        Nodo aux = this.raiz;
+        Nodo referencia=this.raiz;
+        int contador=0;
+        
+        while(aux!=null){
+            if(!aux.color.equals("Raiz") && !aux.color.equals("Row") && !aux.color.equals("Col")){  
+            contador++;
+            while(contador<aux.i){
+                tabla+="<TD BGCOLOR=\"#FFFFFF\"></TD>\n";//Llenando con color blanco los espacios sin color
+                contador++;
+            }
+            tabla+="<TD BGCOLOR=\""+aux.color+"\"></TD>\n";
+            }
+           
+            aux=aux.siguiente;
+            if(aux==null){
+                if(!primera){
+                tabla+="</TR>\n";
+               
+                }
+                else{
+                    primera=false;
+                }
+                if(referencia.abajo!=null){
+                    referencia=referencia.abajo;
+                    aux=referencia;
+                    tabla+="<TR>\n";
+                    contador=0;
+                }
+            }
+        }
+        dot.append(tabla);
+        dot.append("</TABLE>>];\n}");
+        try{
+           
+            File file = new File("Reportes de Usuario\\"+cliente);
+            if(!file.exists()){file.mkdirs();}//Si no existe la carpeta, se crea
+            
+           
+            file = new File("Reportes de Usuario\\"+cliente+"\\ImagenApp.dot");
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(dot.toString());
+            bw.close();
+        ProcessBuilder pbuilder = new ProcessBuilder( "dot", "-Tpng", "-o", "Reportes de Usuario\\"+cliente+"\\ImagenApp.png", "Reportes de Usuario\\"+cliente+"\\ImagenApp.dot" );
+        pbuilder.redirectErrorStream( true );
+        pbuilder.start();
+        }catch(Exception ex){System.out.println(ex.getMessage());}
     }
 }

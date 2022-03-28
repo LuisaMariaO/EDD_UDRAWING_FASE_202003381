@@ -3,6 +3,7 @@ package app;
 
 import java.io.File;
 import java.io.FileReader;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -155,4 +156,24 @@ public void cargarImagenes(Cliente cliente, File ruta){//VERIFICAR LA FORMA DE P
     public void graficarImgCapas(Cliente cliente, Imagen imagen){
         cliente.arbolImagenes.graficar(String.valueOf(cliente.dpi), imagen.id);
     }
+    public void generarImgPreorder(Cliente cliente, int limite,JLabel recorrido){
+         Matriz imgMatriz = new Matriz("Imagen");
+         imgMatriz = cliente.arbolCapas.generarPreorden(imgMatriz,limite,recorrido);
+         imgMatriz.graficaApicacion(String.valueOf(cliente.dpi));
+        }
+    public void generarImgInorder(Cliente cliente, int limite, JLabel recorrido){
+        Matriz imgMatriz = new Matriz("Imagen");
+         imgMatriz = cliente.arbolCapas.generarInOrden(imgMatriz,limite,recorrido);
+         imgMatriz.graficaApicacion(String.valueOf(cliente.dpi));
+    }
+    public void generarImgPostorder(Cliente cliente, int limite, JLabel recorrido){
+        Matriz imgMatriz = new Matriz("Imagen");
+         imgMatriz = cliente.arbolCapas.generarPostOrden(imgMatriz,limite,recorrido);
+         imgMatriz.graficaApicacion(String.valueOf(cliente.dpi));
+    }
+    public void generarImg(Cliente cliente, int idimg, JLabel etiqueta){
+        
+    }
+        
+    
 }

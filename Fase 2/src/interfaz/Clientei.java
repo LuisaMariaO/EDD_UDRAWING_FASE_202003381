@@ -57,7 +57,12 @@ public class Clientei extends javax.swing.JFrame {
         jComboBox = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jTextField_Reportes = new javax.swing.JTextField();
+        jButton_generarimg = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField_imagenes = new javax.swing.JTextField();
         jButton_visualizar = new javax.swing.JButton();
+        jComboBox_imagenes = new javax.swing.JComboBox<>();
+        jLabel_recorrido = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_archivo = new javax.swing.JMenu();
         jMenuItem_ccapas = new javax.swing.JMenuItem();
@@ -116,7 +121,7 @@ public class Clientei extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Estado de las estructuras");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         jTextField_Reportes.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jTextField_Reportes.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +130,26 @@ public class Clientei extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField_Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, 30));
+
+        jButton_generarimg.setBackground(new java.awt.Color(0, 51, 153));
+        jButton_generarimg.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jButton_generarimg.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_generarimg.setText("Generar imagen");
+        jButton_generarimg.setBorder(null);
+        jButton_generarimg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_generarimgActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_generarimg, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 120, 30));
+
+        jLabel2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setText("Generación de imágenes");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+
+        jTextField_imagenes.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jPanel1.add(jTextField_imagenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 210, 30));
 
         jButton_visualizar.setBackground(new java.awt.Color(255, 102, 0));
         jButton_visualizar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -137,6 +162,14 @@ public class Clientei extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton_visualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 90, 30));
+
+        jComboBox_imagenes.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jComboBox_imagenes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recorrido limitado: Preorder", "Recorrido limitado: Inorder", "Recorrido limitado: Postorder", "Id de imagen" }));
+        jPanel1.add(jComboBox_imagenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 210, -1));
+
+        jLabel_recorrido.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel_recorrido.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel1.add(jLabel_recorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 610, 600, 20));
 
         jMenu_archivo.setText("Archivo");
         jMenu_archivo.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -205,12 +238,7 @@ public class Clientei extends javax.swing.JFrame {
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
          File fichero = chooser.getSelectedFile();
         this.manager.cargarCapas(this.cliente, fichero);
-            System.out.println("PRE");
-        this.cliente.arbolCapas.preOrden();
-            System.out.println("POST");
-            this.cliente.arbolCapas.postOrden();
-            System.out.println("IN");
-            this.cliente.arbolCapas.inOrden();
+           
         }
       
     }//GEN-LAST:event_jMenuItem_ccapasActionPerformed
@@ -234,8 +262,110 @@ public class Clientei extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_ReportesActionPerformed
 
+    private void jButton_generarimgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_generarimgActionPerformed
+    if(this.jComboBox_imagenes.getSelectedIndex()==0){
+        //Por recorrido limitado Preorder
+        
+        try {
+                int limite = Integer.valueOf(this.jTextField_imagenes.getText());
+        
+                this.manager.generarImgPreorder(this.cliente, limite,this.jLabel_recorrido);
+                this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                Thread.sleep(1500);
+                
+              
+
+       } catch (InterruptedException e) {}
+            ImageIcon imagen = new ImageIcon("Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png");
+            this.imgactual="Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png";
+            this.jLabel_visualizador.setIcon(imagen);
+            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        
+      
+    }
+    else if(this.jComboBox_imagenes.getSelectedIndex()==1){
+        //Por reoccorrido limitado Inorder
+         try {
+                int limite = Integer.valueOf(this.jTextField_imagenes.getText());
+                this.manager.generarImgInorder(this.cliente, limite,this.jLabel_recorrido);
+                this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                Thread.sleep(1500);
+                
+              
+
+       } catch (InterruptedException e) {}
+            ImageIcon imagen = new ImageIcon("Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png");
+            this.imgactual="Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png";
+            this.jLabel_visualizador.setIcon(imagen);
+            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
+    else if(this.jComboBox_imagenes.getSelectedIndex()==2){
+        //Por reoccorrido limitado Postorder
+         try {
+                int limite = Integer.valueOf(this.jTextField_imagenes.getText());
+                this.manager.generarImgPostorder(this.cliente, limite,this.jLabel_recorrido);
+                this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                Thread.sleep(1500);
+                
+                ImageIcon imagen = new ImageIcon("Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png");
+                this.imgactual="Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png";
+                this.jLabel_visualizador.setIcon(imagen);
+                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                
+              
+
+       } catch (InterruptedException e) {}
+            
+    }
+    else if(this.jComboBox_imagenes.getSelectedIndex()==3){
+         //Por árbol de imágenes
+         try {
+                
+                int id = Integer.valueOf(this.jTextField_imagenes.getText());
+                this.manager.generarImg(this.cliente, id,this.jLabel_recorrido);
+                this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                Thread.sleep(1500);
+                
+                ImageIcon imagen = new ImageIcon("Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png");
+                this.imgactual="Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png";
+                this.jLabel_visualizador.setIcon(imagen);
+                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                
+              
+
+       } catch (InterruptedException e) {}
+    }
+    
+    this.jTextField_imagenes.setText("");
+    }//GEN-LAST:event_jButton_generarimgActionPerformed
+
+    private void jMenuItem_cimagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_cimagenesActionPerformed
+          JFileChooser chooser = new JFileChooser();
+         
+         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON", "json");
+         chooser.setFileFilter(filter);
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+         File fichero = chooser.getSelectedFile();
+        this.manager.cargarImagenes(this.cliente, fichero);
+        }
+      
+    }//GEN-LAST:event_jMenuItem_cimagenesActionPerformed
+
+    private void jMenu_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_archivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu_archivoActionPerformed
+
+    private void jLabel_visualizadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_visualizadorMouseClicked
+         try {
+
+            File file = new File (this.imgactual);
+            Desktop.getDesktop().open(file);
+
+     }catch (IOException ex) {System.out.println(ex);}
+    }//GEN-LAST:event_jLabel_visualizadorMouseClicked
+
     private void jButton_visualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_visualizarActionPerformed
-        if(this.jComboBox.getSelectedIndex()==0){
+         if(this.jComboBox.getSelectedIndex()==0){
             try {
                 manager.graficarImagenes(this.cliente);
                 Thread.sleep(1000);
@@ -318,31 +448,6 @@ public class Clientei extends javax.swing.JFrame {
         this.jTextField_Reportes.setText("");
     }//GEN-LAST:event_jButton_visualizarActionPerformed
 
-    private void jMenuItem_cimagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_cimagenesActionPerformed
-          JFileChooser chooser = new JFileChooser();
-         
-         FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON", "json");
-         chooser.setFileFilter(filter);
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-         File fichero = chooser.getSelectedFile();
-        this.manager.cargarImagenes(this.cliente, fichero);
-        }
-      
-    }//GEN-LAST:event_jMenuItem_cimagenesActionPerformed
-
-    private void jMenu_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_archivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu_archivoActionPerformed
-
-    private void jLabel_visualizadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_visualizadorMouseClicked
-         try {
-
-            File file = new File (this.imgactual);
-            Desktop.getDesktop().open(file);
-
-     }catch (IOException ex) {System.out.println(ex);}
-    }//GEN-LAST:event_jLabel_visualizadorMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -350,11 +455,15 @@ public class Clientei extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_generarimg;
     private javax.swing.JButton jButton_visualizar;
     private javax.swing.JComboBox<String> jComboBox;
+    private javax.swing.JComboBox<String> jComboBox_imagenes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel_nombre;
+    private javax.swing.JLabel jLabel_recorrido;
     private javax.swing.JLabel jLabel_visualizador;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -364,5 +473,6 @@ public class Clientei extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu_archivo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField_Reportes;
+    private javax.swing.JTextField jTextField_imagenes;
     // End of variables declaration//GEN-END:variables
 }
