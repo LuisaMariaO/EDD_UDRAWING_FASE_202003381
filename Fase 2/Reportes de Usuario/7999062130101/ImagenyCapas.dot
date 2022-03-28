@@ -1,0 +1,20 @@
+digraph G {
+node[ style=filled, fillcolor=coral1, shape=box];
+label="Imagen seleccionada y árbol de capas"Nodo485840349[label="5"]
+Nodo627166848[label="2"]
+Nodo1602212248[label="1"]
+Nodo1751021997[label="3"]
+Nodo985093246[label="6"]
+Nodo213485745[label="9"]
+Nodo485840349->Nodo985093246
+Nodo485840349->Nodo627166848
+Nodo627166848->Nodo1751021997
+Nodo627166848->Nodo1602212248
+Nodo985093246->Nodo213485745
+Nodo213485745->Nodo2015410280
+Nodo2015410280[label="15" shape=circle fillcolor=cornflowerblue]
+Nodo1940297784[label="13" shape=circle fillcolor=cornflowerblue]
+Nodo886464912[label="16" shape=circle fillcolor=cornflowerblue]
+Nodo2015410280->Nodo886464912
+Nodo2015410280->Nodo1940297784
+}

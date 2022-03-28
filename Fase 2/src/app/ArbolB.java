@@ -93,6 +93,9 @@ public class ArbolB {
     }
     
     public void graficar(){
+        this.nombresNodos="";
+        this.conexiones="";
+        
         StringBuilder dot = new StringBuilder();
         
         dot.append("digraph G {\n");

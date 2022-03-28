@@ -1,0 +1,14 @@
+digraph G {
+node[shape=record, style=filled, fillcolor=coral1];
+Nodo1857740710[label="5"]
+Nodo1330633700[label="2"]
+Nodo574006603[label="1"]
+Nodo449388123[label="3"]
+Nodo64619993[label="6"]
+Nodo1905367065[label="9"]
+Nodo1857740710->Nodo64619993
+Nodo1857740710->Nodo1330633700
+Nodo1330633700->Nodo449388123
+Nodo1330633700->Nodo574006603
+Nodo64619993->Nodo1905367065
+}

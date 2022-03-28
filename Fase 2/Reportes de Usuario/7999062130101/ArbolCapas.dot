@@ -1,0 +1,40 @@
+digraph G {
+node[style=filled, fillcolor=cornflowerblue, shape=circle];
+label="Árbol de Capas"Nodo445992989[label="9" shape=circle fillcolor=cornflowerblue]
+Nodo2067265649[label="3" shape=circle fillcolor=cornflowerblue]
+Nodo272992312[label="1" shape=circle fillcolor=cornflowerblue]
+Nodo619936866[label="0" shape=circle fillcolor=cornflowerblue]
+Nodo1615066219[label="2" shape=circle fillcolor=cornflowerblue]
+Nodo543175057[label="6" shape=circle fillcolor=cornflowerblue]
+Nodo956723475[label="4" shape=circle fillcolor=cornflowerblue]
+Nodo1184447220[label="5" shape=circle fillcolor=cornflowerblue]
+Nodo96349652[label="8" shape=circle fillcolor=cornflowerblue]
+Nodo2033602089[label="7" shape=circle fillcolor=cornflowerblue]
+Nodo1961918659[label="15" shape=circle fillcolor=cornflowerblue]
+Nodo118913566[label="10" shape=circle fillcolor=cornflowerblue]
+Nodo148356754[label="14" shape=circle fillcolor=cornflowerblue]
+Nodo1138491047[label="12" shape=circle fillcolor=cornflowerblue]
+Nodo1791294820[label="11" shape=circle fillcolor=cornflowerblue]
+Nodo1580644918[label="13" shape=circle fillcolor=cornflowerblue]
+Nodo227675222[label="18" shape=circle fillcolor=cornflowerblue]
+Nodo1599274368[label="16" shape=circle fillcolor=cornflowerblue]
+Nodo1138757131[label="17" shape=circle fillcolor=cornflowerblue]
+Nodo445992989->Nodo1961918659
+Nodo445992989->Nodo2067265649
+Nodo2067265649->Nodo543175057
+Nodo2067265649->Nodo272992312
+Nodo272992312->Nodo1615066219
+Nodo272992312->Nodo619936866
+Nodo543175057->Nodo96349652
+Nodo543175057->Nodo956723475
+Nodo956723475->Nodo1184447220
+Nodo96349652->Nodo2033602089
+Nodo1961918659->Nodo227675222
+Nodo1961918659->Nodo118913566
+Nodo118913566->Nodo148356754
+Nodo148356754->Nodo1138491047
+Nodo1138491047->Nodo1580644918
+Nodo1138491047->Nodo1791294820
+Nodo227675222->Nodo1599274368
+Nodo1599274368->Nodo1138757131
+}

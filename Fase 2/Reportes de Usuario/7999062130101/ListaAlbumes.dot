@@ -1,0 +1,15 @@
+digraph G {
+node[shape=box, style=filled];
+rankdir="LR"
+label="Listado de álbumes";
+Nodo1310076339[label="Album 3" fillcolor=orange1];Nodo1164482094[label="Album 1" fillcolor=orange1];Nodo927822586[label="Album 2" fillcolor=orange1];Nodo1310076339->Nodo1164482094;
+Nodo1310076339->Nodo927822586;
+Nodo1164482094->Nodo927822586;
+Nodo1164482094->Nodo1310076339;
+Nodo1164482094->Imagen1826680608;
+Imagen1826680608->Imagen333724858;
+Imagen333724858->Imagen305926414;
+Nodo927822586->Nodo1310076339;
+Nodo927822586->Nodo1164482094;
+Nodo927822586->Imagen1312455441;
+Imagen1826680608[label="Id: 1" fillcolor=olivedrab1];Imagen333724858[label="Id: 3" fillcolor=olivedrab1];Imagen305926414[label="Id: 5" fillcolor=olivedrab1];Imagen1312455441[label="Id: 2" fillcolor=olivedrab1];}

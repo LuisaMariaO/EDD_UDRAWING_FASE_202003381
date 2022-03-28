@@ -4,6 +4,7 @@ package app;
 /**
  *
  * @author Luisa María Ortiz
+ * @param <E>
  */
 public class Capa <E> {
     public Matriz matriz;

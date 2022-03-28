@@ -1,0 +1,14 @@
+digraph G {
+node[ style=filled, fillcolor=coral1, shape=box];
+label="Árbol de Imágenes"Nodo1847790526[label="5"]
+Nodo1227433764[label="2"]
+Nodo1188957144[label="1"]
+Nodo810981527[label="3"]
+Nodo792237271[label="6"]
+Nodo757838328[label="9"]
+Nodo1847790526->Nodo792237271
+Nodo1847790526->Nodo1227433764
+Nodo1227433764->Nodo810981527
+Nodo1227433764->Nodo1188957144
+Nodo792237271->Nodo757838328
+}
