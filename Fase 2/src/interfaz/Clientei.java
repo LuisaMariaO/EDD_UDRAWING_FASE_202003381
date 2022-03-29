@@ -164,7 +164,7 @@ public class Clientei extends javax.swing.JFrame {
         jPanel1.add(jButton_visualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 90, 30));
 
         jComboBox_imagenes.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jComboBox_imagenes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recorrido limitado: Preorder", "Recorrido limitado: Inorder", "Recorrido limitado: Postorder", "Id de imagen" }));
+        jComboBox_imagenes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recorrido limitado: Preorder", "Recorrido limitado: Inorder", "Recorrido limitado: Postorder", "Id de imagen", "Capas" }));
         jPanel1.add(jComboBox_imagenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 210, -1));
 
         jLabel_recorrido.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -334,6 +334,25 @@ public class Clientei extends javax.swing.JFrame {
               
 
        } catch (InterruptedException e) {}
+    }
+    else if(this.jComboBox_imagenes.getSelectedIndex()==4){
+        //Por listado de capas seleccionado
+        try {
+                String texto = this.jTextField_imagenes.getText();
+                String[]capas = texto.split(",");
+                this.manager.generarPorCapas(this.cliente, capas,this.jLabel_recorrido);
+                this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                Thread.sleep(1500);
+                
+                ImageIcon imagen = new ImageIcon("Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png");
+                this.imgactual="Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenApp.png";
+                this.jLabel_visualizador.setIcon(imagen);
+                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                
+              
+
+       } catch (InterruptedException e) {}
+        
     }
     
     this.jTextField_imagenes.setText("");

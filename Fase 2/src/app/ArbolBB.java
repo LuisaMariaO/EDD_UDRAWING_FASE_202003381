@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -257,12 +258,84 @@ public class ArbolBB<E extends Comparable<E>>{
         
    
         }
-        
-        
-        
-    
+
     }
     
-
+    public Matriz amplitud(Matriz imgMatriz, JLabel recorrido){
+       this.img=imgMatriz;
+       this.textoRecorrido="Recorrido en amplitud del árbol de capas= ";
+       amplitud(this.raiz,imgMatriz);
+       recorrido.setText(this.textoRecorrido);
+       return imgMatriz;
+    }
+    
+    private void amplitud(Capa<E> raiz, Matriz imgMatriz){
+        
+            Capa capa =raiz;
+            Cola cola = new Cola();//Cola auxiliar para realizar el recorrido
+            Capa tmp = null;
+            if(capa != null){
+                cola.enqueque(capa);
+            while(cola.size>0){
+                tmp=cola.dequeque();
+                this.textoRecorrido+=tmp.id+" ";
+                Nodo aux = tmp.matriz.raiz;
+                Nodo referencia = tmp.matriz.raiz;
+                while(aux!=null){
+                if(!aux.color.equals("Raiz") && !aux.color.equals("Col") && !aux.color.equals("Row")){
+                    imgMatriz.insertarNodo(aux.i, aux.j, aux.color);
+                }
+                aux=aux.siguiente;
+                if(aux==null){
+                    if(referencia.abajo!=null){
+                        referencia=referencia.abajo;
+                        aux=referencia;
+                    }
+                }
+                }
+               if(tmp.izquierdo!=null){
+                   cola.enqueque(tmp.izquierdo);
+               }
+               if(tmp.derecho!=null){
+                   cola.enqueque(tmp.derecho);
+               }
+            }    
+            }
+        }
+    
+    public Matriz generarCapas(Matriz imgMatriz, JLabel label, String[]capas){
+        this.img=imgMatriz;
+        this.textoRecorrido="Capas graficadas: ";
+        for(String c : capas){
+            Capa<E> capa = this.buscar((E) c);
+            if(capa!=null){
+                generarCapas(imgMatriz,capa);
+            }
+            else{
+                 JOptionPane.showMessageDialog(null, "No se encontró la capa "+c, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        label.setText(this.textoRecorrido);
+        return imgMatriz;
+    }
+    
+    private void generarCapas(Matriz imgMatriz,Capa capa){
+            this.textoRecorrido+=capa.id+" ";
+                Nodo aux = capa.matriz.raiz;
+                Nodo referencia = capa.matriz.raiz;
+                while(aux!=null){
+                if(!aux.color.equals("Raiz") && !aux.color.equals("Col") && !aux.color.equals("Row")){
+                    imgMatriz.insertarNodo(aux.i, aux.j, aux.color);
+                }
+                aux=aux.siguiente;
+                if(aux==null){
+                    if(referencia.abajo!=null){
+                        referencia=referencia.abajo;
+                        aux=referencia;
+                    }
+                }
+                }
+    }
+    
 
 }

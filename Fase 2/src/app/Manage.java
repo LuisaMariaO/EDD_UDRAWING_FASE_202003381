@@ -173,6 +173,22 @@ public void cargarImagenes(Cliente cliente, File ruta){//VERIFICAR LA FORMA DE P
     }
     public void generarImg(Cliente cliente, int idimg, JLabel etiqueta){
         
+        Imagen img = cliente.arbolImagenes.buscar(idimg);//Imagen que se busca
+        if(img!=null){
+            Matriz imgMatriz = new Matriz("Imagen");
+            imgMatriz = img.capas.amplitud(imgMatriz, etiqueta);
+            imgMatriz.graficaApicacion(String.valueOf(cliente.dpi));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No se encontró la imagen "+idimg, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+ 
+    }
+    
+    public void generarPorCapas(Cliente cliente, String[] capas, JLabel label){
+        Matriz imgMatriz = new Matriz("Imagen");
+        cliente.arbolCapas.generarCapas(imgMatriz, label, capas);
+        imgMatriz.graficaApicacion(String.valueOf(cliente.dpi));
     }
         
     

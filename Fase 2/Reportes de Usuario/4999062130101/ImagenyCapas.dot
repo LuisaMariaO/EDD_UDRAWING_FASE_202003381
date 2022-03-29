@@ -1,0 +1,52 @@
+digraph G {
+node[ style=filled, fillcolor=coral1, shape=box];
+label="Imagen seleccionada y árbol de capas"Nodo694249248[label="5"]
+Nodo994445984[label="2"]
+Nodo508087049[label="1"]
+Nodo1009968072[label="3"]
+Nodo1988575798[label="6"]
+Nodo574939416[label="9"]
+Nodo694249248->Nodo1988575798
+Nodo694249248->Nodo994445984
+Nodo994445984->Nodo1009968072
+Nodo994445984->Nodo508087049
+Nodo1009968072->Nodo1376959492
+Nodo1988575798->Nodo574939416
+Nodo1376959492[label="9" shape=circle fillcolor=cornflowerblue]
+Nodo1913465766[label="3" shape=circle fillcolor=cornflowerblue]
+Nodo1844497837[label="1" shape=circle fillcolor=cornflowerblue]
+Nodo2059550140[label="0" shape=circle fillcolor=cornflowerblue]
+Nodo1636399664[label="2" shape=circle fillcolor=cornflowerblue]
+Nodo717600365[label="6" shape=circle fillcolor=cornflowerblue]
+Nodo373669369[label="4" shape=circle fillcolor=cornflowerblue]
+Nodo1010245115[label="5" shape=circle fillcolor=cornflowerblue]
+Nodo2100533847[label="8" shape=circle fillcolor=cornflowerblue]
+Nodo1467213852[label="7" shape=circle fillcolor=cornflowerblue]
+Nodo1493872620[label="15" shape=circle fillcolor=cornflowerblue]
+Nodo224590037[label="10" shape=circle fillcolor=cornflowerblue]
+Nodo155116615[label="14" shape=circle fillcolor=cornflowerblue]
+Nodo1103482484[label="12" shape=circle fillcolor=cornflowerblue]
+Nodo1949026693[label="11" shape=circle fillcolor=cornflowerblue]
+Nodo1855267026[label="13" shape=circle fillcolor=cornflowerblue]
+Nodo921903495[label="18" shape=circle fillcolor=cornflowerblue]
+Nodo172562331[label="16" shape=circle fillcolor=cornflowerblue]
+Nodo1703993032[label="17" shape=circle fillcolor=cornflowerblue]
+Nodo1376959492->Nodo1493872620
+Nodo1376959492->Nodo1913465766
+Nodo1913465766->Nodo717600365
+Nodo1913465766->Nodo1844497837
+Nodo1844497837->Nodo1636399664
+Nodo1844497837->Nodo2059550140
+Nodo717600365->Nodo2100533847
+Nodo717600365->Nodo373669369
+Nodo373669369->Nodo1010245115
+Nodo2100533847->Nodo1467213852
+Nodo1493872620->Nodo921903495
+Nodo1493872620->Nodo224590037
+Nodo224590037->Nodo155116615
+Nodo155116615->Nodo1103482484
+Nodo1103482484->Nodo1855267026
+Nodo1103482484->Nodo1949026693
+Nodo921903495->Nodo172562331
+Nodo172562331->Nodo1703993032
+}
