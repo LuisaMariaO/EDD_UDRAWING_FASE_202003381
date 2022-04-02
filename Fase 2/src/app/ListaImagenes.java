@@ -48,6 +48,7 @@ public class ListaImagenes {
             else{
                 this.primero=null;
             }
+            this.size--;
         }
         else{
             while(actual!=null){
@@ -59,6 +60,7 @@ public class ListaImagenes {
                      else{
                          actual.siguiente=null;
                      }
+                     this.size--;
                     break;
                 }
                 }

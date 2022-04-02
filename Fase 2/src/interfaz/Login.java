@@ -72,7 +72,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Usuario");
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         TextField_usuario.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         bg.add(TextField_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 400, 40));

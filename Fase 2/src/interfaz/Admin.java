@@ -44,8 +44,8 @@ boolean arbol=false;
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jButton_cerrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         Button_CargaClientes = new javax.swing.JButton();
         jLabel_arbol = new javax.swing.JLabel();
         jLabel_time = new javax.swing.JLabel();
@@ -69,19 +69,20 @@ boolean arbol=false;
         jLabel2.setText("Administrador");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Img/banneradmin.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 100));
-
         jButton_cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Img/exit_opt.png"))); // NOI18N
         jButton_cerrar.setToolTipText("Cerrar sesión");
-        jButton_cerrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jButton_cerrar.setBorder(null);
+        jButton_cerrar.setBorderPainted(false);
         jButton_cerrar.setPreferredSize(new java.awt.Dimension(96, 40));
         jButton_cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_cerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 110, 50, 40));
+        jPanel1.add(jButton_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 40, 40, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Img/banneradmin.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 100));
 
         Button_CargaClientes.setBackground(new java.awt.Color(51, 0, 51));
         Button_CargaClientes.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -95,7 +96,6 @@ boolean arbol=false;
         });
         jPanel1.add(Button_CargaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 40));
 
-        jLabel_arbol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Img/blank.png"))); // NOI18N
         jLabel_arbol.setToolTipText("Click si el gráfico no se ve completo.");
         jLabel_arbol.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel_arbol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -104,12 +104,12 @@ boolean arbol=false;
                 jLabel_arbolMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel_arbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, 550, 380));
+        jPanel1.add(jLabel_arbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 690, 440));
 
         jLabel_time.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel_time.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_time.setText("Última actualización de árbol: null ");
-        jPanel1.add(jLabel_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 620, -1, -1));
+        jPanel1.add(jLabel_time, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 620, -1, -1));
 
         jButton_verClientes.setBackground(new java.awt.Color(0, 51, 102));
         jButton_verClientes.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -121,7 +121,7 @@ boolean arbol=false;
                 jButton_verClientesActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_verClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 190, 30));
+        jPanel1.add(jButton_verClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 190, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -10,87 +10,127 @@ import java.io.FileWriter;
  * @author Luisa María Ortiz
  */
 public class ArbolB {
-    final int orden_arbol=5;//El orden requerido para el arbol
     Pagina raiz;
+    int orden;
+    int altura;
     String nombresNodos="";
     String conexiones ="";
     int cuentaClaves=0;
     
     public ArbolB(){
-        this.raiz = new Pagina(); //Página vacía desde la creación del árbol
+        this.raiz = null;
+        this.orden = 5;
+        this.altura = 0;
     }
     
-    public void insertar(String nombre, String password, long dpi){
-        Cliente cliente = new Cliente(nombre, password, dpi);
-        Cliente obj = insertarEnPagina(cliente, this.raiz);
-        
-        if(obj != null){
-            //Si se retora el go significa que se creó una nueva rama que debe ser insertada en el árbol
+   void insertar(String nombre, String password, long dpi){ // recorrer el arbol para ver en que pagina tiene que insertar
+        Cliente nuevo = new Cliente(nombre, password, dpi);
+        if(this.raiz == null){
             this.raiz = new Pagina();
-            this.raiz.insertar(obj);
-            this.raiz.hoja=false;
+            this.raiz.raiz = true;
+            this.raiz = (Pagina)this.raiz.insertar_pagina(nuevo);
+            
+        }else{
+            if(this.altura == 0){ // no se a dividido la raiz
+                Object respuesta_insertar = this.raiz.insertar_pagina(nuevo);
+                if(respuesta_insertar instanceof Pagina){ // --------------------la raiz no se dividio 
+                    this.raiz = (Pagina)respuesta_insertar; 
+             
+                    
+                }else if(respuesta_insertar instanceof Cliente){ // -----------------la raiz se dividio
+                    this.altura++;
+                    this.raiz = new Pagina();
+                    Cliente nuevo_raiz = (Cliente)respuesta_insertar;
+                    this.raiz = (Pagina)this.raiz.insertar_pagina(nuevo_raiz);
+                }
+                else if(respuesta_insertar==null){
+                    return;
+                }
+            }else{//-------ya hay mas de una pagina, recorrer el arbol y ubicarse en la rama donde deveria de ir el nodo
+                Object respuesta_insertar = insertar_recorrer(nuevo,this.raiz); // verificar que responde y si cambia la raiz
+                
+                if(respuesta_insertar instanceof Cliente){ //---- la raiz se dividio
+                   // JOptionPane.showMessageDialog(null, "retorno un nodo a la raiz");
+                    this.altura++;
+                    this.raiz = new Pagina();
+                    this.raiz.insertar_pagina((Cliente) respuesta_insertar);
+                }else if(respuesta_insertar==null){
+                    return;
+                
+                }else{
+                    //JOptionPane.showMessageDialog(null, "retorno una pagina a la raiz");
+                    this.raiz= (Pagina)respuesta_insertar;
+                }
+            }
         }
     }
     
-    private Cliente insertarEnPagina(Cliente nuevo, Pagina rama){
-        if(rama.hoja){
-            rama.insertar(nuevo);
-            return (rama.contador == orden_arbol)?dividir(rama):null;//Si la pagina llega a 5 claves,se divide la rama
-        }else{
-            Cliente tmp = rama.primero;
-            do{
-                if(nuevo.dpi == tmp.dpi){
+    Object insertar_recorrer(Cliente nuevo, Pagina raiz_actual){ //Metodo recursivo para buscar la pagina en la que se debe de insertar
+        //JOptionPane.showMessageDialog(null,"entro al metodo insertar_recorer");
+        if(raiz_actual.Es_hoja(raiz_actual)){
+            //JOptionPane.showMessageDialog(null,"entro a es hoja");
+            Object respuesta_insertar = raiz_actual.insertar_pagina(nuevo);
+            if(respuesta_insertar!=null){
+            return respuesta_insertar;
+            }
+            else{
+                return null;
+            }
+        }else{ // recorrer la lista para insertar en donde se debe
+            //JOptionPane.showMessageDialog(null,"entro al metodo si no es hoja");
+            Object respuesta_insertar;
+            if( nuevo.dpi < raiz_actual.claves.primero.dpi){ //*------- si tiene que ir antes
+                //JOptionPane.showMessageDialog(null,"entro a la izquierda");
+                respuesta_insertar = insertar_recorrer(nuevo,raiz_actual.claves.primero.izquierda);
+                if(respuesta_insertar instanceof Cliente){ // la pagina hija se dividio y se tiene que insertar el nodo en est pagina
+                   
+                    return raiz_actual.insertar_pagina((Cliente)respuesta_insertar);
+                }else if(respuesta_insertar==null){
                     return null;
-                }else if(nuevo.dpi < tmp.dpi){
-                    Cliente obj = insertarEnPagina (nuevo, tmp.izquierda);
-                    return ValidarDivision(obj,rama);
-                }else if (tmp.siguiente == null){
-                    Cliente obj = insertarEnPagina(nuevo, tmp.derecha);
+                }else{
+                    
+                   
+                    raiz_actual.claves.primero.izquierda = (Pagina)respuesta_insertar;
+                    return raiz_actual;
                 }
-                tmp = (Cliente) tmp.siguiente;
-            }while(tmp != null);
+            }else if(nuevo.dpi > raiz_actual.claves.ultimo.dpi){ //*---- si es mayor al ultimo 
+                //.showMessageDialog(null,"entro al ultimo");
+                respuesta_insertar = insertar_recorrer(nuevo,raiz_actual.claves.ultimo.derecha);
+                if(respuesta_insertar instanceof Cliente){ // la pagina hija se dividio y se tiene que insertar el nodo en est pagina
+                   
+                    return raiz_actual.insertar_pagina((Cliente)respuesta_insertar);
+                }else{
+                
+                    raiz_actual.claves.ultimo.derecha = (Pagina)respuesta_insertar;
+                    return raiz_actual;
+                }
+            }else{
+             
+                Cliente pivote = raiz_actual.claves.primero;
+                
+                while(pivote != null){
+                    if(nuevo.dpi < pivote.dpi){
+                        respuesta_insertar = insertar_recorrer(nuevo,pivote.izquierda);
+                        if(respuesta_insertar instanceof Cliente){
+                            return raiz_actual.insertar_pagina((Cliente)respuesta_insertar);
+                        }else{
+                            pivote.izquierda = (Pagina)respuesta_insertar;
+                            pivote.anterior.derecha = (Pagina) respuesta_insertar;
+                            return raiz_actual;
+                        }
+                    }else if(nuevo.dpi == pivote.dpi){
+                        return raiz_actual;
+                    }else{
+                        pivote = pivote.siguiente;
+                    }
+                }
+            }
         }
-        return null;
-    }
-    private Cliente dividir (Pagina rama){
-        long val = -999;
-        String name="";
-        String pass="";
-        Cliente tmp, Nuevo;
-        Cliente aux = rama.primero;
-        Pagina rderecha = new Pagina();
-        Pagina rizquierda = new Pagina();
         
-        int cont = 0;
-        while(aux != null){
-            cont++;
-            if(cont < 3){
-                tmp = new Cliente(aux.nombre, aux.password, aux.dpi, aux.izquierda, aux.derecha);
-                rizquierda.hoja=!(tmp.derecha != null && tmp.izquierda!=null); //Si tiene ramas no es una hoja
-                rizquierda.insertar(tmp);
-            }else if(cont == 3){
-                val = aux.dpi;
-                name=aux.nombre;
-                pass=aux.password;
-            }else {
-                tmp = new Cliente(aux.nombre, aux.password, aux.dpi, aux.izquierda, aux.derecha);
-                rderecha.hoja=!(tmp.derecha!=null && tmp.izquierda !=null);
-                rderecha.insertar(tmp);
-            }
-            aux = aux.siguiente;
-        }
-        Nuevo = new Cliente (name, pass, val, rizquierda, rderecha);
-        return Nuevo;
+       return this;
     }
-    private Cliente ValidarDivision (Cliente obj, Pagina rama){
-        if(obj instanceof Cliente){
-            rama.insertar((Cliente)obj);
-            if(rama.contador == orden_arbol){
-                return dividir (rama);
-            }
-        }
-        return null;
-    }
+    
+    ///--------------Metodos propios--------------------
     
     public void graficar(){
         this.nombresNodos="";
@@ -126,15 +166,18 @@ public class ArbolB {
     
     public void recorrido(Pagina raiz){
         if(raiz != null){
-            Cliente auxn = raiz.primero;
+            Cliente auxn = raiz.claves.primero;
             nombresNodos+="Nodo"+raiz.hashCode()+"[label=\"";
              while(auxn!=null){
             nombresNodos+="<S"+cuentaClaves+">|DPI: "+auxn.dpi+"\\n Nombre: "+auxn.nombre+"\\n Password: "+auxn.password+"|";
-            
-            if(auxn.izquierda!=null){
+            if(auxn == raiz.claves.ultimo){
+               
+                nombresNodos+="<S"+(cuentaClaves+1)+">";
+            }
+            if(auxn.izquierda!=null && auxn==raiz.claves.primero){
                 conexiones+="Nodo"+raiz.hashCode()+":S"+cuentaClaves+"->Nodo"+auxn.izquierda.hashCode()+";\n";
             }
-            if(auxn.derecha!=null){
+            if(auxn.derecha!=null ){
                
                 conexiones+="Nodo"+raiz.hashCode()+":S"+(cuentaClaves+1)+"->Nodo"+auxn.derecha.hashCode()+";\n";
             
@@ -147,9 +190,10 @@ public class ArbolB {
         }
             nombresNodos+="\"];\n";
             
-            auxn=raiz.primero;
+            auxn=raiz.claves.primero;
             while(auxn!=null){
                 
+                        
                 recorrido(auxn.izquierda);
                 recorrido(auxn.derecha);
                 auxn=auxn.siguiente;
@@ -166,7 +210,7 @@ public class ArbolB {
     private Cliente buscar (Pagina raiz, long dpi, String password){
         if(raiz==null){return null;} //No encontró coincidencia
         else{
-            Cliente aux = raiz.primero;
+            Cliente aux = raiz.claves.primero;
             while(aux!=null){
                 if(aux.dpi == dpi && aux.password.equals(password)){
                     return aux;
