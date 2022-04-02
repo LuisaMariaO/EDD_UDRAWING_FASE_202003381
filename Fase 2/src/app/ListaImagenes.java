@@ -39,6 +39,36 @@ public class ListaImagenes {
         
     }
     
+    public void elminar(int id){
+        Imagen actual = this.primero;
+        if(this.primero.id == id){
+            if(this.size>1){
+            this.primero=this.primero.siguiente;
+            }
+            else{
+                this.primero=null;
+            }
+        }
+        else{
+            while(actual!=null){
+                if(actual.siguiente!=null){
+                     if(actual.siguiente.id==id){
+                     if(actual.siguiente.siguiente!=null){    
+                    actual.siguiente=actual.siguiente.siguiente;
+                     }
+                     else{
+                         actual.siguiente=null;
+                     }
+                    break;
+                }
+                }
+               
+                actual=actual.siguiente;
+            }
+        }
+        
+    }
+    
    
     
   

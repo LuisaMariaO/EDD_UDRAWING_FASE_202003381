@@ -121,6 +121,107 @@ public class ArbolAVL {
 
     }
     
+    Imagen minimo(Imagen imagen)
+    {
+        Imagen actual = imagen;
+ 
+        /*Encontrando el valor más a la derecha*/
+        while (actual.derecha != null)
+        actual = actual.derecha;
+ 
+        return actual;
+    }
+    
+    Imagen eliminar(int id){
+        return eliminar(this.raiz,id);
+    }
+ 
+    Imagen eliminar(Imagen raiz, int id)
+    {
+ 
+        if (raiz == null)
+            return raiz;
+ 
+        //Se mueve a la izquierda si el valor a eliminar es menor que el nodo actual
+        if (id < raiz.id)
+            raiz.izquierda = eliminar(raiz.izquierda, id);
+ 
+        //Se mueve a ka derecha si el valor a eliminar es mayor al nodo actual
+        else if (id > raiz.id)
+            raiz.derecha = eliminar(raiz.derecha, id);
+ 
+        //Si no, la clave es igual y es el nodo a eliminar
+        else
+        {
+ 
+            
+            if ((raiz.izquierda == null) || (raiz.derecha == null))//Nodos hoja o con un solo hijo
+            {
+                Imagen temp = null;
+                if (temp == raiz.izquierda)
+                    temp = raiz.derecha;
+                else
+                    temp = raiz.derecha;
+ 
+                // Nodo hoja
+                if (temp == null)
+                {
+                    temp = raiz;
+                    raiz = null;
+                }
+                else // Nodo con un solo hijo
+                    raiz= temp; 
+                               
+            }
+            else
+            {
+ 
+                //Nodo con dos hijos
+                Imagen temp = minimo(raiz.izquierda);//Encuentra el mayor de los menores
+ 
+              
+                raiz.id = temp.id;
+ 
+                
+                raiz.izquierda= eliminar (raiz.izquierda, temp.id);
+            }
+        }
+ 
+       
+        if (raiz == null)
+            return raiz;
+ 
+        // Actualizando el peso
+        raiz.peso= mayor(peso(raiz.izquierda), peso(raiz.derecha)) + 1;
+ 
+        // Blalanceando
+        int balanceo = balancear(raiz);
+ 
+        
+       
+        if (balanceo > 1 && balancear(raiz.izquierda) >= 0)
+            return RD(raiz);
+ 
+
+        if (balanceo > 1 && balancear(raiz.izquierda) < 0)
+        {
+            raiz.izquierda = RI(raiz.izquierda);
+            return RD(raiz);
+        }
+ 
+
+        if (balanceo < -1 && balancear (raiz.derecha) <= 0)
+            return RI(raiz);
+
+        if (balanceo < -1 && balancear(raiz.derecha) > 0)
+        {
+            raiz.derecha = RD(raiz.derecha);
+            return RI(raiz);
+        }
+ 
+        return raiz;
+    }
+    
     public void preOrden(){
         nombresNodos="";
         conexiones="";

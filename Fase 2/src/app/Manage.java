@@ -222,6 +222,22 @@ public void cargarImagenes(Cliente cliente, File ruta){//VERIFICAR LA FORMA DE P
         pbuilder.start();
         }catch(Exception ex){System.out.println(ex.getMessage());}
     }
+    
+    public void eliminarImagen(Cliente cliente, String id){
+        int idimg = Integer.valueOf(id);
+         Imagen img = cliente.arbolImagenes.buscar(idimg);//Imagen que se busca
+        if(img!=null){
+            //cliente.arbolImagenes.eliminar(idimg);
+            cliente.albumes.eliminarImagenes(idimg);
+            cliente.arbolImagenes.eliminar(idimg);
+             JOptionPane.showMessageDialog(null, "¡Imagen eliminada correctamente! ", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No se encontró la imagen "+idimg, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
         
     
 }

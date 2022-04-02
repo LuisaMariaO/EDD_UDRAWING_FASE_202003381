@@ -121,4 +121,18 @@ public class Albumes {
         
         
     }
-}
+    
+    public void eliminarImagenes(int id){
+        Album actual = this.lc;
+        
+        do{
+            if(actual.imagenes!=null && actual.imagenes.primero!=null){//Si el álbum no está vacío
+           actual.imagenes.elminar(id);
+            }
+           actual=actual.siguiente;//Elimino la imagen de todos los álbumes en donde se encuentre
+        }while (actual!=this.lc);
+        }
+    
+    
+    }
+
