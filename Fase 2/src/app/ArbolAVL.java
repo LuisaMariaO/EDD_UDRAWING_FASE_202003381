@@ -232,5 +232,115 @@ public class ArbolAVL {
         pbuilder.start();
         }catch(Exception ex){System.out.println(ex.getMessage());}
     }
+     private void preOrden(Imagen raiz,Lista lista){
+        if(raiz != null){
+            lista.insertarFinal(raiz);
+            preOrden(raiz.izquierda,lista);
+            preOrden(raiz.derecha,lista);
+        }
+    }
+    public String reporte(){
+        Lista lista = new Lista();
+        preOrden(this.raiz,lista);
+        
+        return lista.sort();
+    }
 
+}
+//Lista auxiliar para ordenar en los reportes por el número de capas
+class Lista{
+    Imagen primera,ordenada;
+    int size;
+    
+    public Lista(){
+        this.primera=null;
+        this.ordenada=null;
+        this.size=0;
+    }
+    
+     public void insertarFinal(Imagen nueva){
+
+        Imagen actual = this.primera;
+        if(this.estaVacia()){
+            this.primera=nueva;
+                    }
+        else{
+          while(actual.siguienteo!=null){
+              actual=actual.siguienteo;
+          }
+          actual.siguienteo=nueva;
+          
+        }
+        
+        this.size++;
+
+    }
+    
+    public boolean estaVacia(){
+        return this.primera==null && this.size==0;
+        
+    }
+    
+     public String sort(){//Por inserción
+        this.ordenada=null;
+        Imagen actual = this.primera;
+        while(actual!=null){
+            Imagen siguiente=actual.siguienteo;
+            insertarOrdenado(actual);
+            actual=siguiente;
+            
+    }
+        this.primera=ordenada;
+        
+        //Tabulando los primeros 5 lugares
+        actual=this.primera;
+        int contador=0;
+        String tabla="";
+        StringBuilder dot = new StringBuilder();
+        dot.append("subgraph cluster_0{\ncolor=none\n");
+        dot.append("label=\"Top 5 de imágenes con más número de capas\";\n");
+        tabla+="Nodo[shape=none label=<\n<TABLE BORDER=\"0\" CELLSPACING=\"1\" CELLPADDING=\"1\"\n>";
+
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#E74C3C\">No.</TD>\n";
+        tabla+="<TD BGCOLOR=\"#EC7063\">Id capa</TD>\n";
+        tabla+="<TD BGCOLOR=\"#F5B7B1\">Cantidad de capas</TD>\n";
+        tabla+="</TR>\n";
+        while(actual!=null){
+            contador++;
+            tabla+="<TR>\n";
+            tabla+="<TD BGCOLOR=\"#E74C3C\">"+contador+"</TD>\n";
+            tabla+="<TD BGCOLOR=\"#EC7063\">"+actual.id+"</TD>\n";
+            tabla+="<TD BGCOLOR=\"#F5B7B1\">"+actual.no_capas+"</TD>\n";
+            tabla+="</TR>\n";
+            
+            if(contador==5){break;}
+            actual=actual.siguienteo;
+        }
+        tabla+="</TABLE>>]\n}\n";
+        dot.append(tabla);
+        
+        //Retorno los punteris a nulo
+        actual=this.primera;
+        while(actual!=null){
+            this.primera=actual.siguienteo;
+            actual=actual.siguienteo;
+        }
+         
+        return dot.toString();
+    }
+    public void insertarOrdenado(Imagen nueva){
+        if(this.ordenada==null || this.ordenada.no_capas<nueva.no_capas){
+            nueva.siguienteo=this.ordenada;
+            this.ordenada=nueva;
+        }
+        else{
+            Imagen actual = this.ordenada;
+            while(actual.siguienteo!=null && actual.siguienteo.no_capas>nueva.no_capas){
+                actual=actual.siguienteo;
+            }
+            nueva.siguienteo = actual.siguienteo;
+            actual.siguienteo = nueva;
+        }
+    }
 }

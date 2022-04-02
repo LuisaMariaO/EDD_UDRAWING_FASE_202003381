@@ -1,8 +1,10 @@
 
 package app;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import org.json.simple.JSONArray;
@@ -102,6 +104,7 @@ public void cargarImagenes(Cliente cliente, File ruta){//VERIFICAR LA FORMA DE P
                 Matriz matriz = cliente.arbolCapas.buscar(Long.toString((long) idcapas.get(j))).matriz;
                 imagen.capas.insertar(Long.toString((long)idcapas.get(j)), matriz);
             }
+            imagen.no_capas=imagen.capas.no_capas;//Capas de cada imagen para utilizar en reportes
   
         }
          
@@ -189,6 +192,35 @@ public void cargarImagenes(Cliente cliente, File ruta){//VERIFICAR LA FORMA DE P
         Matriz imgMatriz = new Matriz("Imagen");
         cliente.arbolCapas.generarCapas(imgMatriz, label, capas);
         imgMatriz.graficaApicacion(String.valueOf(cliente.dpi));
+    }
+    
+    public void reportarUsuario(Cliente cliente){
+       
+        StringBuilder dot = new StringBuilder();
+        dot.append("digraph G{\nrankdir=\"LR\"\n");
+        dot.append(cliente.arbolCapas.reportarRecorrido());
+        dot.append(cliente.arbolCapas.reportarProfundidad());
+        dot.append(cliente.arbolCapas.reporteHojas());
+        dot.append(cliente.arbolImagenes.reporte());
+        
+        
+        
+        dot.append("}");
+         try{
+           
+            File file = new File("Reportes de Usuario\\"+cliente.dpi);
+            if(!file.exists()){file.mkdirs();}//Si no existe la carpeta, se crea
+            
+           
+            file = new File("Reportes de Usuario\\"+cliente.dpi+"\\Reportes.dot");
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(dot.toString());
+            bw.close();
+        ProcessBuilder pbuilder = new ProcessBuilder( "dot", "-Tpng", "-o", "Reportes de Usuario\\"+cliente.dpi+"\\Reportes.png", "Reportes de Usuario\\"+cliente.dpi+"\\Reportes.dot" );
+        pbuilder.redirectErrorStream( true );
+        pbuilder.start();
+        }catch(Exception ex){System.out.println(ex.getMessage());}
     }
         
     

@@ -1,40 +1,40 @@
 digraph G {
 node[style=filled, fillcolor=cornflowerblue, shape=circle];
-label="Árbol de Capas"Nodo1695498168[label="9" shape=circle fillcolor=cornflowerblue]
-Nodo258475606[label="3" shape=circle fillcolor=cornflowerblue]
-Nodo1025084804[label="1" shape=circle fillcolor=cornflowerblue]
-Nodo588839619[label="0" shape=circle fillcolor=cornflowerblue]
-Nodo1821182898[label="2" shape=circle fillcolor=cornflowerblue]
-Nodo569869565[label="6" shape=circle fillcolor=cornflowerblue]
-Nodo1339133394[label="4" shape=circle fillcolor=cornflowerblue]
-Nodo1267060481[label="5" shape=circle fillcolor=cornflowerblue]
-Nodo1045774897[label="8" shape=circle fillcolor=cornflowerblue]
-Nodo800062032[label="7" shape=circle fillcolor=cornflowerblue]
-Nodo1797737553[label="15" shape=circle fillcolor=cornflowerblue]
-Nodo2021905646[label="10" shape=circle fillcolor=cornflowerblue]
-Nodo496759096[label="14" shape=circle fillcolor=cornflowerblue]
-Nodo1303836065[label="12" shape=circle fillcolor=cornflowerblue]
-Nodo1807849762[label="11" shape=circle fillcolor=cornflowerblue]
-Nodo218302664[label="13" shape=circle fillcolor=cornflowerblue]
-Nodo1006596446[label="18" shape=circle fillcolor=cornflowerblue]
-Nodo689026899[label="16" shape=circle fillcolor=cornflowerblue]
-Nodo1408255021[label="17" shape=circle fillcolor=cornflowerblue]
-Nodo1695498168->Nodo1797737553
-Nodo1695498168->Nodo258475606
-Nodo258475606->Nodo569869565
-Nodo258475606->Nodo1025084804
-Nodo1025084804->Nodo1821182898
-Nodo1025084804->Nodo588839619
-Nodo569869565->Nodo1045774897
-Nodo569869565->Nodo1339133394
-Nodo1339133394->Nodo1267060481
-Nodo1045774897->Nodo800062032
-Nodo1797737553->Nodo1006596446
-Nodo1797737553->Nodo2021905646
-Nodo2021905646->Nodo496759096
-Nodo496759096->Nodo1303836065
-Nodo1303836065->Nodo218302664
-Nodo1303836065->Nodo1807849762
-Nodo1006596446->Nodo689026899
-Nodo689026899->Nodo1408255021
+label="Árbol de Capas"Nodo880446951[label="9" shape=circle fillcolor=cornflowerblue]
+Nodo1119251691[label="3" shape=circle fillcolor=cornflowerblue]
+Nodo219936562[label="1" shape=circle fillcolor=cornflowerblue]
+Nodo653257302[label="0" shape=circle fillcolor=cornflowerblue]
+Nodo1464800608[label="2" shape=circle fillcolor=cornflowerblue]
+Nodo1844337373[label="6" shape=circle fillcolor=cornflowerblue]
+Nodo1798874760[label="4" shape=circle fillcolor=cornflowerblue]
+Nodo1148406426[label="5" shape=circle fillcolor=cornflowerblue]
+Nodo969438436[label="8" shape=circle fillcolor=cornflowerblue]
+Nodo488088856[label="7" shape=circle fillcolor=cornflowerblue]
+Nodo1860607244[label="15" shape=circle fillcolor=cornflowerblue]
+Nodo1235250068[label="10" shape=circle fillcolor=cornflowerblue]
+Nodo391765920[label="14" shape=circle fillcolor=cornflowerblue]
+Nodo927373110[label="12" shape=circle fillcolor=cornflowerblue]
+Nodo241801677[label="11" shape=circle fillcolor=cornflowerblue]
+Nodo1155511817[label="13" shape=circle fillcolor=cornflowerblue]
+Nodo1736609034[label="18" shape=circle fillcolor=cornflowerblue]
+Nodo1469379455[label="16" shape=circle fillcolor=cornflowerblue]
+Nodo1424503196[label="17" shape=circle fillcolor=cornflowerblue]
+Nodo880446951->Nodo1860607244
+Nodo880446951->Nodo1119251691
+Nodo1119251691->Nodo1844337373
+Nodo1119251691->Nodo219936562
+Nodo219936562->Nodo1464800608
+Nodo219936562->Nodo653257302
+Nodo1844337373->Nodo969438436
+Nodo1844337373->Nodo1798874760
+Nodo1798874760->Nodo1148406426
+Nodo969438436->Nodo488088856
+Nodo1860607244->Nodo1736609034
+Nodo1860607244->Nodo1235250068
+Nodo1235250068->Nodo391765920
+Nodo391765920->Nodo927373110
+Nodo927373110->Nodo1155511817
+Nodo927373110->Nodo241801677
+Nodo1736609034->Nodo1469379455
+Nodo1469379455->Nodo1424503196
 }

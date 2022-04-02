@@ -13,11 +13,13 @@ import javax.swing.JOptionPane;
  */
 public class ArbolBB<E extends Comparable<E>>{
     Capa<E> raiz;
-    String nombresNodos, conexiones,textoRecorrido;
+    String nombresNodos, conexiones,textoRecorrido,hojas;
     Matriz img;
+    int no_capas,contador;
     int limite,recorrido;
     public ArbolBB(){
         this.raiz=null;
+        this.no_capas=0;
     }
 
     public void insertar(E id, Matriz matriz){
@@ -27,6 +29,7 @@ public class ArbolBB<E extends Comparable<E>>{
     private Capa<E> insertarNodo(Capa<E> raiz, E id,Matriz matriz){
 
         if (raiz==null){
+            this.no_capas++;
             raiz=new Capa<E>(id,matriz);
         }
         else if (Integer.valueOf((String) id)<Integer.valueOf((String) raiz.id)){
@@ -36,6 +39,7 @@ public class ArbolBB<E extends Comparable<E>>{
             raiz.derecho=insertarNodo(raiz.derecho, id, matriz);
         }
         //TODO: Validar la insercion de claves repetidas :D
+        
         return raiz;
     }
 
@@ -48,13 +52,7 @@ public class ArbolBB<E extends Comparable<E>>{
         //System.out.println(conexiones);
     }
 
-    public void inOrden(){
-        inOrden(this.raiz);
-    }
-
-    public void postOrden(){
-        postOrden(this.raiz);
-    }
+ 
 
     private void preOrden(Capa<E> raiz){
         
@@ -72,21 +70,7 @@ public class ArbolBB<E extends Comparable<E>>{
         }
     }
     
-    private void inOrden(Capa<E> raiz){
-        if(raiz != null){
-            inOrden(raiz.izquierdo);
-            System.out.print(raiz.id.toString()+" ");
-            inOrden(raiz.derecho);
-        }
-    }
-
-    private void postOrden(Capa<E> raiz){
-        if(raiz != null){
-            postOrden(raiz.izquierdo);
-            postOrden(raiz.derecho);
-            System.out.print(raiz.id.toString()+" ");
-        }
-    }
+ 
 
 
 
@@ -335,6 +319,175 @@ public class ArbolBB<E extends Comparable<E>>{
                     }
                 }
                 }
+    }
+    
+    public String reporteHojas(){
+        String tabla="";
+        StringBuilder dot = new StringBuilder();
+        dot.append("subgraph cluster_1{\ncolor=none\n");
+        dot.append("label=\"Capas que son hoja\";\n");
+        tabla+="Nodo1[shape=none label=<\n<TABLE BORDER=\"0\" CELLSPACING=\"1\" CELLPADDING=\"1\"\n>";
+
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#A569BD\">No.</TD>\n";
+        tabla+="<TD BGCOLOR=\"#C39BD3\">Id capa</TD>\n";
+        
+        tabla+="</TR>\n";
+        this.hojas="";
+        contador=0;
+        
+        
+        dot.append(tabla);
+        encontrarHojas(this.raiz);
+        dot.append(this.hojas);
+        dot.append("</TABLE>>]\n}\n");
+   
+        return dot.toString();
+        
+    }
+    
+    public void encontrarHojas(Capa raiz){
+        if(raiz!=null){
+            if(raiz.izquierdo==null && raiz.derecho==null){
+                this.contador++;
+                this.hojas+="<TR>\n";
+                this.hojas+="<TD BGCOLOR=\"#A569BD\">"+contador+"</TD>\n";
+                this.hojas+="<TD BGCOLOR=\"#C39BD3\">"+raiz.id+"</TD>\n";
+                this.hojas+="</TR>\n";
+            }
+            
+            encontrarHojas(raiz.izquierdo);
+            encontrarHojas(raiz.derecho);
+        }
+    }
+    public String reportarProfundidad(){
+        String tabla="";
+        StringBuilder dot = new StringBuilder();
+        dot.append("subgraph cluster_2{\ncolor=none\n");
+        dot.append("label=\"Profundidad del árbol de capas\";\n");
+        tabla+="Nodo2[shape=none label=<\n<TABLE BORDER=\"0\" CELLSPACING=\"0\" CELLPADDING=\"0\"\n>";
+
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#2980B9\">Profundidad</TD>\n";
+        tabla+="</TR>\n";
+        
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#2980B9\">"+encontrarProfundidad(this.raiz)+"</TD>\n";
+        tabla+="</TR>\n";
+        dot.append(tabla);
+        dot.append("</TABLE>>]\n}\n");
+       
+        return dot.toString();
+    }
+    private int encontrarProfundidad(Capa raiz){
+	if(raiz == null){
+		return 0;
+	}
+	int nizquierda = encontrarProfundidad(raiz.izquierdo);
+	int nderecha = encontrarProfundidad(raiz.derecho);
+        //Retorna el nivel mayor +1
+        if(nizquierda >nderecha){
+            return nizquierda+1;
+        }
+        else{
+            return nderecha+1;
+        }
+	
+}
+    
+    public String reportarRecorrido(){
+        this.nombresNodos="";
+       String tabla="";
+        StringBuilder dot = new StringBuilder();
+        dot.append("subgraph cluster_3{\ncolor=none\n");
+        dot.append("label=\"Recorridos de árbol de capas\";\n");
+        tabla+="Nodo3[shape=none label=<\n<TABLE BORDER=\"0\" CELLSPACING=\"1\" CELLPADDING=\"1\">\n";
+
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#F4D03F\">Preorden</TD>\n";
+        tabla+="</TR>\n";
+
+        
+        this.nombresNodos+="<TR>\n";
+        this.nombresNodos+="<TD BGCOLOR=\"#F4D03F\"><FONT COLOR=\"#F4D03F\">Preorden</FONT></TD>";
+        rpreOrden(this.raiz);
+        this.nombresNodos+="</TR>\n";
+        dot.append(tabla);
+        dot.append(this.nombresNodos);
+        dot.append("</TABLE>>]\n\n");
+        //Para inorden 
+        this.nombresNodos="";
+        tabla="";
+        
+        tabla+="Nodo4[shape=none label=<\n<TABLE BORDER=\"0\" CELLSPACING=\"1\" CELLPADDING=\"1\">\n";
+
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#58D68D\">Inorden</TD>\n";
+        tabla+="</TR>\n";
+       
+        
+        this.nombresNodos+="<TR>\n";
+         this.nombresNodos+="<TD BGCOLOR=\"#58D68D\"><FONT COLOR=\"#58D68D\">Inorden</FONT></TD>";
+        inOrden(this.raiz);
+        this.nombresNodos+="</TR>\n";
+        dot.append(tabla);
+        dot.append(this.nombresNodos);
+        dot.append("</TABLE>>]\n\n");
+        
+        //Para post orden
+        this.nombresNodos="";
+        tabla="";
+        tabla+="Nodo5[shape=none label=<\n<TABLE BORDER=\"0\" CELLSPACING=\"1\" CELLPADDING=\"1\">\n";
+
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#1ABC9C\">Postorden</TD>\n";
+        tabla+="</TR>\n";
+        
+        
+        this.nombresNodos+="<TR>\n";
+        this.nombresNodos+="<TD BGCOLOR=\"#1ABC9C\"><FONT COLOR=\"#1ABC9C\">Postorden</FONT></TD>";
+        postOrden(this.raiz);
+        this.nombresNodos+="</TR>\n";
+        dot.append(tabla);
+        dot.append(this.nombresNodos);
+        dot.append("</TABLE>>]\n}\n");
+        
+     
+        return dot.toString(); 
+    }
+    
+
+    public void inOrden(){
+        inOrden(this.raiz);
+    }
+
+    public void postOrden(){
+        postOrden(this.raiz);
+    }
+    
+    
+    private void rpreOrden(Capa<E> raiz){
+        if(raiz!=null){
+   
+        this.nombresNodos+="<TD BGCOLOR=\"#F4D03F\">"+raiz.id+"</TD>";
+        rpreOrden(raiz.izquierdo);
+        rpreOrden(raiz.derecho);
+        }
+    }
+       private void inOrden(Capa<E> raiz){
+        if(raiz != null){
+            inOrden(raiz.izquierdo);
+            this.nombresNodos+="<TD BGCOLOR=\"#58D68D\">"+raiz.id+"</TD>";
+            inOrden(raiz.derecho);
+        }
+    }
+
+    private void postOrden(Capa<E> raiz){
+        if(raiz != null){
+            postOrden(raiz.izquierdo);
+            postOrden(raiz.derecho);
+            this.nombresNodos+="<TD BGCOLOR=\"#1ABC9C\">"+raiz.id+"</TD>";
+        }
     }
     
 

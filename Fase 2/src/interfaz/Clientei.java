@@ -63,6 +63,7 @@ public class Clientei extends javax.swing.JFrame {
         jButton_visualizar = new javax.swing.JButton();
         jComboBox_imagenes = new javax.swing.JComboBox<>();
         jLabel_recorrido = new javax.swing.JLabel();
+        Reportar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_archivo = new javax.swing.JMenu();
         jMenuItem_ccapas = new javax.swing.JMenuItem();
@@ -170,6 +171,18 @@ public class Clientei extends javax.swing.JFrame {
         jLabel_recorrido.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel_recorrido.setForeground(new java.awt.Color(51, 51, 51));
         jPanel1.add(jLabel_recorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 610, 600, 20));
+
+        Reportar.setBackground(new java.awt.Color(51, 0, 51));
+        Reportar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        Reportar.setForeground(new java.awt.Color(255, 255, 255));
+        Reportar.setText("Generar reportes");
+        Reportar.setBorder(null);
+        Reportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Reportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 140, 30));
 
         jMenu_archivo.setText("Archivo");
         jMenu_archivo.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -384,7 +397,8 @@ public class Clientei extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_visualizadorMouseClicked
 
     private void jButton_visualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_visualizarActionPerformed
-         if(this.jComboBox.getSelectedIndex()==0){
+        this.jLabel_visualizador.setIcon(null);
+        if(this.jComboBox.getSelectedIndex()==0){
             try {
                 manager.graficarImagenes(this.cliente);
                 Thread.sleep(1000);
@@ -420,7 +434,7 @@ public class Clientei extends javax.swing.JFrame {
 
        } catch (InterruptedException e) {}
             ImageIcon imagen = new ImageIcon("Reportes de Usuario\\"+this.cliente.dpi+"\\ListaAlbumes.png");
-            this.imgactual="Reportes de Usuario\\"+this.cliente.dpi+"\\ArbolImagenes.png";
+            this.imgactual="Reportes de Usuario\\"+this.cliente.dpi+"\\ListaAlbumes.png";
             this.jLabel_visualizador.setIcon(imagen);
             this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
@@ -446,6 +460,7 @@ public class Clientei extends javax.swing.JFrame {
             this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); 
         }
         else if(this.jComboBox.getSelectedIndex()==4){
+            this.jLabel_visualizador.setIcon(null);
             try {
                 Imagen img = this.cliente.arbolImagenes.buscar(Integer.valueOf(this.jTextField_Reportes.getText()));
                 if(img!=null){
@@ -454,18 +469,45 @@ public class Clientei extends javax.swing.JFrame {
                 else{
                      JOptionPane.showMessageDialog(null, "Imagen no encontrada", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+                this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                Thread.sleep(2000);
+                this.jLabel_visualizador.setIcon(null);
+                } catch (InterruptedException e) {}
+                 this.imgactual="Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenyCapas.png";
+                 
+                 try{
+                 this.jLabel_visualizador.setIcon(null);
+                 Thread.sleep(3000);
+                 ImageIcon imagen = new ImageIcon("Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenyCapas.png");
+                 this.jLabel_visualizador.setIcon(imagen);
+                 } catch (InterruptedException e){}
+                //imagen = new ImageIcon("Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenyCapas.png");
+                
+                this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                
+              
+
+       
+            
+           
+        }
+        this.jTextField_Reportes.setText("");
+    }//GEN-LAST:event_jButton_visualizarActionPerformed
+
+    private void ReportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportarActionPerformed
+         try {
+                this.manager.reportarUsuario(this.cliente);
                 Thread.sleep(1000);
                 this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
               
 
        } catch (InterruptedException e) {}
-            ImageIcon imagen = new ImageIcon("Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenyCapas.png");
-            this.imgactual="Reportes de Usuario\\"+this.cliente.dpi+"\\ImagenyCapas.png";
-            this.jLabel_visualizador.setIcon(imagen);
-            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        }
-        this.jTextField_Reportes.setText("");
-    }//GEN-LAST:event_jButton_visualizarActionPerformed
+         ImageIcon imagen = new ImageIcon("Reportes de Usuario\\"+cliente.dpi+"\\Reportes.png");
+         this.imgactual="Reportes de Usuario\\"+cliente.dpi+"\\Reportes.png";
+         this.jLabel_visualizador.setIcon(imagen);
+         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        
+    }//GEN-LAST:event_ReportarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,6 +515,7 @@ public class Clientei extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reportar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_generarimg;
     private javax.swing.JButton jButton_visualizar;
