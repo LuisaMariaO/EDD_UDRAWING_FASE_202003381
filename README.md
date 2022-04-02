@@ -1,2 +1,2 @@
-# EDD_UDRAWING_FASE1_202003381
-Fase 1. Laboratorio de Estructuras de Datos 2022
+# EDD_UDRAWING_FASE_202003381
+Fases del proyecto de Estructuras de Datos, 2022.
