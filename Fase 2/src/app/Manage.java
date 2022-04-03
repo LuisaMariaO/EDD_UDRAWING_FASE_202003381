@@ -16,7 +16,7 @@ import org.json.simple.parser.*;
  * @author Luisa María Ortiz
  */
 public class Manage {
-   ArbolB arbolB = new ArbolB(); //Arbol de clientes
+   public ArbolB arbolB = new ArbolB(); //Arbol de clientes
 
 
 public void cargaMasiva(File ruta){
@@ -237,6 +237,73 @@ public void cargarImagenes(Cliente cliente, File ruta){//VERIFICAR LA FORMA DE P
             JOptionPane.showMessageDialog(null, "No se encontró la imagen "+idimg, "Error", JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+    
+    public void reporteAdmin(String dpi, JLabel label){
+        long ldpi=0;
+        try{
+        ldpi = Long.valueOf(dpi);
+    }catch(NumberFormatException e){JOptionPane.showMessageDialog(null, "Ingrese un usuario válido", "Error", JOptionPane.ERROR_MESSAGE);}
+    
+      Cliente cliente = this.arbolB.buscar(ldpi);
+      
+      if(cliente!=null)
+      {
+          StringBuilder dot = new StringBuilder();
+        dot.append("digraph G{\n"); 
+        dot.append("label=\"Nombre: "+cliente.nombre+"\nDPI: "+cliente.dpi+"\nPassword: "+cliente.password+"\";");
+        try{
+        int albumes = cliente.albumes.size;
+        int imgalbumes=0;
+        //Encontrando la cantidad de imágenes
+        Album aux = cliente.albumes.lc;
+        do{
+            imgalbumes=imgalbumes+aux.imagenes.size;
+            aux=aux.siguiente;
+        }while(aux!=cliente.albumes.lc);
+        String tabla="Nodo[shape=none label=<\n";
+        tabla+="<TABLE BORDER=\"0\" CELLSPACING=\"1\" CELLPADDING= \"1\">\n";
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#3498DB\">Cantidad de álbumes</TD>\n";
+        tabla+="<TD BGCOLOR=\"#3498DB\">"+albumes+"</TD>\n";
+        tabla+="</TR>\n";
+        
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#48C9B0\">Cantidad de imágenes en álbum</TD>\n";
+        tabla+="<TD BGCOLOR=\"#48C9B0\">"+imgalbumes+"</TD>\n";
+        tabla+="</TR>\n";
+        
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#F1C40F\">Cantidad de imágenes totales</TD>\n";
+        tabla+="<TD BGCOLOR=\"#F1C40F\">"+cliente.arbolImagenes.size+"</TD>\n";
+        tabla+="</TR>\n";
+        
+        tabla+="<TR>\n";
+        tabla+="<TD BGCOLOR=\"#E67E22 \">Cantidad de capas totales</TD>\n";
+        tabla+="<TD BGCOLOR=\"#E67E22 \">"+cliente.arbolCapas.no_capas+"</TD>\n";
+        tabla+="</TR>\n";
+        
+        tabla+="</TABLE>>]\n";
+        dot.append(tabla);
+        dot.append("}");
+         
+           
+
+            
+           
+            File file = new File("Reportes de Administrador\\ReporteCliente.dot");
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(dot.toString());
+            bw.close();
+        ProcessBuilder pbuilder = new ProcessBuilder( "dot", "-Tpng", "-o", "Reportes de Administrador\\ReporteCliente.png", "Reportes de Administrador\\ReporteCliente.dot" );
+        pbuilder.redirectErrorStream( true );
+        pbuilder.start();
+        }catch(Exception ex){System.out.println(ex.getMessage());}
+      }
+      else{
+           JOptionPane.showMessageDialog(null, "No se encontró el usuario "+dpi, "Error", JOptionPane.ERROR_MESSAGE);
+      }      
     }
         
     

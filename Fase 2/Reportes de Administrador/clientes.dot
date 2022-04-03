@@ -1,11 +1,11 @@
 digraph G {
 node[shape=record];
-Nodo1790977249[label="<S0>|DPI: 4999062130101\n Nombre: AUX EDD\n Password: 1234|<S1>|DPI: 8999062130101\n Nombre: Compiladores 1\n Password: 1234|<S2>"];
-Nodo1680677014[label="<S2>|DPI: 2999062130101\n Nombre: Mario Bross\n Password: 1234|<S3>|DPI: 3999062130101\n Nombre: Sonic\n Password: 21234|<S4>"];
-Nodo1004043090[label="<S4>|DPI: 6999062130101\n Nombre: Lenguajes Formales y de Programacion\n Password: 1234|<S5>|DPI: 7999062130101\n Nombre: Estructura de datos\n Password: 1234|<S6>"];
-Nodo1004043090[label="<S6>|DPI: 6999062130101\n Nombre: Lenguajes Formales y de Programacion\n Password: 1234|<S7>|DPI: 7999062130101\n Nombre: Estructura de datos\n Password: 1234|<S8>"];
-Nodo300413964[label="<S8>|DPI: 9999062130101\n Nombre: Compiladores 2\n Password: 1234|<S9>|DPI: 9999999910101\n Nombre: Sistemas operativos 1\n Password: 1234|<S10>"];
-Nodo1790977249:S0->Nodo1680677014;
-Nodo1790977249:S1->Nodo1004043090;
-Nodo1790977249:S2->Nodo300413964;
+Nodo2028840416[label="<S0>|DPI: 4999062130101\n Nombre: AUX EDD\n Password: 12345|<S1>|DPI: 8999062130101\n Nombre: Compiladores 1\n Password: 1234|<S2>"];
+Nodo1963190037[label="<S2>|DPI: 2999062130101\n Nombre: Mario Bross\n Password: 1234|<S3>|DPI: 3999062130101\n Nombre: Sonic\n Password: 21234|<S4>"];
+Nodo1255730312[label="<S4>|DPI: 6999062130101\n Nombre: Lenguajes Formales y de Programacion\n Password: 1234|<S5>|DPI: 7999062130101\n Nombre: Estructura de datos\n Password: 1234|<S6>"];
+Nodo1255730312[label="<S6>|DPI: 6999062130101\n Nombre: Lenguajes Formales y de Programacion\n Password: 1234|<S7>|DPI: 7999062130101\n Nombre: Estructura de datos\n Password: 1234|<S8>"];
+Nodo1478316065[label="<S8>|DPI: 9999062130101\n Nombre: Compiladores 2\n Password: 1234|<S9>|DPI: 9999999910101\n Nombre: Sistemas operativos 1\n Password: 1234|<S10>"];
+Nodo2028840416:S0->Nodo1963190037;
+Nodo2028840416:S1->Nodo1255730312;
+Nodo2028840416:S2->Nodo1478316065;
 }

@@ -15,7 +15,7 @@ public class ListaClientes {
         this.size =0;
     }
     
-    boolean insertar(Cliente nuevo){//---------------------------insertar un nodo a la lista de una pagina 
+    boolean insertar(Cliente nuevo){
         if(this.primero == null){
             this.primero = nuevo;
             this.ultimo = nuevo;
@@ -66,7 +66,6 @@ public class ListaClientes {
                             //--------------------------- cambia los punteros a las paginas
                             pivote.izquierda = nuevo.derecha;
                             pivote.anterior.derecha = nuevo.izquierda;
-                            //-----------------------------------------------------------
                             pivote.anterior.siguiente = nuevo;
                             pivote.anterior = nuevo;
                             size++;

@@ -45,4 +45,10 @@ public class Cliente{
         this.albumes= new Albumes();
     }
     
+    public void setInfo(String nombre, String password, long dpi){
+        this.nombre=nombre;
+        this.password=password;
+        this.dpi=dpi;
+    }
+    
 }

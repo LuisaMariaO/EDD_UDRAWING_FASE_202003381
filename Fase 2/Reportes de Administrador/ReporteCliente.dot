@@ -1,0 +1,23 @@
+digraph G{
+label="Nombre: AUX EDD
+DPI: 4999062130101
+Password: 1234";Nodo[shape=none label=<
+<TABLE BORDER="0" CELLSPACING="1" CELLPADDING= "1">
+<TR>
+<TD BGCOLOR="#3498DB">Cantidad de álbumes</TD>
+<TD BGCOLOR="#3498DB">3</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#48C9B0">Cantidad de imágenes en álbum</TD>
+<TD BGCOLOR="#48C9B0">4</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#F1C40F">Cantidad de imágenes totales</TD>
+<TD BGCOLOR="#F1C40F">6</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#E67E22 ">Cantidad de capas totales</TD>
+<TD BGCOLOR="#E67E22 ">19</TD>
+</TR>
+</TABLE>>]
+}

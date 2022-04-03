@@ -23,7 +23,7 @@ public class ArbolB {
         this.altura = 0;
     }
     
-   void insertar(String nombre, String password, long dpi){ // recorrer el arbol para ver en que pagina tiene que insertar
+   void insertar(String nombre, String password, long dpi){ 
         Cliente nuevo = new Cliente(nombre, password, dpi);
         if(this.raiz == null){
             this.raiz = new Pagina();
@@ -46,11 +46,11 @@ public class ArbolB {
                 else if(respuesta_insertar==null){
                     return;
                 }
-            }else{//-------ya hay mas de una pagina, recorrer el arbol y ubicarse en la rama donde deveria de ir el nodo
-                Object respuesta_insertar = insertar_recorrer(nuevo,this.raiz); // verificar que responde y si cambia la raiz
+            }else{//-------ya hay mas de una pagina
+                Object respuesta_insertar = insertar_recorrer(nuevo,this.raiz); 
                 
                 if(respuesta_insertar instanceof Cliente){ //---- la raiz se dividio
-                   // JOptionPane.showMessageDialog(null, "retorno un nodo a la raiz");
+
                     this.altura++;
                     this.raiz = new Pagina();
                     this.raiz.insertar_pagina((Cliente) respuesta_insertar);
@@ -58,31 +58,28 @@ public class ArbolB {
                     return;
                 
                 }else{
-                    //JOptionPane.showMessageDialog(null, "retorno una pagina a la raiz");
+       
                     this.raiz= (Pagina)respuesta_insertar;
                 }
             }
         }
     }
     
-    Object insertar_recorrer(Cliente nuevo, Pagina raiz_actual){ //Metodo recursivo para buscar la pagina en la que se debe de insertar
-        //JOptionPane.showMessageDialog(null,"entro al metodo insertar_recorer");
+    Object insertar_recorrer(Cliente nuevo, Pagina raiz_actual){ 
         if(raiz_actual.Es_hoja(raiz_actual)){
-            //JOptionPane.showMessageDialog(null,"entro a es hoja");
-            Object respuesta_insertar = raiz_actual.insertar_pagina(nuevo);
+                Object respuesta_insertar = raiz_actual.insertar_pagina(nuevo);
             if(respuesta_insertar!=null){
             return respuesta_insertar;
             }
             else{
                 return null;
             }
-        }else{ // recorrer la lista para insertar en donde se debe
-            //JOptionPane.showMessageDialog(null,"entro al metodo si no es hoja");
+        }else{ 
+        
             Object respuesta_insertar;
-            if( nuevo.dpi < raiz_actual.claves.primero.dpi){ //*------- si tiene que ir antes
-                //JOptionPane.showMessageDialog(null,"entro a la izquierda");
+            if( nuevo.dpi < raiz_actual.claves.primero.dpi){ //Se inserta antes
                 respuesta_insertar = insertar_recorrer(nuevo,raiz_actual.claves.primero.izquierda);
-                if(respuesta_insertar instanceof Cliente){ // la pagina hija se dividio y se tiene que insertar el nodo en est pagina
+                if(respuesta_insertar instanceof Cliente){ // la pagina hija se dividio 
                    
                     return raiz_actual.insertar_pagina((Cliente)respuesta_insertar);
                 }else if(respuesta_insertar==null){
@@ -93,10 +90,9 @@ public class ArbolB {
                     raiz_actual.claves.primero.izquierda = (Pagina)respuesta_insertar;
                     return raiz_actual;
                 }
-            }else if(nuevo.dpi > raiz_actual.claves.ultimo.dpi){ //*---- si es mayor al ultimo 
-                //.showMessageDialog(null,"entro al ultimo");
+            }else if(nuevo.dpi > raiz_actual.claves.ultimo.dpi){ //*---- si es mayor 
                 respuesta_insertar = insertar_recorrer(nuevo,raiz_actual.claves.ultimo.derecha);
-                if(respuesta_insertar instanceof Cliente){ // la pagina hija se dividio y se tiene que insertar el nodo en est pagina
+                if(respuesta_insertar instanceof Cliente){ //La página se dividió
                    
                     return raiz_actual.insertar_pagina((Cliente)respuesta_insertar);
                 }else{
@@ -130,7 +126,7 @@ public class ArbolB {
        return this;
     }
     
-    ///--------------Metodos propios--------------------
+    ///--------------Metodos adicionales--------------------
     
     public void graficar(){
         this.nombresNodos="";
@@ -232,5 +228,35 @@ public class ArbolB {
         }
         return null;
     }
+    
+    public Cliente buscar(long dpi){
+     return this.buscar(this.raiz, dpi);
+    }
+    
+    private Cliente buscar (Pagina raiz, long dpi){
+        if(raiz==null){return null;} //No encontró coincidencia
+        else{
+            Cliente aux = raiz.claves.primero;
+            while(aux!=null){
+                if(aux.dpi == dpi ){
+                    return aux;
+                }
+                else if(dpi < aux.dpi){
+                   return  buscar(aux.izquierda,dpi);
+                }
+                else if(dpi > aux.dpi){
+                    if(aux.siguiente!=null){
+                        if(dpi<aux.siguiente.dpi){return buscar(aux.derecha,dpi);}
+                    }
+                    else{
+                       return buscar(aux.derecha,dpi); 
+                    }
+                   
+                }
+                aux = aux.siguiente;
+            }
+        }
+        return null;
+    } 
     
 }

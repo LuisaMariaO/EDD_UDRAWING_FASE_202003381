@@ -1,0 +1,15 @@
+digraph G{
+label="AUX EDD
+4999062130101
+1234";Nodo[shape=none label=<
+<TABLE BORDER="0" CELLSPACING="1" CELLPADDING= "1">
+<TR>
+<TD BGCOLOR="#3498DB">Cantidad de álbumes</TD>
+<TD BGCOLOR="#3498DB">3</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#48C9B0">Cantidad de imágenes en álbum</TD>
+<TD BGCOLOR="#48C9B0">4</TD>
+</TR>
+</TABLE>>]
+}

@@ -12,8 +12,10 @@ import java.io.FileWriter;
 public class ArbolAVL {
     Imagen raiz;
     String nombresNodos, conexiones, capas;
+    int size;
     public ArbolAVL(){
         this.raiz=null;
+        this.size=0;
     }
     //Peso de un arbol o subarbol
     public int peso(Imagen img){
@@ -69,7 +71,9 @@ public class ArbolAVL {
     public Imagen insertar (Imagen raiz, int id){
         //Caso base de la recursividad
         if(raiz == null){
+            this.size++;
             return new Imagen(id);
+            
         }
         if(id<raiz.id){
             raiz.izquierda = this.insertar(raiz.izquierda, id);
@@ -153,6 +157,7 @@ public class ArbolAVL {
         //Si no, la clave es igual y es el nodo a eliminar
         else
         {
+            this.size--;
  
             
             if ((raiz.izquierda == null) || (raiz.derecha == null))//Nodos hoja o con un solo hijo

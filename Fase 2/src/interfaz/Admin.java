@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import app.Cliente;
 import javax.swing.ImageIcon;
 import app.Manage;
 import java.awt.Cursor;
@@ -15,6 +16,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,8 +24,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class Admin extends javax.swing.JFrame {
 Manage manager;
+Cliente cliente;//Cliente actual
 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyy HH:mm:ss");
 boolean arbol=false;
+String imgactual;
     
     public Admin(Manage manage) {
         ImageIcon img = new ImageIcon("src\\interfaz\\Img\\iconv.png");
@@ -50,6 +54,16 @@ boolean arbol=false;
         jLabel_arbol = new javax.swing.JLabel();
         jLabel_time = new javax.swing.JLabel();
         jButton_verClientes = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField_buscar = new javax.swing.JTextField();
+        jButton_buscar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField_modificar = new javax.swing.JTextField();
+        jButton_encontrar = new javax.swing.JButton();
+        jTextField_nombre = new javax.swing.JTextField();
+        jTextField_dpi = new javax.swing.JTextField();
+        jTextField_password = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -71,7 +85,7 @@ boolean arbol=false;
 
         jButton_cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Img/exit_opt.png"))); // NOI18N
         jButton_cerrar.setToolTipText("Cerrar sesión");
-        jButton_cerrar.setBorder(null);
+        jButton_cerrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton_cerrar.setBorderPainted(false);
         jButton_cerrar.setPreferredSize(new java.awt.Dimension(96, 40));
         jButton_cerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +93,7 @@ boolean arbol=false;
                 jButton_cerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 40, 40, 40));
+        jPanel1.add(jButton_cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 40, 40, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/Img/banneradmin.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 100));
@@ -122,6 +136,72 @@ boolean arbol=false;
             }
         });
         jPanel1.add(jButton_verClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 190, 30));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel3.setText("Buscar Cliente");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+
+        jTextField_buscar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTextField_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_buscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 210, 30));
+
+        jButton_buscar.setBackground(new java.awt.Color(255, 0, 51));
+        jButton_buscar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jButton_buscar.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_buscar.setText("Buscar");
+        jButton_buscar.setBorder(null);
+        jButton_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_buscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 80, 30));
+
+        jLabel4.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setText("Modificar Cliente");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, 20));
+
+        jTextField_modificar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jPanel1.add(jTextField_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 210, 30));
+
+        jButton_encontrar.setBackground(new java.awt.Color(255, 102, 0));
+        jButton_encontrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButton_encontrar.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_encontrar.setText("Encontrar");
+        jButton_encontrar.setBorder(null);
+        jButton_encontrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_encontrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_encontrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, -1, 30));
+
+        jTextField_nombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jPanel1.add(jTextField_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 210, 30));
+
+        jTextField_dpi.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jPanel1.add(jTextField_dpi, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 210, 30));
+
+        jTextField_password.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jPanel1.add(jTextField_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 600, 210, 30));
+
+        jButton2.setBackground(new java.awt.Color(51, 204, 0));
+        jButton2.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Guardar cambios");
+        jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 600, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,6 +248,8 @@ boolean arbol=false;
          
        }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        
+        this.imgactual="Reportes de Administrador\\Clientes.png";
         ImageIcon img = new ImageIcon("Reportes de Administrador\\Clientes.png");
         this.jLabel_arbol.setIcon(img);
         this.jLabel_time.setText("Última actualización de árbol: "+this.dtf.format(LocalDateTime.now()));
@@ -177,13 +259,54 @@ boolean arbol=false;
         if(this.arbol){
              try {
 
-            File file = new File ("Reportes de Administrador\\Clientes.png");
+            File file = new File (this.imgactual);
             Desktop.getDesktop().open(file);
 
      }catch (IOException ex) {System.out.println(ex);}
 
         }
     }//GEN-LAST:event_jLabel_arbolMouseClicked
+
+    private void jTextField_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_buscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_buscarActionPerformed
+
+    private void jButton_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarActionPerformed
+        try{
+        this.manager.reporteAdmin(this.jTextField_buscar.getText(),this.jLabel_arbol);
+        Thread.sleep(1000);
+        this.imgactual="Reportes de Administrador\\ReporteCliente.png";
+        ImageIcon img = new ImageIcon(imgactual);
+        this.jLabel_arbol.setIcon(img);
+        
+         }catch(InterruptedException e) {}
+        this.jTextField_buscar.setText("");
+    }//GEN-LAST:event_jButton_buscarActionPerformed
+
+    private void jButton_encontrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_encontrarActionPerformed
+        long ldpi=0;
+        try{
+        ldpi = Long.valueOf(this.jTextField_modificar.getText());
+    }catch(NumberFormatException e){JOptionPane.showMessageDialog(null, "Ingrese un usuario válido", "Error", JOptionPane.ERROR_MESSAGE);}
+    
+        this.cliente = this.manager.arbolB.buscar(ldpi);
+        
+        if(cliente==null){
+            JOptionPane.showMessageDialog(null, "Cliente no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            this.jTextField_nombre.setText(cliente.nombre);
+            this.jTextField_dpi.setText(String.valueOf(cliente.dpi));
+            this.jTextField_password.setText(cliente.password);
+        }
+    }//GEN-LAST:event_jButton_encontrarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.cliente.setInfo(this.jTextField_nombre.getText(), this.jTextField_password.getText(), Long.valueOf(this.jTextField_dpi.getText()));
+        this.jTextField_nombre.setText("");
+        this.jTextField_dpi.setText("");
+        this.jTextField_password.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,12 +316,22 @@ boolean arbol=false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_CargaClientes;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_buscar;
     private javax.swing.JButton jButton_cerrar;
+    private javax.swing.JButton jButton_encontrar;
     private javax.swing.JButton jButton_verClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel_arbol;
     private javax.swing.JLabel jLabel_time;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField_buscar;
+    private javax.swing.JTextField jTextField_dpi;
+    private javax.swing.JTextField jTextField_modificar;
+    private javax.swing.JTextField jTextField_nombre;
+    private javax.swing.JTextField jTextField_password;
     // End of variables declaration//GEN-END:variables
 }
