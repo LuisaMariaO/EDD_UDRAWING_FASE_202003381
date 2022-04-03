@@ -173,7 +173,7 @@ public class Clientei extends javax.swing.JFrame {
 
         jLabel_recorrido.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel_recorrido.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel1.add(jLabel_recorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 610, 600, 20));
+        jPanel1.add(jLabel_recorrido, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 610, 600, 20));
 
         Reportar.setBackground(new java.awt.Color(51, 0, 51));
         Reportar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N

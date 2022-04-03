@@ -1,12 +1,14 @@
 digraph G {
 node[ style=filled, fillcolor=coral1, shape=box];
-label="Árbol de Imágenes"Nodo345021931[label="3"]
-Nodo653858211[label="2"]
-Nodo1871043713[label="1"]
-Nodo1941179562[label="6"]
-Nodo1649249836[label="9"]
-Nodo345021931->Nodo1941179562
-Nodo345021931->Nodo653858211
-Nodo653858211->Nodo1871043713
-Nodo1941179562->Nodo1649249836
+label="Árbol de Imágenes"Nodo2052124147[label="5"]
+Nodo1749847101[label="2"]
+Nodo1363445028[label="1"]
+Nodo738646562[label="3"]
+Nodo193011798[label="6"]
+Nodo1397066954[label="9"]
+Nodo2052124147->Nodo193011798
+Nodo2052124147->Nodo1749847101
+Nodo1749847101->Nodo738646562
+Nodo1749847101->Nodo1363445028
+Nodo193011798->Nodo1397066954
 }
