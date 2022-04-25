@@ -1,3 +1,0 @@
-digraph G {
-node[style=filled, fillcolor=cornflowerblue, shape=circle];
-label="Árbol de Capas"}
